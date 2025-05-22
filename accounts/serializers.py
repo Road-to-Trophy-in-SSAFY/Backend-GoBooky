@@ -16,7 +16,7 @@ class CustomRegisterSerializer(RegisterSerializer):
     age = serializers.IntegerField(min_value=0)
     annual_reading_count = serializers.IntegerField(min_value=0)
     weekly_avg_reading_time = serializers.IntegerField(min_value=0, required=False)
-    profile_image = serializers.ImageField()
+    profile_image = serializers.ImageField(required=False)
     categories = serializers.PrimaryKeyRelatedField(
         many=True, queryset=Category.objects.all()
     )

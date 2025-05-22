@@ -34,7 +34,7 @@ class CustomUser(AbstractUser):
     profile_image = models.ImageField(
         upload_to="profiles/",
         default="profiles/default.png",  # 기본 이미지 설정
-        null=False,
+        null=True,
         blank=True,  # 폼에서는 빈 값 허용
         help_text="프로필 이미지를 업로드하세요. 없을 경우 기본 이미지가 사용됩니다.",
     )

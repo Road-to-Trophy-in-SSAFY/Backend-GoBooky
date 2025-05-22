@@ -121,6 +121,9 @@ ACCOUNT_SIGNUP_FIELDS = ["email*", "username*", "password1*", "password2*"]
 # 아래 설정들은 아직 deprecated되지 않아 유지
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+# 커스텀 어댑터 설정
+ACCOUNT_ADAPTER = "accounts.adapters.CustomAccountAdapter"
+SOCIALACCOUNT_ADAPTER = "accounts.adapters.CustomSocialAccountAdapter"
 
 # dj-rest-auth 설정
 REST_AUTH = {
@@ -134,7 +137,8 @@ REST_AUTH = {
         "gender": {"required": True},
         "age": {"required": True},
         "annual_reading_count": {"required": True},
-        "profile_image": {"required": True},
+        "weekly_avg_reading_time": {"required": False},
+        "profile_image": {"required": False},
         "categories": {"required": True},
     },
     "USE_JWT": True,
