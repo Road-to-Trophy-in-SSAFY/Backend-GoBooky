@@ -8,9 +8,14 @@ from .serializers import BookListSerializer, BookDetailSerializer
 # Create your views here.
 @api_view(["GET"])
 def book_list(request):
-    books = get_list_or_404(Book)
+    category_pk = request.GET.get("category")
+    if category_pk:
+        books = Book.objects.filter(category_id=category_pk)
+    else:
+        books = Book.objects.all()
     serializer = BookListSerializer(books, many=True)
     return Response(serializer.data)
+
 
 @api_view(["GET"])
 def book_detail(request, book_id):

@@ -1,8 +1,10 @@
 from rest_framework import serializers
-from .models import Book
+from .models import Book, Category
 
 
 class BookListSerializer(serializers.ModelSerializer):
+    category_name = serializers.CharField(source="category.name", read_only=True)
+
     class Meta:
         model = Book
         fields = (
@@ -12,8 +14,10 @@ class BookListSerializer(serializers.ModelSerializer):
             "author",
             "publisher",
             "pub_date",
-            'subTitle',
+            "subTitle",
+            "category_name",
         )
+
 
 class BookDetailSerializer(serializers.ModelSerializer):
     class Meta:
