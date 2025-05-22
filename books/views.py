@@ -52,7 +52,8 @@ def thread_create(request):
     book = get_object_or_404(Book, id=book_id)
     thread = Thread(
         book=book,
-        user=request.user if request.user.is_authenticated else None,
+        # user=request.user if request.user.is_authenticated else None,
+        user_id=1,  # 테스트용 임시 유저 ID
         title=request.data.get("title", ""),
         content=request.data.get("content", ""),
         reading_date=request.data.get("reading_date"),
@@ -83,13 +84,14 @@ def thread_delete(request, thread_id):
 @api_view(["POST"])
 def thread_like(request, thread_id):
     thread = get_object_or_404(Thread, id=thread_id)
-    user = request.user
-    if not user.is_authenticated:
-        return Response({"error": "로그인이 필요합니다."}, status=401)
-    if thread.likes.filter(id=user.id).exists():
-        thread.likes.remove(user)
-        liked = False
-    else:
-        thread.likes.add(user)
-        liked = True
-    return Response({"liked": liked, "likes_count": thread.likes.count()})
+    # user = request.user
+    # if not user.is_authenticated:
+    #     return Response({"error": "로그인이 필요합니다."}, status=401)
+    # if thread.likes.filter(id=user.id).exists():
+    #     thread.likes.remove(user)
+    #     liked = False
+    # else:
+    #     thread.likes.add(user)
+    #     liked = True
+    # return Response({"liked": liked, "likes_count": thread.likes.count()})
+    return Response({"liked": False, "likes_count": 0})  # 테스트용 임시 응답

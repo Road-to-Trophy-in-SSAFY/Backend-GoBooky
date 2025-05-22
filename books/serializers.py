@@ -31,9 +31,17 @@ class BookTitleSerializer(serializers.ModelSerializer):
         fields = ("title",)
 
 
+class BookTitleWithCategorySerializer(serializers.ModelSerializer):
+    category_name = serializers.CharField(source="category.name", read_only=True)
+
+    class Meta:
+        model = Book
+        fields = ("title", "category_name")
+
+
 # 전체 쓰레드
 class ThreadListSerializer(serializers.ModelSerializer):
-    book = BookTitleSerializer()
+    book = BookTitleWithCategorySerializer()
 
     class Meta:
         model = Thread
@@ -41,23 +49,6 @@ class ThreadListSerializer(serializers.ModelSerializer):
 
 
 # 쓰레드 상세
-class ThreadSerializer(serializers.ModelSerializer):
-    book = BookTitleSerializer(read_only=True)
-
-    class Meta:
-        model = Thread
-        fields = (
-            "id",
-            "book",
-            "title",
-            "content",
-            "reading_date",
-            "created_at",
-            "updated_at",
-        )
-
-
-# 쓰레드 생성
 class ThreadSerializer(serializers.ModelSerializer):
     book = BookTitleSerializer(read_only=True)
 
@@ -83,7 +74,6 @@ class ThreadDetailSerializer(serializers.ModelSerializer):
         fields = (
             "id",
             "book",
-            "num_of_comments",
             "title",
             "content",
             "reading_date",
