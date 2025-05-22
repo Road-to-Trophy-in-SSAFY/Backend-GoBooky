@@ -279,7 +279,6 @@ class AccountDeleteView(APIView):
             ttl = int(exp - datetime.datetime.now().timestamp())
             if ttl > 0:
                 blacklist_token(access_jti, ttl)
-        user.is_active = False
-        user.save()
+        user.delete()  # 하드 삭제
         logout(request)
         return Response({"detail": "회원탈퇴가 완료되었습니다."})
