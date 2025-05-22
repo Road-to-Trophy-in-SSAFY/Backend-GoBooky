@@ -96,3 +96,4 @@ urllib3==1.26.20
 wcwidth==0.2.12
 Wikipedia-API==0.7.3
 zipp==3.21.0
+Pillow==9.5.0
