@@ -95,8 +95,10 @@ CORS_ALLOW_CREDENTIALS = env.bool("CORS_ALLOW_CREDENTIALS", default=True)
 
 # JWT 설정 (djangorestframework-simplejwt)
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=5),
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+    "ACCESS_TOKEN_LIFETIME": timedelta(
+        minutes=30
+    ),  # 개발 중에는 좀 더 긴 시간으로 설정
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),  # 리프레시 토큰 유효기간도 늘림
     "ROTATE_REFRESH_TOKENS": True,
     "BLACKLIST_AFTER_ROTATION": True,
     "AUTH_HEADER_TYPES": ("Bearer",),
@@ -145,8 +147,10 @@ REST_AUTH = {
     "JWT_AUTH_COOKIE": "gobooky-auth",
     "JWT_AUTH_REFRESH_COOKIE": "gobooky-refresh",
     "JWT_AUTH_SECURE": False,  # 개발 환경에서는 False, 프로덕션에서는 True
-    "JWT_AUTH_HTTPONLY": True,
+    "JWT_AUTH_HTTPONLY": False,  # 프론트엔드에서 직접 접근할 수 있도록 FALSE로 설정
     "SESSION_LOGIN": False,
+    "JWT_AUTH_RETURN_EXPIRATION": True,
+    "TOKEN_MODEL": None,  # JWT 사용 시 토큰 모델은 필요 없음
 }
 
 # Social Account Providers
