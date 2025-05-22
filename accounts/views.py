@@ -6,6 +6,9 @@ from django.utils.crypto import get_random_string
 from django.conf import settings
 from django.core.mail import send_mail, EmailMultiAlternatives
 from rest_framework_simplejwt.tokens import RefreshToken
+from django.core.cache import cache
+from django.views.decorators.cache import cache_page
+from django.utils.decorators import method_decorator
 from .serializers import (
     RegisterSerializer,
     VerifyEmailSerializer,
@@ -31,6 +34,11 @@ from rest_framework.permissions import AllowAny
 from .models import Category
 
 User = get_user_model()
+
+
+# 캐시 키 생성 함수
+def get_cache_key(prefix, *args):
+    return f"{settings.CACHE_KEY_PREFIX}:{prefix}:{':'.join(str(arg) for arg in args)}"
 
 
 class RegisterView(APIView):
@@ -71,11 +79,21 @@ class RegisterView(APIView):
         subject = "[GoBooky] 이메일 인증 요청"
         text_content = f"아래 링크를 클릭해 인증을 완료하세요.\n{verification_url}"
         html_content = f'아래 링크를 클릭해 인증을 완료하세요.<br><a href="{verification_url}">{verification_url}</a>'
-        msg = EmailMultiAlternatives(
-            subject, text_content, settings.DEFAULT_FROM_EMAIL, [email]
-        )
-        msg.attach_alternative(html_content, "text/html")
-        msg.send()
+
+        try:
+            msg = EmailMultiAlternatives(
+                subject, text_content, settings.DEFAULT_FROM_EMAIL, [email]
+            )
+            msg.attach_alternative(html_content, "text/html")
+            msg.send()
+        except Exception as e:
+            # 이메일 발송 실패 시 임시 저장 데이터 삭제
+            redis_client.delete(f"pending_user:{confirm_uuid}")
+            return Response(
+                {"detail": "이메일 발송에 실패했습니다. 다시 시도해주세요."},
+                status=500,
+            )
+
         return Response(
             {"detail": "이메일 인증 메일이 발송되었습니다.", "uuid": confirm_uuid},
             status=201,
@@ -132,38 +150,46 @@ class VerifyEmailView(APIView):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
         confirm_uuid = serializer.validated_data["uuid"]
-        import json
+
+        # 캐시에서 확인
+        cache_key = get_cache_key("email_verify", confirm_uuid)
+        cached_result = cache.get(cache_key)
+        if cached_result:
+            return Response(cached_result)
 
         user_data_json = redis_client.get(f"pending_user:{confirm_uuid}")
         if not user_data_json:
             return Response(
                 {"detail": "인증 링크가 만료되었거나 잘못되었습니다."}, status=400
             )
+
         user_data = json.loads(user_data_json)
-        # 인증이 실제로 완료된 경우에만 성공
-        if user_data.get("email_verified"):
-            return Response(
-                {"detail": "이메일 인증이 완료되었습니다. 다음 단계로 진행해주세요."}
-            )
-        else:
-            return Response(
-                {
-                    "detail": "아직 이메일 인증이 완료되지 않았습니다. 인증 링크를 클릭해주세요."
-                },
-                status=400,
-            )
+        response_data = (
+            {"detail": "이메일 인증이 완료되었습니다. 다음 단계로 진행해주세요."}
+            if user_data.get("email_verified")
+            else {
+                "detail": "아직 이메일 인증이 완료되지 않았습니다. 인증 링크를 클릭해주세요."
+            }
+        )
+
+        # 결과 캐싱
+        cache.set(cache_key, response_data, settings.CACHE_TTL)
+
+        return Response(response_data)
 
     def get(self, request, uuid):
-        import json
-
         user_data_json = redis_client.get(f"pending_user:{uuid}")
         if not user_data_json:
             return Response({"detail": "만료된 링크입니다."}, status=400)
+
         user_data = json.loads(user_data_json)
-        # 인증 상태만 True로 변경
         user_data["email_verified"] = True
         redis_client.setex(f"pending_user:{uuid}", 24 * 3600, json.dumps(user_data))
-        # 안내 메시지 반환
+
+        # 캐시 무효화
+        cache_key = get_cache_key("email_verify", uuid)
+        cache.delete(cache_key)
+
         return Response(
             {"detail": "이메일 인증이 완료되었습니다. 다음을 진행해주세요."}
         )
@@ -272,6 +298,7 @@ class AccountDeleteView(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
+@method_decorator(cache_page(60 * 15), name="get")  # 15분 캐싱
 @api_view(["GET"])
 @permission_classes([AllowAny])
 def get_categories(request):
