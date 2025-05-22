@@ -12,6 +12,8 @@ from .serializers import (
     ProfileCompleteSerializer,
     LoginSerializer,
     AccountDeleteSerializer,
+    UserSerializer,
+    CategorySerializer,
 )
 from .redis_utils import (
     set_confirm,
@@ -24,6 +26,9 @@ from .redis_utils import (
 from .tokens import CustomRefreshToken
 import uuid
 import datetime
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import AllowAny
+from .models import Category
 
 User = get_user_model()
 
@@ -32,7 +37,7 @@ class RegisterView(APIView):
     permission_classes = [permissions.AllowAny]
 
     def post(self, request):
-        # 1단계: 이메일, 비밀번호, 닉네임, (이름, 성)까지 모두 임시 저장
+        # 1단계: 이메일과 비밀번호만 임시 저장
         from .serializers import RegisterSerializer
         import json
 
@@ -41,9 +46,7 @@ class RegisterView(APIView):
         serializer.is_valid(raise_exception=True)
         email = serializer.validated_data["email"]
         password = serializer.validated_data["password"]
-        username = serializer.validated_data["username"]
-        first_name = data.get("first_name", "")
-        last_name = data.get("last_name", "")
+
         # 이메일 인증 UUID 생성
         confirm_uuid = str(uuid.uuid4())
         # 레이트리밋 체크
@@ -58,9 +61,6 @@ class RegisterView(APIView):
         user_data = {
             "email": email,
             "password": password,
-            "username": username,
-            "first_name": first_name,
-            "last_name": last_name,
             "email_verified": False,
         }
         redis_client.setex(
@@ -191,26 +191,38 @@ class ProfileCompleteView(APIView):
         user_data = json.loads(user_data_json)
         if not user_data.get("email_verified"):
             return Response({"detail": "이메일 인증이 필요합니다."}, status=400)
+
         # 프론트에서 보낸 최신 프로필 정보 반영
-        user_data["first_name"] = request.data.get(
-            "first_name", user_data.get("first_name", "")
-        )
-        user_data["last_name"] = request.data.get(
-            "last_name", user_data.get("last_name", "")
-        )
+        user_data["username"] = request.data.get("username")
+        user_data["first_name"] = request.data.get("first_name")
+        user_data["last_name"] = request.data.get("last_name")
+        user_data["gender"] = request.data.get("gender")
+        user_data["weekly_read_time"] = request.data.get("weekly_read_time")
+        user_data["yearly_read_count"] = request.data.get("yearly_read_count")
+        user_data["category_ids"] = request.data.get("category_ids", [])
+
         # 중복 체크
         if User.objects.filter(email=user_data["email"]).exists():
             redis_client.delete(f"pending_user:{confirm_uuid}")
             return Response({"detail": "이미 등록된 이메일입니다."}, status=400)
+
         # 실제 User 생성
         user = User.objects.create_user(
             email=user_data["email"],
             password=user_data["password"],
             username=user_data["username"],
-            first_name=user_data.get("first_name", ""),
-            last_name=user_data.get("last_name", ""),
+            first_name=user_data["first_name"],
+            last_name=user_data["last_name"],
+            gender=user_data["gender"],
+            weekly_read_time=user_data.get("weekly_read_time"),
+            yearly_read_count=user_data.get("yearly_read_count"),
             is_active=True,
         )
+
+        # 관심 장르 설정
+        if user_data.get("category_ids"):
+            user.categories.set(user_data["category_ids"])
+
         redis_client.delete(f"pending_user:{confirm_uuid}")
         return Response({"detail": "회원가입이 완료되었습니다."}, status=201)
 
@@ -229,6 +241,7 @@ class LoginView(APIView):
             {
                 "access": str(refresh.access_token),
                 "refresh": str(refresh),
+                "user": UserSerializer(user).data,
             }
         )
 
@@ -237,27 +250,14 @@ class LogoutView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def post(self, request):
-        refresh_token = request.data.get("refresh")
-        if not refresh_token:
-            return Response({"detail": "refresh 토큰이 필요합니다."}, status=400)
         try:
-            token = CustomRefreshToken(refresh_token)
-            jti = token["jti"]
-            user_id = request.user.id
-            # Redis에서 해당 유저의 refresh 모두 삭제
-            for key in redis_client.scan_iter(f"refresh:{user_id}:*"):
-                redis_client.delete(key)
-            # Access 블랙리스트 처리
-            access_jti = request.auth["jti"] if request.auth else None
-            if access_jti:
-                exp = request.auth["exp"]
-                ttl = int(exp - datetime.datetime.now().timestamp())
-                if ttl > 0:
-                    blacklist_token(access_jti, ttl)
-        except Exception:
-            return Response({"detail": "유효하지 않은 토큰입니다."}, status=400)
-        logout(request)
-        return Response({"detail": "로그아웃 되었습니다."})
+            refresh_token = request.data["refresh"]
+            token = RefreshToken(refresh_token)
+            token.blacklist()
+            redis_client.delete(f"refresh:{request.user.id}:{token['jti']}")
+            return Response(status=status.HTTP_205_RESET_CONTENT)
+        except Exception as e:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
 class AccountDeleteView(APIView):
@@ -265,20 +265,16 @@ class AccountDeleteView(APIView):
     serializer_class = AccountDeleteSerializer
 
     def delete(self, request):
-        serializer = self.serializer_class(
-            data=request.data, context={"request": request}
-        )
+        serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = request.user
-        # 로그아웃과 동일한 흐름
-        for key in redis_client.scan_iter(f"refresh:{user.id}:*"):
-            redis_client.delete(key)
-        access_jti = request.auth["jti"] if request.auth else None
-        if access_jti:
-            exp = request.auth["exp"]
-            ttl = int(exp - datetime.datetime.now().timestamp())
-            if ttl > 0:
-                blacklist_token(access_jti, ttl)
-        user.delete()  # 하드 삭제
-        logout(request)
-        return Response({"detail": "회원탈퇴가 완료되었습니다."})
+        user.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+@api_view(["GET"])
+@permission_classes([AllowAny])
+def get_categories(request):
+    categories = Category.objects.all()
+    serializer = CategorySerializer(categories, many=True)
+    return Response(serializer.data)
