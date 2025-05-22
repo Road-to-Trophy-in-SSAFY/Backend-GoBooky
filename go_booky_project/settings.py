@@ -37,7 +37,7 @@ ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=[])
 
 INSTALLED_APPS = [
     # Local apps
-    "accounts",
+    "accounts.apps.AccountsConfig",
     # Django default apps
     "django.contrib.admin",
     "django.contrib.auth",
@@ -124,12 +124,18 @@ ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 
 # dj-rest-auth 설정
 REST_AUTH = {
-    "REGISTER_SERIALIZER": "dj_rest_auth.registration.serializers.RegisterSerializer",
+    "REGISTER_SERIALIZER": "accounts.serializers.CustomRegisterSerializer",
+    "USER_DETAILS_SERIALIZER": "accounts.serializers.CustomUserDetailsSerializer",
     "SIGNUP_FIELDS": {
         "username": {"required": True},
         "email": {"required": True},
         "password1": {"required": True},
         "password2": {"required": True},
+        "gender": {"required": True},
+        "age": {"required": True},
+        "annual_reading_count": {"required": True},
+        "profile_image": {"required": True},
+        "categories": {"required": True},
     },
     "USE_JWT": True,
     "JWT_AUTH_COOKIE": "gobooky-auth",
@@ -239,8 +245,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = "static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+# Media files (User uploaded files)
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Add custom user model
+AUTH_USER_MODEL = "accounts.CustomUser"
