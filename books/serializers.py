@@ -12,4 +12,10 @@ class BookListSerializer(serializers.ModelSerializer):
             "author",
             "publisher",
             "pub_date",
+            'subTitle',
         )
+
+class BookDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Book
+        fields = "__all__"
