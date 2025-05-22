@@ -18,10 +18,6 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-# 미디어 파일 서빙 설정 (개발환경에서만)
-from django.conf import settings
-from django.conf.urls.static import static
-
 urlpatterns = [
     path("admin/", admin.site.urls),
     # dj-rest-auth 엔드포인트
@@ -32,12 +28,3 @@ urlpatterns = [
     # accounts 앱 API 엔드포인트
     path("api/accounts/", include("accounts.urls", namespace="accounts")),
 ]
-
-# browsable API에서 로그인/로그아웃 지원
-urlpatterns += [
-    path("api-auth/", include("rest_framework.urls")),
-]
-
-
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
