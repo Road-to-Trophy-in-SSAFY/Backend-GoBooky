@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Book, Category
+from .models import Book, Category, Thread
 
 
 class BookListSerializer(serializers.ModelSerializer):
@@ -23,3 +23,70 @@ class BookDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Book
         fields = "__all__"
+
+
+class BookTitleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Book
+        fields = ("title",)
+
+
+# 전체 쓰레드
+class ThreadListSerializer(serializers.ModelSerializer):
+    book = BookTitleSerializer()
+
+    class Meta:
+        model = Thread
+        fields = ("id", "title", "book")
+
+
+# 쓰레드 상세
+class ThreadSerializer(serializers.ModelSerializer):
+    book = BookTitleSerializer(read_only=True)
+
+    class Meta:
+        model = Thread
+        fields = (
+            "id",
+            "book",
+            "title",
+            "content",
+            "reading_date",
+            "created_at",
+            "updated_at",
+        )
+
+
+# 쓰레드 생성
+class ThreadSerializer(serializers.ModelSerializer):
+    book = BookTitleSerializer(read_only=True)
+
+    class Meta:
+        model = Thread
+        fields = (
+            "id",
+            "book",
+            "title",
+            "content",
+            "reading_date",
+            "created_at",
+            "updated_at",
+        )
+
+
+# 단일 쓰레드
+class ThreadDetailSerializer(serializers.ModelSerializer):
+    book = BookTitleSerializer(read_only=True)
+
+    class Meta:
+        model = Thread
+        fields = (
+            "id",
+            "book",
+            "num_of_comments",
+            "title",
+            "content",
+            "reading_date",
+            "created_at",
+            "updated_at",
+        )
