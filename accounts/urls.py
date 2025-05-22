@@ -7,6 +7,7 @@ from .views import (
     LoginView,
     LogoutView,
     AccountDeleteView,
+    get_categories,
 )
 
 urlpatterns = [
@@ -26,4 +27,5 @@ urlpatterns = [
     path("auth/login/", LoginView.as_view(), name="login"),
     path("auth/logout/", LogoutView.as_view(), name="logout"),
     path("auth/account/", AccountDeleteView.as_view(), name="account-delete"),
+    path("auth/categories/", get_categories, name="get-categories"),
 ]
