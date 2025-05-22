@@ -20,11 +20,5 @@ from django.urls import path, include
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    # dj-rest-auth 엔드포인트
-    path("dj-rest-auth/", include("dj_rest_auth.urls")),
-    path("dj-rest-auth/registration/", include("dj_rest_auth.registration.urls")),
-    # allauth 소셜 로그인 시 필요한 endpoint
-    path("accounts/social/", include("allauth.urls")),
-    # accounts 앱 API 엔드포인트
-    path("api/accounts/", include("accounts.urls", namespace="accounts")),
+    
 ]
