@@ -283,10 +283,16 @@ AUTH_USER_MODEL = "accounts.User"
 # Cache settings
 CACHES = {
     "default": {
-        "BACKEND": "django.core.cache.backends.redis.RedisCache",
+        "BACKEND": "django_redis.cache.RedisCache",
         "LOCATION": env("REDIS_URL", default="redis://127.0.0.1:6379/1"),
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            "CONNECTION_POOL_KWARGS": {"max_connections": 100},
+            "SOCKET_CONNECT_TIMEOUT": 5,
+            "SOCKET_TIMEOUT": 5,
+            "RETRY_ON_TIMEOUT": True,
+            "MAX_CONNECTIONS": 1000,
+            "COMPRESSOR": "django_redis.compressors.zlib.ZlibCompressor",
         },
     }
 }
