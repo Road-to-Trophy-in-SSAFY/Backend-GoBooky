@@ -1,17 +1,55 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import CustomUser, Category
+from .models import User, Category
 
 
-@admin.register(CustomUser)
+@admin.register(User)
 class CustomUserAdmin(UserAdmin):
-    model = CustomUser
-    list_display = ("id", "email", "username", "is_active", "is_staff")
-    search_fields = ("email", "username")
-    ordering = ("id",)
-    fieldsets = UserAdmin.fieldsets + ((None, {"fields": ()}),)
+    list_display = ("email", "username", "first_name", "last_name", "is_staff")
+    search_fields = ("email", "username", "first_name", "last_name")
+    ordering = ("email",)
+
+    fieldsets = (
+        (None, {"fields": ("email", "password")}),
+        (
+            "Personal info",
+            {
+                "fields": (
+                    "first_name",
+                    "last_name",
+                    "gender",
+                    "weekly_read_time",
+                    "yearly_read_count",
+                )
+            },
+        ),
+        (
+            "Permissions",
+            {
+                "fields": (
+                    "is_active",
+                    "is_staff",
+                    "is_superuser",
+                    "groups",
+                    "user_permissions",
+                )
+            },
+        ),
+        ("Important dates", {"fields": ("last_login", "date_joined")}),
+    )
+
+    add_fieldsets = (
+        (
+            None,
+            {
+                "classes": ("wide",),
+                "fields": ("email", "password1", "password2"),
+            },
+        ),
+    )
 
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ("id", "name")
+    list_display = ("name",)
+    search_fields = ("name",)
