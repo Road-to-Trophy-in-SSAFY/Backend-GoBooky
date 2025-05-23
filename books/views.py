@@ -10,6 +10,7 @@ from .serializers import (
     ThreadSerializer,
     ThreadDetailSerializer,
 )
+from .utils import create_thread_image
 from django.core.cache import cache
 from django.conf import settings
 
@@ -45,24 +46,28 @@ def book_detail(request, book_id):
 
 @api_view(["GET"])
 def thread_list(request):
-    cache_key = f"{settings.CACHE_KEY_PREFIX}:thread_list"
+    # 쿼리 파라미터를 포함한 캐시 키 생성 (타임스탬프 포함)
+    query_params = request.GET.urlencode()
+    cache_key = f"{settings.CACHE_KEY_PREFIX}:thread_list:{query_params}"
     cached = cache.get(cache_key)
     if cached:
         return Response(cached)
     threads = Thread.objects.all().order_by("-created_at")
-    serializer = ThreadListSerializer(threads, many=True)
+    serializer = ThreadListSerializer(threads, many=True, context={"request": request})
     cache.set(cache_key, serializer.data, settings.CACHE_TTL)
     return Response(serializer.data)
 
 
 @api_view(["GET"])
 def thread_detail(request, thread_id):
-    cache_key = f"{settings.CACHE_KEY_PREFIX}:thread_detail:{thread_id}"
+    # 쿼리 파라미터를 포함한 캐시 키 생성 (타임스탬프 포함)
+    query_params = request.GET.urlencode()
+    cache_key = f"{settings.CACHE_KEY_PREFIX}:thread_detail:{thread_id}:{query_params}"
     cached = cache.get(cache_key)
     if cached:
         return Response(cached)
     thread = get_object_or_404(Thread, id=thread_id)
-    serializer = ThreadDetailSerializer(thread)
+    serializer = ThreadDetailSerializer(thread, context={"request": request})
     cache.set(cache_key, serializer.data, settings.CACHE_TTL)
     return Response(serializer.data)
 
@@ -81,8 +86,26 @@ def thread_create(request):
         content=request.data.get("content", ""),
         reading_date=request.data.get("reading_date"),
     )
+    # 쓰레드 저장
     thread.save()
-    serializer = ThreadDetailSerializer(thread)
+
+    try:
+        # 이미지 생성 및 쓰레드에 설정
+        image_path = create_thread_image(thread)
+        if image_path:
+            thread.cover_img = image_path
+            thread.save()
+    except Exception as e:
+        # 이미지 생성 실패해도 쓰레드는 생성
+        print(f"이미지 생성 중 오류 발생: {e}")
+
+    # 쓰레드 목록 캐시 무효화
+    cache_key_base = f"{settings.CACHE_KEY_PREFIX}:thread_list"
+    cache.delete(cache_key_base)
+    # 쿼리 파라미터가 있는 캐시 키도 삭제 시도
+    cache.delete(f"{cache_key_base}:")  # 빈 쿼리 파라미터
+
+    serializer = ThreadDetailSerializer(thread, context={"request": request})
     return Response(serializer.data, status=201)
 
 
@@ -96,6 +119,19 @@ def thread_update(request, thread_id):
     thread.content = request.data.get("content", thread.content)
     thread.reading_date = request.data.get("reading_date", thread.reading_date)
     thread.save()
+
+    # 쓰레드 목록 및 상세 캐시 무효화
+    cache_key_list_base = f"{settings.CACHE_KEY_PREFIX}:thread_list"
+    cache_key_detail_base = f"{settings.CACHE_KEY_PREFIX}:thread_detail:{thread_id}"
+
+    # 기본 캐시 키 삭제
+    cache.delete(cache_key_list_base)
+    cache.delete(cache_key_detail_base)
+
+    # 쿼리 파라미터가 있는 캐시 키도 삭제 시도
+    cache.delete(f"{cache_key_list_base}:")  # 빈 쿼리 파라미터
+    cache.delete(f"{cache_key_detail_base}:")  # 빈 쿼리 파라미터
+
     serializer = ThreadDetailSerializer(thread)
     return Response(serializer.data)
 
@@ -106,6 +142,19 @@ def thread_delete(request, thread_id):
     thread = get_object_or_404(Thread, id=thread_id)
     if thread.user != request.user:
         return Response({"error": "자신의 쓰레드만 삭제할 수 있습니다."}, status=403)
+
+    # 쓰레드 목록 및 상세 캐시 무효화
+    cache_key_list_base = f"{settings.CACHE_KEY_PREFIX}:thread_list"
+    cache_key_detail_base = f"{settings.CACHE_KEY_PREFIX}:thread_detail:{thread_id}"
+
+    # 기본 캐시 키 삭제
+    cache.delete(cache_key_list_base)
+    cache.delete(cache_key_detail_base)
+
+    # 쿼리 파라미터가 있는 캐시 키도 삭제 시도
+    cache.delete(f"{cache_key_list_base}:")  # 빈 쿼리 파라미터
+    cache.delete(f"{cache_key_detail_base}:")  # 빈 쿼리 파라미터
+
     thread.delete()
     return Response({"message": "Thread deleted."}, status=204)
 

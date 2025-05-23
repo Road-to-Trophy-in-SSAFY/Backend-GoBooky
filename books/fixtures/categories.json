@@ -1,51 +1,51 @@
 [
-    {
-        "model": "books.category",
-        "pk": 1,
-        "fields": {
-            "name": "ÏÜåÏÑ§/Ïãú/Ìù¨Í≥°"
-        }
-    },
-    {
-        "model": "books.category",
-        "pk": 2,
-        "fields": {
-            "name": "Í≤ΩÏ†ú/Í≤ΩÏòÅ"
-        }
-    },
-    {
-        "model": "books.category",
-        "pk": 3,
-        "fields": {
-            "name": "ÏûêÍ∏∞Í≥ÑÎ∞ú"
-        }
-    },
-    {
-        "model": "books.category",
-        "pk": 4,
-        "fields": {
-            "name": "Ïù∏Î¨∏/ÍµêÏñë"
-        }
-    },
-    {
-        "model": "books.category",
-        "pk": 5,
-        "fields": {
-            "name": "Ï∑®ÎØ∏/Ïã§Ïö©"
-        }
-    },
-    {
-        "model": "books.category",
-        "pk": 6,
-        "fields": {
-            "name": "Ïñ¥Î¶∞Ïù¥/Ï≤≠ÏÜåÎÖÑ"
-        }
-    },
-    {
-        "model": "books.category",
-        "pk": 7,
-        "fields": {
-            "name": "Í≥ºÌïô"
-        }
+{
+    "model": "books.category",
+    "pk": 1,
+    "fields": {
+        "name": "º“º≥/Ω√/»Ò∞Ó"
     }
+},
+{
+    "model": "books.category",
+    "pk": 2,
+    "fields": {
+        "name": "∞Ê¡¶/∞Êøµ"
+    }
+},
+{
+    "model": "books.category",
+    "pk": 3,
+    "fields": {
+        "name": "¿⁄±‚∞Ëπﬂ"
+    }
+},
+{
+    "model": "books.category",
+    "pk": 4,
+    "fields": {
+        "name": "¿ŒπÆ/±≥æÁ"
+    }
+},
+{
+    "model": "books.category",
+    "pk": 5,
+    "fields": {
+        "name": "√ÎπÃ/Ω«øÎ"
+    }
+},
+{
+    "model": "books.category",
+    "pk": 6,
+    "fields": {
+        "name": "æÓ∏∞¿Ã/√ªº“≥‚"
+    }
+},
+{
+    "model": "books.category",
+    "pk": 7,
+    "fields": {
+        "name": "∞˙«–"
+    }
+}
 ]
