@@ -14,6 +14,14 @@ from pathlib import Path
 import environ
 from datetime import timedelta
 
+# OpenAI API Key 가져오기
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
