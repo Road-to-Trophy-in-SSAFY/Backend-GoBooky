@@ -43,7 +43,7 @@ class Thread(models.Model):
     #     settings.AUTH_USER_MODEL, related_name="liked_threads", blank=True
     # )
     user = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True
     )
 
     def __str__(self):

@@ -39,8 +39,6 @@ INSTALLED_APPS = [
     # Local apps
     "accounts.apps.AccountsConfig",
     "books",
-    "rest_framework",
-    "corsheaders",
     # Django default apps
     "django.contrib.admin",
     "django.contrib.auth",

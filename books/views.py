@@ -1,4 +1,5 @@
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404, get_list_or_404
 from .models import Book, Thread
@@ -45,6 +46,7 @@ def thread_detail(request, thread_id):
 
 
 @api_view(["POST"])
+@permission_classes([IsAuthenticated])
 def thread_create(request):
     book_id = request.data.get("book")
     if not book_id:
@@ -52,8 +54,7 @@ def thread_create(request):
     book = get_object_or_404(Book, id=book_id)
     thread = Thread(
         book=book,
-        # user=request.user if request.user.is_authenticated else None,
-        user_id=1,  # 테스트용 임시 유저 ID
+        user=request.user,
         title=request.data.get("title", ""),
         content=request.data.get("content", ""),
         reading_date=request.data.get("reading_date"),
@@ -64,8 +65,11 @@ def thread_create(request):
 
 
 @api_view(["PUT"])
+@permission_classes([IsAuthenticated])
 def thread_update(request, thread_id):
     thread = get_object_or_404(Thread, id=thread_id)
+    if thread.user != request.user:
+        return Response({"error": "자신의 쓰레드만 수정할 수 있습니다."}, status=403)
     thread.title = request.data.get("title", thread.title)
     thread.content = request.data.get("content", thread.content)
     thread.reading_date = request.data.get("reading_date", thread.reading_date)
@@ -75,23 +79,24 @@ def thread_update(request, thread_id):
 
 
 @api_view(["DELETE"])
+@permission_classes([IsAuthenticated])
 def thread_delete(request, thread_id):
     thread = get_object_or_404(Thread, id=thread_id)
+    if thread.user != request.user:
+        return Response({"error": "자신의 쓰레드만 삭제할 수 있습니다."}, status=403)
     thread.delete()
     return Response({"message": "Thread deleted."}, status=204)
 
 
 @api_view(["POST"])
+@permission_classes([IsAuthenticated])
 def thread_like(request, thread_id):
     thread = get_object_or_404(Thread, id=thread_id)
-    # user = request.user
-    # if not user.is_authenticated:
-    #     return Response({"error": "로그인이 필요합니다."}, status=401)
-    # if thread.likes.filter(id=user.id).exists():
-    #     thread.likes.remove(user)
-    #     liked = False
-    # else:
-    #     thread.likes.add(user)
-    #     liked = True
-    # return Response({"liked": liked, "likes_count": thread.likes.count()})
-    return Response({"liked": False, "likes_count": 0})  # 테스트용 임시 응답
+    user = request.user
+    if thread.likes.filter(id=user.id).exists():
+        thread.likes.remove(user)
+        liked = False
+    else:
+        thread.likes.add(user)
+        liked = True
+    return Response({"liked": liked, "likes_count": thread.likes.count()})

@@ -31,7 +31,7 @@ import uuid
 import datetime
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
-from .models import Category
+from books.models import Category
 import json
 
 User = get_user_model()

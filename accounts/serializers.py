@@ -2,7 +2,8 @@ from django.contrib.auth import get_user_model, authenticate
 from rest_framework import serializers
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.password_validation import validate_password
-from .models import User, Category
+from .models import User
+from books.models import Category
 
 User = get_user_model()
 
@@ -115,7 +116,7 @@ class AccountDeleteSerializer(serializers.Serializer):
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = ["id", "name", "description"]
+        fields = ["id", "name"]
 
 
 class UserSerializer(serializers.ModelSerializer):
