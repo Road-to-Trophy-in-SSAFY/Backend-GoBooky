@@ -32,6 +32,7 @@ import datetime
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
 from .models import Category
+import json
 
 User = get_user_model()
 
@@ -45,7 +46,6 @@ class RegisterView(APIView):
     permission_classes = [permissions.AllowAny]
 
     def post(self, request):
-        # 1단계: 이메일과 비밀번호만 임시 저장
         from .serializers import RegisterSerializer
         import json
 
@@ -57,6 +57,7 @@ class RegisterView(APIView):
 
         # 이메일 인증 UUID 생성
         confirm_uuid = str(uuid.uuid4())
+
         # 레이트리밋 체크
         if not rate_limit_check(email):
             return Response(
@@ -65,14 +66,24 @@ class RegisterView(APIView):
                 },
                 status=429,
             )
-        # 임시 저장 (24시간)
+
+        # 이전 링크 만료 처리
+        for key in redis_client.scan_iter(f"pending_user:*"):
+            user_data_json = redis_client.get(key)
+            if user_data_json:
+                user_data = json.loads(user_data_json)
+                if user_data.get("email") == email:
+                    redis_client.delete(key)
+
+        # 임시 저장 (5분)
         user_data = {
             "email": email,
             "password": password,
             "email_verified": False,
+            "created_at": datetime.datetime.now().isoformat(),
         }
         redis_client.setex(
-            f"pending_user:{confirm_uuid}", 24 * 3600, json.dumps(user_data)
+            f"pending_user:{confirm_uuid}", 300, json.dumps(user_data)  # 5분 = 300초
         )
         # 이메일 발송
         verification_url = f"http://localhost:5173/verify-email/{confirm_uuid}"
@@ -164,17 +175,20 @@ class VerifyEmailView(APIView):
             )
 
         user_data = json.loads(user_data_json)
-        response_data = (
-            {"detail": "이메일 인증이 완료되었습니다. 다음 단계로 진행해주세요."}
-            if user_data.get("email_verified")
-            else {
-                "detail": "아직 이메일 인증이 완료되지 않았습니다. 인증 링크를 클릭해주세요."
-            }
-        )
 
-        # 결과 캐싱
+        # 이메일이 인증되지 않은 경우
+        if not user_data.get("email_verified"):
+            return Response(
+                {
+                    "detail": "아직 이메일 인증이 완료되지 않았습니다. 인증 링크를 클릭해주세요."
+                },
+                status=400,
+            )
+
+        response_data = {
+            "detail": "이메일 인증이 완료되었습니다. 다음 단계로 진행해주세요."
+        }
         cache.set(cache_key, response_data, settings.CACHE_TTL)
-
         return Response(response_data)
 
     def get(self, request, uuid):
@@ -183,8 +197,16 @@ class VerifyEmailView(APIView):
             return Response({"detail": "만료된 링크입니다."}, status=400)
 
         user_data = json.loads(user_data_json)
+
+        # 이메일이 이미 인증된 경우
+        if user_data.get("email_verified"):
+            return Response({"detail": "이미 인증이 완료된 링크입니다."}, status=400)
+
+        # 이메일 인증 처리
         user_data["email_verified"] = True
-        redis_client.setex(f"pending_user:{uuid}", 24 * 3600, json.dumps(user_data))
+        redis_client.setex(
+            f"pending_user:{uuid}", 300, json.dumps(user_data)
+        )  # 5분 유지
 
         # 캐시 무효화
         cache_key = get_cache_key("email_verify", uuid)
@@ -291,17 +313,25 @@ class AccountDeleteView(APIView):
     serializer_class = AccountDeleteSerializer
 
     def delete(self, request):
-        serializer = self.serializer_class(data=request.data)
+        serializer = self.serializer_class(
+            data=request.data, context={"request": request}
+        )
         serializer.is_valid(raise_exception=True)
         user = request.user
         user.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-@method_decorator(cache_page(60 * 15), name="get")  # 15분 캐싱
 @api_view(["GET"])
 @permission_classes([AllowAny])
 def get_categories(request):
+    cache_key = get_cache_key("categories", "all")
+    cached_data = cache.get(cache_key)
+
+    if cached_data:
+        return Response(cached_data)
+
     categories = Category.objects.all()
     serializer = CategorySerializer(categories, many=True)
+    cache.set(cache_key, serializer.data, 60 * 15)  # 15분 캐싱
     return Response(serializer.data)
