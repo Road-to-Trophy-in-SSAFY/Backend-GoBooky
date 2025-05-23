@@ -59,9 +59,11 @@ packaging==24.2
 pandas==2.0.3
 parso==0.8.3
 pexpect==4.9.0
+Pillow==9.5.0
 platformdirs==4.3.6
 prompt-toolkit==3.0.43
 psutil==6.1.1
+psycopg2-binary==2.9.10
 ptyprocess==0.7.0
 pure-eval==0.2.2
 pycparser==2.22
@@ -95,4 +97,3 @@ urllib3==1.26.20
 wcwidth==0.2.12
 Wikipedia-API==0.7.3
 zipp==3.21.0
-Pillow==9.5.0
