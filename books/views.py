@@ -10,38 +10,60 @@ from .serializers import (
     ThreadSerializer,
     ThreadDetailSerializer,
 )
+from django.core.cache import cache
+from django.conf import settings
 
 
 # Create your views here.
 @api_view(["GET"])
 def book_list(request):
     category_pk = request.GET.get("category")
+    cache_key = f"{settings.CACHE_KEY_PREFIX}:book_list:{category_pk or 'all'}"
+    cached = cache.get(cache_key)
+    if cached:
+        return Response(cached)
     if category_pk:
         books = Book.objects.filter(category_id=category_pk)
     else:
         books = Book.objects.all()
     serializer = BookListSerializer(books, many=True)
+    cache.set(cache_key, serializer.data, settings.CACHE_TTL)
     return Response(serializer.data)
 
 
 @api_view(["GET"])
 def book_detail(request, book_id):
+    cache_key = f"{settings.CACHE_KEY_PREFIX}:book_detail:{book_id}"
+    cached = cache.get(cache_key)
+    if cached:
+        return Response(cached)
     book = get_object_or_404(Book, id=book_id)
     serializer = BookDetailSerializer(book)
+    cache.set(cache_key, serializer.data, settings.CACHE_TTL)
     return Response(serializer.data)
 
 
 @api_view(["GET"])
 def thread_list(request):
+    cache_key = f"{settings.CACHE_KEY_PREFIX}:thread_list"
+    cached = cache.get(cache_key)
+    if cached:
+        return Response(cached)
     threads = Thread.objects.all().order_by("-created_at")
     serializer = ThreadListSerializer(threads, many=True)
+    cache.set(cache_key, serializer.data, settings.CACHE_TTL)
     return Response(serializer.data)
 
 
 @api_view(["GET"])
 def thread_detail(request, thread_id):
+    cache_key = f"{settings.CACHE_KEY_PREFIX}:thread_detail:{thread_id}"
+    cached = cache.get(cache_key)
+    if cached:
+        return Response(cached)
     thread = get_object_or_404(Thread, id=thread_id)
     serializer = ThreadDetailSerializer(thread)
+    cache.set(cache_key, serializer.data, settings.CACHE_TTL)
     return Response(serializer.data)
 
 
