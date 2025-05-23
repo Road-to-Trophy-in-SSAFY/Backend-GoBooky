@@ -15,17 +15,17 @@ class Book(models.Model):
     category = models.ForeignKey(
         Category, on_delete=models.PROTECT, related_name="books"
     )
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=255)
     description = models.TextField()
     isbn = models.CharField(max_length=20)
     cover = models.URLField()
-    publisher = models.CharField(max_length=100)
+    publisher = models.CharField(max_length=255)
     pub_date = models.DateField()
-    author = models.CharField(max_length=100)
+    author = models.CharField(max_length=255)
     author_info = models.TextField()
     author_photo = models.URLField()
     customer_review_rank = models.FloatField()
-    subTitle = models.CharField(max_length=100)
+    subTitle = models.CharField(max_length=255)
 
     def __str__(self):
         return self.title
