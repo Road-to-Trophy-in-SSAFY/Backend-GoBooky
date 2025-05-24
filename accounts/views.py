@@ -804,3 +804,33 @@ class RefreshTokenView(APIView):
             settings.SECRET_KEY,
             algorithm="HS256",
         )
+
+
+class FollowToggleView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, username):
+        try:
+            target_user = User.objects.get(username=username)
+        except User.DoesNotExist:
+            return Response({"detail": "해당 유저가 존재하지 않습니다."}, status=404)
+
+        if request.user == target_user:
+            return Response({"detail": "자기 자신을 팔로우할 수 없습니다."}, status=400)
+
+        if target_user in request.user.following.all():
+            request.user.following.remove(target_user)
+            is_following = False
+            action = "unfollowed"
+        else:
+            request.user.following.add(target_user)
+            is_following = True
+            action = "followed"
+
+        return Response(
+            {
+                "action": action,
+                "is_following": is_following,
+                "followers_count": target_user.followers.count(),
+            }
+        )

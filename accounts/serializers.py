@@ -131,6 +131,9 @@ class UserSerializer(serializers.ModelSerializer):
     )
     profile_picture = serializers.ImageField(read_only=True)
     profile_picture_url = serializers.SerializerMethodField()
+    followers_count = serializers.SerializerMethodField()
+    following_count = serializers.SerializerMethodField()
+    is_following = serializers.SerializerMethodField()
 
     class Meta:
         model = User
@@ -147,6 +150,9 @@ class UserSerializer(serializers.ModelSerializer):
             "category_ids",
             "profile_picture",
             "profile_picture_url",
+            "followers_count",
+            "following_count",
+            "is_following",
         ]
         extra_kwargs = {
             "password": {"write_only": True},
@@ -163,6 +169,18 @@ class UserSerializer(serializers.ModelSerializer):
             if hasattr(obj, "get_profile_picture_url")
             else None
         )
+
+    def get_followers_count(self, obj):
+        return obj.followers.count()
+
+    def get_following_count(self, obj):
+        return obj.following.count()
+
+    def get_is_following(self, obj):
+        request = self.context.get("request")
+        if request and request.user.is_authenticated:
+            return obj.followers.filter(id=request.user.id).exists()
+        return False
 
     def create(self, validated_data):
         category_ids = validated_data.pop("category_ids", [])

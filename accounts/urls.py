@@ -11,6 +11,7 @@ from .views import (
     RefreshTokenView,
     CheckNicknameView,
     ProfileDetailView,
+    FollowToggleView,
 )
 
 urlpatterns = [
@@ -37,5 +38,10 @@ urlpatterns = [
         "auth/profile/<str:username>/",
         ProfileDetailView.as_view(),
         name="profile-detail",
+    ),
+    path(
+        "auth/profile/<str:username>/follow/",
+        FollowToggleView.as_view(),
+        name="profile-follow-toggle",
     ),
 ]
