@@ -39,9 +39,9 @@ class Thread(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     book = models.ForeignKey("Book", on_delete=models.CASCADE)
-    # likes = models.ManyToManyField(
-    #     settings.AUTH_USER_MODEL, related_name="liked_threads", blank=True
-    # )
+    likes = models.ManyToManyField(
+        settings.AUTH_USER_MODEL, related_name="liked_threads", blank=True
+    )
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True
     )
