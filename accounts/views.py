@@ -35,7 +35,7 @@ from books.models import Category
 import json
 import logging
 import jwt
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from .utils import log_auth_action
 from rest_framework.authentication import SessionAuthentication
 from dj_rest_auth.jwt_auth import JWTCookieAuthentication
@@ -346,23 +346,24 @@ class LoginView(APIView):
     def _generate_access_token(self, user):
         payload = {
             "user_id": str(user.id),
-            "exp": datetime.utcnow()
+            "exp": datetime.now(timezone.utc)
             + timedelta(minutes=settings.ACCESS_TOKEN_LIFETIME),
-            "iat": datetime.utcnow(),
+            "iat": datetime.now(timezone.utc),
         }
         return jwt.encode(payload, settings.SECRET_KEY, algorithm="HS256")
 
     def _generate_refresh_token(self, user):
         payload = {
             "user_id": str(user.id),
-            "exp": datetime.utcnow() + timedelta(days=settings.REFRESH_TOKEN_LIFETIME),
-            "iat": datetime.utcnow(),
+            "exp": datetime.now(timezone.utc)
+            + timedelta(days=settings.REFRESH_TOKEN_LIFETIME),
+            "iat": datetime.now(timezone.utc),
         }
         return jwt.encode(payload, settings.SECRET_KEY, algorithm="HS256")
 
     def _generate_session_id(self):
         return jwt.encode(
-            {"timestamp": datetime.utcnow().timestamp()},
+            {"timestamp": datetime.now(timezone.utc).timestamp()},
             settings.SECRET_KEY,
             algorithm="HS256",
         )
@@ -521,8 +522,8 @@ class RefreshTokenView(APIView):
     def _generate_access_token(self, user):
         payload = {
             "user_id": str(user.id),
-            "exp": datetime.utcnow()
+            "exp": datetime.now(timezone.utc)
             + timedelta(minutes=settings.ACCESS_TOKEN_LIFETIME),
-            "iat": datetime.utcnow(),
+            "iat": datetime.now(timezone.utc),
         }
         return jwt.encode(payload, settings.SECRET_KEY, algorithm="HS256")
