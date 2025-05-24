@@ -77,6 +77,7 @@ MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
+    "go_booky_project.middleware.DoubleSubmitCookieMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
@@ -86,17 +87,22 @@ MIDDLEWARE = [
 # REST_FRAMEWORK 설정
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework_simplejwt.authentication.JWTAuthentication",
+        "accounts.authentication.CustomJWTAuthentication",
         "rest_framework.authentication.TokenAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
     ),
     "DEFAULT_PERMISSION_CLASSES": (
         "rest_framework.permissions.IsAuthenticatedOrReadOnly",
     ),
-    "DEFAULT_THROTTLE_CLASSES": [
-        "rest_framework.throttling.AnonRateThrottle",
-        "rest_framework.throttling.UserRateThrottle",
-    ],
-    "DEFAULT_THROTTLE_RATES": {"anon": "1000/day", "user": "5000/day"},
+    "DEFAULT_THROTTLE_CLASSES": (
+        []
+        if DEBUG
+        else [
+            "rest_framework.throttling.AnonRateThrottle",
+            "rest_framework.throttling.UserRateThrottle",
+        ]
+    ),
+    "DEFAULT_THROTTLE_RATES": {"anon": "100/day", "user": "1000/day"},
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE": 10,
 }
@@ -105,17 +111,38 @@ REST_FRAMEWORK = {
 SITE_ID = env.int("SITE_ID", default=1)
 
 # CORS 설정
-# settings.py
-CORS_ALLOWED_ORIGINS = env.list("CORS_ALLOWED_ORIGINS", default=[])
-CORS_ALLOW_CREDENTIALS = env.bool("CORS_ALLOW_CREDENTIALS", default=True)
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",  # Vue.js 개발 서버
+    "http://127.0.0.1:5173",
+]
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_METHODS = [
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+]
+CORS_ALLOW_HEADERS = [
+    "accept",
+    "accept-encoding",
+    "authorization",
+    "content-type",
+    "dnt",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+]
 
 # JWT 설정 (djangorestframework-simplejwt)
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
-    "ROTATE_REFRESH_TOKENS": False,
-    "BLACKLIST_AFTER_ROTATION": False,
-    "UPDATE_LAST_LOGIN": False,
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=15),  # 15분
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),  # 7일
+    "ROTATE_REFRESH_TOKENS": True,  # 토큰 갱신 시 새 refresh 토큰 발급
+    "BLACKLIST_AFTER_ROTATION": True,  # 토큰 갱신 후 이전 토큰 블랙리스트
+    "UPDATE_LAST_LOGIN": True,
     "ALGORITHM": "HS256",
     "SIGNING_KEY": SECRET_KEY,
     "VERIFYING_KEY": None,
@@ -132,9 +159,13 @@ SIMPLE_JWT = {
     "TOKEN_TYPE_CLAIM": "token_type",
     "TOKEN_USER_CLASS": "rest_framework_simplejwt.models.TokenUser",
     "JTI_CLAIM": "jti",
-    "SLIDING_TOKEN_REFRESH_EXP_CLAIM": "refresh_exp",
-    "SLIDING_TOKEN_LIFETIME": timedelta(minutes=5),
-    "SLIDING_TOKEN_REFRESH_LIFETIME": timedelta(days=1),
+    "AUTH_COOKIE": "gobooky-auth",  # 쿠키 이름
+    "AUTH_COOKIE_REFRESH": "gobooky-refresh",  # 리프레시 토큰 쿠키 이름
+    "AUTH_COOKIE_DOMAIN": None,  # 쿠키 도메인
+    "AUTH_COOKIE_SECURE": False,  # 개발 환경에서는 False
+    "AUTH_COOKIE_HTTP_ONLY": True,  # XSS 방지
+    "AUTH_COOKIE_PATH": "/",  # 쿠키 경로
+    "AUTH_COOKIE_SAMESITE": "Lax",  # CSRF 방지
 }
 
 # Email settings
@@ -168,11 +199,12 @@ REST_AUTH = {
     "USE_JWT": True,
     "JWT_AUTH_COOKIE": "gobooky-auth",
     "JWT_AUTH_REFRESH_COOKIE": "gobooky-refresh",
-    "JWT_AUTH_SECURE": False,  # 개발 환경에서는 False, 프로덕션에서는 True
-    "JWT_AUTH_HTTPONLY": False,  # 프론트엔드에서 직접 접근할 수 있도록 FALSE로 설정
+    "JWT_AUTH_SECURE": False,  # 개발 환경에서는 False
+    "JWT_AUTH_HTTPONLY": True,  # XSS 방지
+    "JWT_AUTH_SAMESITE": "Lax",  # CSRF 방지
     "SESSION_LOGIN": False,
     "JWT_AUTH_RETURN_EXPIRATION": True,
-    "TOKEN_MODEL": None,  # JWT 사용 시 토큰 모델은 필요 없음
+    "TOKEN_MODEL": None,
 }
 
 # Social Account Providers
@@ -198,11 +230,6 @@ SOCIALACCOUNT_PROVIDERS = {
 AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
     "allauth.account.auth_backends.AuthenticationBackend",
-]
-
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
-    "http://127.0.0.1:5173",
 ]
 
 ROOT_URLCONF = "go_booky_project.urls"
@@ -294,11 +321,14 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # Add custom user model
 AUTH_USER_MODEL = "accounts.User"
 
+# Redis settings
+REDIS_URL = "redis://127.0.0.1:6379/1"
+
 # Cache settings
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": env("REDIS_URL", default="redis://127.0.0.1:6379/1"),
+        "LOCATION": REDIS_URL,
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
             "CONNECTION_POOL_KWARGS": {"max_connections": 100},
@@ -318,3 +348,58 @@ CACHE_KEY_PREFIX = "gobooky"
 # Session settings
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_CACHE_ALIAS = "default"
+
+# CSRF 설정
+CSRF_COOKIE_NAME = "csrftoken"
+CSRF_COOKIE_AGE = 31449600  # 1년
+CSRF_COOKIE_DOMAIN = None
+CSRF_COOKIE_SECURE = not DEBUG
+CSRF_COOKIE_HTTPONLY = False
+CSRF_COOKIE_SAMESITE = "Lax"
+CSRF_HEADER_NAME = "HTTP_X_CSRF_TOKEN"
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+]
+
+# JWT 토큰 수명(분/초)
+ACCESS_TOKEN_LIFETIME = 15  # 분 단위
+REFRESH_TOKEN_LIFETIME = 7 * 24 * 60 * 60  # 초 단위 (7일)
+
+# 로깅 설정
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "{levelname} {asctime} {module} {process:d} {thread:d} {message}",
+            "style": "{",
+        },
+        "simple": {
+            "format": "{levelname} {message}",
+            "style": "{",
+        },
+    },
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+            "formatter": "simple",
+        },
+    },
+    "loggers": {
+        "accounts": {
+            "handlers": ["console"],
+            "level": "DEBUG",
+            "propagate": False,
+        },
+        "django": {
+            "handlers": ["console"],
+            "level": "INFO",
+            "propagate": False,
+        },
+    },
+    "root": {
+        "handlers": ["console"],
+        "level": "WARNING",
+    },
+}

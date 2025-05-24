@@ -170,4 +170,14 @@ def thread_like(request, thread_id):
     else:
         thread.likes.add(user)
         liked = True
+
+    # 좋아요 변경 후 관련 캐시 무효화
+    cache_key_thread_list = f"{settings.CACHE_KEY_PREFIX}:thread_list"
+    cache_key_thread_detail = f"{settings.CACHE_KEY_PREFIX}:thread_detail:{thread_id}"
+    cache.delete(cache_key_thread_list)
+    cache.delete(cache_key_thread_detail)
+    cache_key_thread_detail = f"{settings.CACHE_KEY_PREFIX}:thread_detail:{thread_id}"
+    cache.delete(cache_key_thread_list)
+    cache.delete(cache_key_thread_detail)
+
     return Response({"liked": liked, "likes_count": thread.likes.count()})

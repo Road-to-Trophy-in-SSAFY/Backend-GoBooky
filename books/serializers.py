@@ -42,11 +42,22 @@ class BookTitleWithCategorySerializer(serializers.ModelSerializer):
 # 전체 쓰레드
 class ThreadListSerializer(serializers.ModelSerializer):
     book = BookTitleWithCategorySerializer()
+    likes_count = serializers.SerializerMethodField()
+    liked = serializers.SerializerMethodField()
     cover_img_url = serializers.SerializerMethodField()
 
     class Meta:
         model = Thread
-        fields = ("id", "title", "book", "cover_img", "cover_img_url")
+        fields = ("id", "title", "book", "likes_count", "liked", "cover_img", "cover_img_url")
+
+    def get_likes_count(self, obj):
+        return obj.likes.count()
+
+    def get_liked(self, obj):
+        request = self.context.get("request")
+        if request and request.user.is_authenticated:
+            return obj.likes.filter(id=request.user.id).exists()
+        return False
 
     def get_cover_img_url(self, obj):
         if obj.cover_img:
@@ -60,6 +71,8 @@ class ThreadListSerializer(serializers.ModelSerializer):
 # 쓰레드 상세
 class ThreadSerializer(serializers.ModelSerializer):
     book = BookTitleSerializer(read_only=True)
+    likes_count = serializers.SerializerMethodField()
+    liked = serializers.SerializerMethodField()
 
     class Meta:
         model = Thread
@@ -71,12 +84,32 @@ class ThreadSerializer(serializers.ModelSerializer):
             "reading_date",
             "created_at",
             "updated_at",
+            "likes_count",
+            "liked",
         )
+
+    def get_likes_count(self, obj):
+        return obj.likes.count()
+
+    def get_liked(self, obj):
+        request = self.context.get("request")
+        if request and hasattr(request, "user"):
+            print(
+                f"[DRF][get_liked] user: {request.user}, authenticated: {request.user.is_authenticated}, thread_id: {obj.id}"
+            )
+            print(f"[DRF][get_liked] likes: {[u.id for u in obj.likes.all()]}")
+            if request.user.is_authenticated:
+                liked = obj.likes.filter(id=request.user.id).exists()
+                print(f"[DRF][get_liked] liked: {liked}")
+                return liked
+        return False
 
 
 # 단일 쓰레드
 class ThreadDetailSerializer(serializers.ModelSerializer):
     book = BookTitleSerializer(read_only=True)
+    likes_count = serializers.SerializerMethodField()
+    liked = serializers.SerializerMethodField()
     cover_img_url = serializers.SerializerMethodField()
 
     class Meta:
@@ -91,7 +124,18 @@ class ThreadDetailSerializer(serializers.ModelSerializer):
             "reading_date",
             "created_at",
             "updated_at",
+            "likes_count",
+            "liked",
         )
+
+    def get_likes_count(self, obj):
+        return obj.likes.count()
+
+    def get_liked(self, obj):
+        request = self.context.get("request")
+        if request and request.user.is_authenticated:
+            return obj.likes.filter(id=request.user.id).exists()
+        return False
 
     def get_cover_img_url(self, obj):
         if obj.cover_img:
