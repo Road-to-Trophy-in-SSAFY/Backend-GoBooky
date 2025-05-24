@@ -378,10 +378,31 @@ class LogoutView(APIView):
 
         # 세션 ID가 있다면 Redis 세션 삭제 및 쿠키 제거 시도
         if session_id:
-            # Redis에서 세션 데이터 삭제 시도 (세션이 없을 수도 있음)
+            # Redis에서 세션 데이터 가져오기
+            session_data = redis_client.get(f"session:{session_id}")
+            if session_data:
+                session_data = json.loads(session_data)
+                refresh_token = session_data.get("refresh_token")
+
+                # refresh token을 블랙리스트에 추가
+                try:
+                    payload = jwt.decode(
+                        refresh_token, settings.SECRET_KEY, algorithms=["HS256"]
+                    )
+                    exp = payload.get("exp")
+                    if exp:
+                        # 토큰의 남은 유효기간 동안 블랙리스트에 추가
+                        blacklist_token(
+                            refresh_token,
+                            exp - int(datetime.now(timezone.utc).timestamp()),
+                        )
+                except jwt.InvalidTokenError:
+                    pass
+
+            # Redis에서 세션 데이터 삭제
             redis_client.delete(f"session:{session_id}")
 
-            # Audit 로그 기록 (성공/실패 여부는 Redis 결과로 판단 가능)
+            # Audit 로그 기록
             log_auth_action(
                 user=request.user if request.user.is_authenticated else None,
                 action="logout",
@@ -393,7 +414,7 @@ class LogoutView(APIView):
             )
 
             response = Response(status=status.HTTP_205_RESET_CONTENT)
-            # 쿠키 삭제 (로그인 시 설정된 옵션과 일관성 유지)
+            # 쿠키 삭제
             response.delete_cookie(
                 "sid",
                 path="/",
@@ -420,19 +441,16 @@ class LogoutView(APIView):
             },
         )
 
-        # 세션 ID가 없더라도 쿠키 삭제 응답 반환 (클라이언트 정리 목적)
         response = Response(
             {"detail": "Logout successful or no active session."},
             status=status.HTTP_205_RESET_CONTENT,
         )
-        # 쿠키 삭제 (로그인 시 설정된 옵션과 일관성 유지)
         response.delete_cookie(
             "sid",
             path="/",
             domain=None,
             samesite="Lax",
         )
-        # CSRF 쿠키 삭제
         response.delete_cookie(
             settings.CSRF_COOKIE_NAME,
             path="/",
@@ -495,13 +513,39 @@ class RefreshTokenView(APIView):
         refresh_token = session_data.get("refresh_token")
 
         try:
+            # 블랙리스트 확인
+            if redis_client.get(f"bl:{refresh_token}"):
+                return Response(
+                    {"error": "Token has been revoked"},
+                    status=status.HTTP_401_UNAUTHORIZED,
+                )
+
             payload = jwt.decode(
                 refresh_token, settings.SECRET_KEY, algorithms=["HS256"]
             )
             user = User.objects.get(id=user_id)
 
-            # 새로운 액세스 토큰 생성
+            # 이전 refresh token을 블랙리스트에 추가
+            exp = payload.get("exp")
+            if exp:
+                blacklist_token(
+                    refresh_token, exp - int(datetime.now(timezone.utc).timestamp())
+                )
+
+            # 새로운 토큰 생성
             new_access_token = self._generate_access_token(user)
+            new_refresh_token = self._generate_refresh_token(user)
+
+            # 새로운 세션 데이터 저장
+            session_data = {
+                "user_id": str(user.id),
+                "refresh_token": new_refresh_token,
+            }
+            redis_client.setex(
+                f"session:{session_id}",
+                settings.REFRESH_TOKEN_LIFETIME,
+                json.dumps(session_data),
+            )
 
             # Audit 로그 기록
             log_auth_action(
@@ -512,7 +556,8 @@ class RefreshTokenView(APIView):
             )
 
             return Response(
-                {"access_token": new_access_token}, status=status.HTTP_200_OK
+                {"access_token": new_access_token, "refresh_token": new_refresh_token},
+                status=status.HTTP_200_OK,
             )
         except (jwt.ExpiredSignatureError, jwt.InvalidTokenError, User.DoesNotExist):
             return Response(
@@ -524,6 +569,15 @@ class RefreshTokenView(APIView):
             "user_id": str(user.id),
             "exp": datetime.now(timezone.utc)
             + timedelta(minutes=settings.ACCESS_TOKEN_LIFETIME),
+            "iat": datetime.now(timezone.utc),
+        }
+        return jwt.encode(payload, settings.SECRET_KEY, algorithm="HS256")
+
+    def _generate_refresh_token(self, user):
+        payload = {
+            "user_id": str(user.id),
+            "exp": datetime.now(timezone.utc)
+            + timedelta(days=settings.REFRESH_TOKEN_LIFETIME),
             "iat": datetime.now(timezone.utc),
         }
         return jwt.encode(payload, settings.SECRET_KEY, algorithm="HS256")
