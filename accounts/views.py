@@ -86,7 +86,7 @@ class RegisterView(APIView):
             "email": email,
             "password": password,
             "email_verified": False,
-            "created_at": datetime.datetime.now().isoformat(),
+            "created_at": datetime.now().isoformat(),
         }
         redis_client.setex(
             f"pending_user:{confirm_uuid}", 300, json.dumps(user_data)  # 5분 = 300초
