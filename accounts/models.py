@@ -2,6 +2,7 @@ from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
 from books.models import Category
 from django.utils import timezone
+from django.conf import settings
 
 
 class CustomUserManager(BaseUserManager):
@@ -36,7 +37,14 @@ class User(AbstractUser):
     last_login = models.DateTimeField(auto_now=True)
     # Added profile picture field
     profile_picture = models.ImageField(
-        upload_to="profile_pictures/", blank=True, null=True
+        upload_to="profile_pictures/",
+        blank=True,
+        null=True,
+        default="profile_pictures/default-profile.jpg",
+    )
+    # 팔로우/팔로잉 관계 필드 추가
+    following = models.ManyToManyField(
+        "self", symmetrical=False, related_name="followers", blank=True
     )
 
     objects = CustomUserManager()
@@ -46,6 +54,11 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.email
+
+    def get_profile_picture_url(self):
+        if self.profile_picture:
+            return self.profile_picture.url
+        return f"{settings.MEDIA_URL}profile_pictures/default-profile.jpg"
 
 
 class AuditLog(models.Model):
