@@ -17,6 +17,7 @@ from .serializers import (
     AccountDeleteSerializer,
     UserSerializer,
     CategorySerializer,
+    CheckNicknameSerializer,
 )
 from .redis_utils import (
     set_confirm,
@@ -39,8 +40,14 @@ from datetime import datetime, timedelta, timezone
 from .utils import log_auth_action
 from rest_framework.authentication import SessionAuthentication
 from dj_rest_auth.jwt_auth import JWTCookieAuthentication
+from rest_framework import serializers
 
 User = get_user_model()
+
+
+# 닉네임 중복 확인 시리얼라이저
+class CheckNicknameSerializer(serializers.Serializer):
+    username = serializers.CharField(min_length=2, max_length=20)
 
 
 # 캐시 키 생성 함수
@@ -221,6 +228,20 @@ class VerifyEmailView(APIView):
         return Response(
             {"detail": "이메일 인증이 완료되었습니다. 다음을 진행해주세요."}
         )
+
+
+class CheckNicknameView(APIView):
+    permission_classes = [permissions.AllowAny]
+
+    def post(self, request):
+        serializer = CheckNicknameSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        username = serializer.validated_data["username"]
+
+        # 닉네임 중복 확인
+        exists = User.objects.filter(username=username).exists()
+
+        return Response({"available": not exists}, status=status.HTTP_200_OK)
 
 
 class ProfileCompleteView(APIView):

@@ -8,6 +8,11 @@ from books.models import Category
 User = get_user_model()
 
 
+# 닉네임 중복 확인 시리얼라이저
+class CheckNicknameSerializer(serializers.Serializer):
+    username = serializers.CharField(min_length=2, max_length=20)
+
+
 class RegisterSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(required=True)
     password = serializers.CharField(
