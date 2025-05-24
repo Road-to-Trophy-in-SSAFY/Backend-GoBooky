@@ -130,6 +130,7 @@ class UserSerializer(serializers.ModelSerializer):
         child=serializers.IntegerField(), write_only=True, required=False
     )
     profile_picture = serializers.ImageField(read_only=True)
+    profile_picture_url = serializers.SerializerMethodField()
 
     class Meta:
         model = User
@@ -145,6 +146,7 @@ class UserSerializer(serializers.ModelSerializer):
             "categories",
             "category_ids",
             "profile_picture",
+            "profile_picture_url",
         ]
         extra_kwargs = {
             "password": {"write_only": True},
@@ -154,6 +156,13 @@ class UserSerializer(serializers.ModelSerializer):
             "last_name": {"required": True},
             "gender": {"required": True},
         }
+
+    def get_profile_picture_url(self, obj):
+        return (
+            obj.get_profile_picture_url()
+            if hasattr(obj, "get_profile_picture_url")
+            else None
+        )
 
     def create(self, validated_data):
         category_ids = validated_data.pop("category_ids", [])
