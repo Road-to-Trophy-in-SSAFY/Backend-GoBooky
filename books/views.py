@@ -13,6 +13,7 @@ from .serializers import (
 from .utils import create_thread_image
 from django.core.cache import cache
 from django.conf import settings
+from django.db.models import Q
 
 
 # Create your views here.
@@ -171,3 +172,33 @@ def thread_like(request, thread_id):
         thread.likes.add(user)
         liked = True
     return Response({"liked": liked, "likes_count": thread.likes.count()})
+
+
+@api_view(["GET"])
+def search_books(request):
+    """도서 검색 API"""
+    query = request.GET.get("q", "")
+
+    if not query:
+        return Response([])
+
+    # 캐시 키 생성
+    cache_key = f"{settings.CACHE_KEY_PREFIX}:book_search:{query}"
+    cached = cache.get(cache_key)
+    if cached:
+        return Response(cached)
+
+    # 제목, 저자, 출판사, 설명에서 검색
+    books = Book.objects.filter(
+        Q(title__icontains=query)
+        | Q(author__icontains=query)
+        | Q(publisher__icontains=query)
+        # | Q(description__icontains=query)
+    )
+
+    serializer = BookListSerializer(books, many=True)
+
+    # 결과 캐싱
+    cache.set(cache_key, serializer.data, settings.CACHE_TTL)
+
+    return Response(serializer.data)
