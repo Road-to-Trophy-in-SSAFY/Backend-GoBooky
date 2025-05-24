@@ -129,6 +129,7 @@ class UserSerializer(serializers.ModelSerializer):
     category_ids = serializers.ListField(
         child=serializers.IntegerField(), write_only=True, required=False
     )
+    profile_picture = serializers.ImageField(read_only=True)
 
     class Meta:
         model = User
@@ -143,6 +144,7 @@ class UserSerializer(serializers.ModelSerializer):
             "yearly_read_count",
             "categories",
             "category_ids",
+            "profile_picture",
         ]
         extra_kwargs = {
             "password": {"write_only": True},
@@ -159,3 +161,54 @@ class UserSerializer(serializers.ModelSerializer):
         if category_ids:
             user.categories.set(category_ids)
         return user
+
+
+class ProfileUpdateSerializer(UserSerializer):
+    # Override fields that are not directly editable via this serializer
+    email = serializers.EmailField(read_only=True)
+    username = serializers.CharField(read_only=True)
+    first_name = serializers.CharField(read_only=True)
+    last_name = serializers.CharField(read_only=True)
+    # password is not included in fields, so it's not updated by default
+
+    # Make profile_picture writable for updates
+    profile_picture = serializers.ImageField(required=False, allow_null=True)
+
+    class Meta(UserSerializer.Meta):
+        # Inherit fields from UserSerializer, exclude password
+        fields = [f for f in UserSerializer.Meta.fields if f != "password"]
+        # Ensure profile_picture is included and writable status is handled above
+        # Make categories writable via category_ids
+        extra_kwargs = {
+            "weekly_read_time": {"required": False, "allow_null": True},
+            "yearly_read_count": {"required": False, "allow_null": True},
+            "categories": {"read_only": True},  # Exclude categories from direct update
+            "category_ids": {"write_only": True, "required": False},
+            "profile_picture": {"required": False, "allow_null": True},
+        }
+
+    def update(self, instance, validated_data):
+        category_ids = validated_data.pop("category_ids", None)
+        profile_picture = validated_data.pop("profile_picture", None)
+
+        # Update user fields
+        for attr, value in validated_data.items():
+            setattr(instance, attr, value)
+
+        # Update categories if category_ids is provided
+        if category_ids is not None:
+            instance.categories.set(category_ids)
+
+        # Update profile picture
+        if profile_picture is not None:
+            instance.profile_picture = profile_picture
+        elif (
+            profile_picture is None
+            and "profile_picture" in self.initial_data
+            and self.initial_data["profile_picture"] is None
+        ):
+            # Handle case where user explicitly sets profile_picture to null to remove it
+            instance.profile_picture = None
+
+        instance.save()
+        return instance

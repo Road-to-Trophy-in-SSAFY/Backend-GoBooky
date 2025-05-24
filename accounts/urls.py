@@ -10,6 +10,7 @@ from .views import (
     get_categories,
     RefreshTokenView,
     CheckNicknameView,
+    ProfileDetailView,
 )
 
 urlpatterns = [
@@ -32,4 +33,9 @@ urlpatterns = [
     path("auth/account/", AccountDeleteView.as_view(), name="account-delete"),
     path("auth/categories/", get_categories, name="get-categories"),
     path("auth/check-nickname/", CheckNicknameView.as_view(), name="check-nickname"),
+    path(
+        "auth/profile/<str:username>/",
+        ProfileDetailView.as_view(),
+        name="profile-detail",
+    ),
 ]

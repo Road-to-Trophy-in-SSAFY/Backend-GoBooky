@@ -18,6 +18,7 @@ from .serializers import (
     UserSerializer,
     CategorySerializer,
     CheckNicknameSerializer,
+    ProfileUpdateSerializer,
 )
 from .redis_utils import (
     set_confirm,
@@ -41,6 +42,10 @@ from .utils import log_auth_action
 from rest_framework.authentication import SessionAuthentication
 from dj_rest_auth.jwt_auth import JWTCookieAuthentication
 from rest_framework import serializers
+from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework_simplejwt.exceptions import InvalidToken, AuthenticationFailed
+
+logger = logging.getLogger(__name__)
 
 User = get_user_model()
 
@@ -370,6 +375,8 @@ class LoginView(APIView):
             "exp": datetime.now(timezone.utc)
             + timedelta(minutes=settings.ACCESS_TOKEN_LIFETIME),
             "iat": datetime.now(timezone.utc),
+            "jti": str(uuid.uuid4().hex),
+            "token_type": "access",
         }
         return jwt.encode(payload, settings.SECRET_KEY, algorithm="HS256")
 
@@ -379,6 +386,7 @@ class LoginView(APIView):
             "exp": datetime.now(timezone.utc)
             + timedelta(days=settings.REFRESH_TOKEN_LIFETIME),
             "iat": datetime.now(timezone.utc),
+            "jti": str(uuid.uuid4().hex),
         }
         return jwt.encode(payload, settings.SECRET_KEY, algorithm="HS256")
 
@@ -392,36 +400,123 @@ class LoginView(APIView):
 
 class LogoutView(APIView):
     permission_classes = [AllowAny]
-    authentication_classes = [JWTCookieAuthentication]
+    authentication_classes = []
+    # authentication_classes = [JWTCookieAuthentication]
 
     def post(self, request):
+        logger.info("LogoutView: POST request received (start)")
+        # Access Token 인증 시 발생할 수 있는 예외를 잡아서 무시합니다.
+        try:
+            # DRF의 request.user 접근 시 인증 시도가 일어날 수 있습니다.
+            # 인증 실패 시 여기서 예외가 발생할 수 있으며, 로그아웃 로직을 방해할 수 있습니다.
+            # 여기서는 예외 발생 여부만 확인하고 로그아웃 로직을 계속 진행하도록 합니다.
+            user = request.user  # 인증 시도 트리거
+            if user and user.is_authenticated:
+                logger.info(f"LogoutView: User is authenticated: {user.username}")
+            else:
+                logger.info("LogoutView: User is not authenticated.")
+        except Exception as e:
+            logger.warning(
+                f"LogoutView: Error during initial authentication attempt: {e}"
+            )
+            # 예외 발생 시 무시하고 계속 진행
+            pass
+
+        logger.info(
+            "LogoutView: Authentication check passed (or bypassed). Proceeding with logout."
+        )
+
         session_id = request.COOKIES.get("sid")
 
         # 세션 ID가 있다면 Redis 세션 삭제 및 쿠키 제거 시도
         if session_id:
+            logger.info(f"LogoutView: Session ID found in cookies: {session_id}")
             # Redis에서 세션 데이터 가져오기
-            session_data = redis_client.get(f"session:{session_id}")
-            if session_data:
-                session_data = json.loads(session_data)
-                refresh_token = session_data.get("refresh_token")
-
-                # refresh token을 블랙리스트에 추가
+            session_data_json = redis_client.get(f"session:{session_id}")
+            if session_data_json:
                 try:
-                    payload = jwt.decode(
-                        refresh_token, settings.SECRET_KEY, algorithms=["HS256"]
+                    session_data = json.loads(session_data_json)
+                    refresh_token = session_data.get("refresh_token")
+                    logger.info(
+                        f"LogoutView: Session data retrieved for session ID: {session_id}, refresh token found: {bool(refresh_token)}"
                     )
-                    exp = payload.get("exp")
-                    if exp:
-                        # 토큰의 남은 유효기간 동안 블랙리스트에 추가
-                        blacklist_token(
-                            refresh_token,
-                            exp - int(datetime.now(timezone.utc).timestamp()),
-                        )
-                except jwt.InvalidTokenError:
-                    pass
+                    logger.debug(
+                        f"LogoutView: Retrieved refresh token: {refresh_token}"
+                    )  # 로그 추가
 
-            # Redis에서 세션 데이터 삭제
-            redis_client.delete(f"session:{session_id}")
+                    # refresh token을 블랙리스트에 추가
+                    if refresh_token:
+                        try:
+                            # 토큰 디코딩 시도
+                            payload = jwt.decode(
+                                refresh_token, settings.SECRET_KEY, algorithms=["HS256"]
+                            )
+                            logger.info(
+                                f"LogoutView: Refresh token decoded successfully. Payload: {payload}"
+                            )  # 로그 추가
+                            exp = payload.get("exp")
+                            if exp:
+                                blacklist_token(
+                                    refresh_token,
+                                    exp - int(datetime.now(timezone.utc).timestamp()),
+                                )
+                                logger.info(
+                                    f"LogoutView: Refresh token blacklisted successfully: {refresh_token}"
+                                )
+                            else:
+                                logger.warning(
+                                    f"LogoutView: Refresh token payload missing expiry (exp) for token: {refresh_token}"
+                                )
+                        except jwt.InvalidTokenError as e:
+                            logger.error(
+                                f"LogoutView: Invalid refresh token format during blacklisting: {refresh_token}. Error: {e}",
+                                exc_info=True,
+                            )  # 에러 로그 상세화
+                            # 유효하지 않은 토큰은 블랙리스트에 추가하지 않고 건너뜁니다.
+                            pass
+                        except Exception as e:
+                            logger.error(
+                                f"LogoutView: Error blacklisting refresh token {refresh_token}: {e}",
+                                exc_info=True,
+                            )
+                    else:
+                        logger.warning(
+                            f"LogoutView: No refresh token found in session data for session ID: {session_id}"
+                        )
+
+                except json.JSONDecodeError:
+                    logger.error(
+                        f"LogoutView: Failed to decode session data JSON for session ID: {session_id}. Data: {session_data_json}"
+                    )  # 로그 추가
+                    # JSON 디코딩 실패 시 Refresh Token 블랙리스트 추가 로직 건너뜁니다.
+                    pass
+                except Exception as e:
+                    logger.error(
+                        f"LogoutView: An unexpected error occurred during session data processing for session ID {session_id}: {e}",
+                        exc_info=True,
+                    )
+                    pass
+            else:
+                logger.warning(
+                    f"LogoutView: No session data found in Redis for session ID: {session_id}"
+                )  # 로그 추가
+
+            # Redis에서 세션 데이터 삭제 시도
+            try:
+                delete_success = redis_client.delete(f"session:{session_id}")
+                if delete_success:
+                    logger.info(
+                        f"LogoutView: Redis session data deleted successfully for session ID: {session_id}"
+                    )
+                else:
+                    logger.warning(
+                        f"LogoutView: No Redis session data found to delete for session ID: {session_id}"
+                    )
+            except Exception as e:
+                logger.error(
+                    f"LogoutView: Error deleting Redis session data for session ID {session_id}: {e}",
+                    exc_info=True,
+                )
 
             # Audit 로그 기록
             log_auth_action(
@@ -442,16 +537,21 @@ class LogoutView(APIView):
                 domain=None,
                 samesite="Lax",
             )
-            # CSRF 쿠키 삭제
-            response.delete_cookie(
-                settings.CSRF_COOKIE_NAME,
-                path="/",
-                domain=None,
-                samesite="Lax",
-            )
+            # CSRF 쿠키 삭제 (필요하다면)
+            if settings.CSRF_COOKIE_NAME:
+                response.delete_cookie(
+                    settings.CSRF_COOKIE_NAME,
+                    path="/",
+                    domain=None,
+                    samesite="Lax",
+                )
+            logger.info(f"LogoutView: sid cookie deleted for session ID: {session_id}")
             return response
 
         # 세션 ID가 없는 경우
+        logger.warning(
+            "LogoutView: No session ID found in cookies. Proceeding with cookie deletion."
+        )
         log_auth_action(
             user=request.user if request.user.is_authenticated else None,
             action="logout",
@@ -472,13 +572,16 @@ class LogoutView(APIView):
             domain=None,
             samesite="Lax",
         )
-        response.delete_cookie(
-            settings.CSRF_COOKIE_NAME,
-            path="/",
-            domain=None,
-            samesite="Lax",
+        if settings.CSRF_COOKIE_NAME:
+            response.delete_cookie(
+                settings.CSRF_COOKIE_NAME,
+                path="/",
+                domain=None,
+                samesite="Lax",
+            )
+        logger.info(
+            "LogoutView: sid cookie deletion attempted (no initial session ID)."
         )
-
         return response
 
 
@@ -511,20 +614,96 @@ def get_categories(request):
     return Response(serializer.data)
 
 
+class ProfileDetailView(generics.RetrieveUpdateAPIView):
+    queryset = User.objects.all()
+    permission_classes = [IsAuthenticated]
+    lookup_field = "username"
+
+    def get(self, request, *args, **kwargs):
+        logger.debug(
+            f"ProfileDetailView GET request received for username: {kwargs.get('username')}"
+        )
+        logger.debug(f"Request Headers: {request.headers}")
+        logger.debug(f"Request Cookies: {request.COOKIES}")
+        logger.debug(f"Request User after default authentication: {request.user}")
+        logger.debug(
+            f"Request User is authenticated after default authentication: {request.user.is_authenticated}"
+        )
+
+        # --- 추가된 디버그 로깅 ---
+        logger.debug("Attempting manual JWT authentication check...")
+        jwt_authenticator = JWTAuthentication()
+        try:
+            # manually authenticate the request
+            user_auth_tuple = jwt_authenticator.authenticate(request)
+            if user_auth_tuple:
+                user, auth = user_auth_tuple
+                logger.debug(
+                    f"Manual JWT authentication SUCCESS: User: {user}, Auth: {auth}"
+                )
+                logger.debug(
+                    f"Manual JWT authentication User is authenticated: {user.is_authenticated}"
+                )
+            else:
+                logger.debug(
+                    "Manual JWT authentication FAILED: authenticator returned None"
+                )
+        except (InvalidToken, AuthenticationFailed) as e:
+            logger.error(
+                f"Manual JWT authentication FAILED with exception: {e}", exc_info=True
+            )
+        except Exception as e:
+            logger.error(
+                f"Manual JWT authentication FAILED with unexpected exception: {e}",
+                exc_info=True,
+            )
+        # --- 디버그 로깅 끝 ---
+
+        # The permission check [IsAuthenticated] happens before this get method.
+        # If request.user is AnonymousUser here, it means permission check failed.
+        if not request.user.is_authenticated:
+            logger.warning(
+                "ProfileDetailView: Request reached get method but user is not authenticated. This should not happen if permission check worked as expected."
+            )
+            # You might want to return a 401/403 response here explicitly if needed,
+            # but typically DRF handles this before the view method.
+            # For now, we proceed to let super().get() likely raise PermissionDenied
+            pass  # Proceed to super().get() to see default DRF behavior on unauthenticated user
+
+        return super().get(request, *args, **kwargs)
+
+    def get_serializer_class(self):
+        # Use different serializers for retrieve (GET) and update (PATCH)
+        if self.request.method == "GET":
+            return UserSerializer
+        return ProfileUpdateSerializer
+
+    # Optional: Add logic to restrict access to own profile or by admin
+    # def get_object(self):
+    #     obj = super().get_object()
+    #     # Example: Only allow users to view/edit their own profile
+    #     if obj != self.request.user:
+    #         raise permissions.PermissionDenied('You do not have permission to access this profile.')
+    #     return obj
+
+
 class RefreshTokenView(APIView):
     permission_classes = [AllowAny]
     authentication_classes = []
 
     def post(self, request):
+        logger.info("RefreshTokenView POST requested")
         session_id = request.COOKIES.get("sid")
 
         if not session_id:
+            logger.warning("RefreshTokenView: No session ID found in cookies")
             return Response(
                 {"error": "No session ID found"}, status=status.HTTP_401_UNAUTHORIZED
             )
 
         session_data = redis_client.get(f"session:{session_id}")
         if not session_data:
+            logger.warning(f"RefreshTokenView: Invalid session ID: {session_id}")
             return Response(
                 {"error": "Invalid session"}, status=status.HTTP_401_UNAUTHORIZED
             )
@@ -533,40 +712,34 @@ class RefreshTokenView(APIView):
         user_id = session_data.get("user_id")
         refresh_token = session_data.get("refresh_token")
 
+        logger.info(f"RefreshTokenView: Found session data for user_id: {user_id}")
+
         try:
             # 블랙리스트 확인
-            if redis_client.get(f"bl:{refresh_token}"):
+            if redis_client.exists(f"bl:{refresh_token}"):
+                logger.warning(
+                    f"RefreshTokenView: Token has been revoked: {refresh_token}"
+                )
                 return Response(
                     {"error": "Token has been revoked"},
                     status=status.HTTP_401_UNAUTHORIZED,
                 )
+            logger.info("RefreshTokenView: Token is not blacklisted")
 
+            # Refresh Token 검증
             payload = jwt.decode(
                 refresh_token, settings.SECRET_KEY, algorithms=["HS256"]
             )
-            user = User.objects.get(id=user_id)
-
-            # 이전 refresh token을 블랙리스트에 추가
-            exp = payload.get("exp")
-            if exp:
-                blacklist_token(
-                    refresh_token, exp - int(datetime.now(timezone.utc).timestamp())
-                )
-
-            # 새로운 토큰 생성
-            new_access_token = self._generate_access_token(user)
-            new_refresh_token = self._generate_refresh_token(user)
-
-            # 새로운 세션 데이터 저장
-            session_data = {
-                "user_id": str(user.id),
-                "refresh_token": new_refresh_token,
-            }
-            redis_client.setex(
-                f"session:{session_id}",
-                settings.REFRESH_TOKEN_LIFETIME,
-                json.dumps(session_data),
+            logger.info(
+                f"RefreshTokenView: Token decoded successfully for user_id: {payload.get('user_id')}"
             )
+
+            user = User.objects.get(id=user_id)
+            logger.info(f"RefreshTokenView: User object loaded: {user}")
+
+            # 새로운 Access Token만 생성
+            new_access_token = self._generate_access_token(user)
+            logger.info("RefreshTokenView: New access token generated")
 
             # Audit 로그 기록
             log_auth_action(
@@ -575,15 +748,34 @@ class RefreshTokenView(APIView):
                 request=request,
                 details={"session_id": session_id},
             )
+            logger.info("RefreshTokenView: Audit log recorded")
+
+            user_data = UserSerializer(user).data
+            logger.info(f"RefreshTokenView: Serialized user data: {user_data}")
 
             return Response(
-                {"access_token": new_access_token, "refresh_token": new_refresh_token},
+                {
+                    "access": new_access_token,
+                    "user": user_data,
+                },
                 status=status.HTTP_200_OK,
             )
-        except (jwt.ExpiredSignatureError, jwt.InvalidTokenError, User.DoesNotExist):
+        except (
+            jwt.ExpiredSignatureError,
+            jwt.InvalidTokenError,
+            User.DoesNotExist,
+        ) as e:
+            logger.error(
+                f"RefreshTokenView: Token validation or User lookup failed: {e}"
+            )
             return Response(
                 {"error": "Invalid refresh token"}, status=status.HTTP_401_UNAUTHORIZED
             )
+        except Exception as e:
+            logger.error(
+                f"RefreshTokenView: An unexpected error occurred: {e}", exc_info=True
+            )
+            return Response({"detail": str(e)}, status=status.HTTP_401_UNAUTHORIZED)
 
     def _generate_access_token(self, user):
         payload = {
@@ -591,6 +783,8 @@ class RefreshTokenView(APIView):
             "exp": datetime.now(timezone.utc)
             + timedelta(minutes=settings.ACCESS_TOKEN_LIFETIME),
             "iat": datetime.now(timezone.utc),
+            "jti": str(uuid.uuid4().hex),
+            "token_type": "access",
         }
         return jwt.encode(payload, settings.SECRET_KEY, algorithm="HS256")
 
@@ -600,5 +794,13 @@ class RefreshTokenView(APIView):
             "exp": datetime.now(timezone.utc)
             + timedelta(days=settings.REFRESH_TOKEN_LIFETIME),
             "iat": datetime.now(timezone.utc),
+            "jti": str(uuid.uuid4().hex),
         }
         return jwt.encode(payload, settings.SECRET_KEY, algorithm="HS256")
+
+    def _generate_session_id(self):
+        return jwt.encode(
+            {"timestamp": datetime.now(timezone.utc).timestamp()},
+            settings.SECRET_KEY,
+            algorithm="HS256",
+        )
