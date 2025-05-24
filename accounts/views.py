@@ -30,9 +30,15 @@ from .tokens import CustomRefreshToken
 import uuid
 import datetime
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from books.models import Category
 import json
+import logging
+import jwt
+from datetime import datetime, timedelta
+from .utils import log_auth_action
+from rest_framework.authentication import SessionAuthentication
+from dj_rest_auth.jwt_auth import JWTCookieAuthentication
 
 User = get_user_model()
 
@@ -276,36 +282,164 @@ class ProfileCompleteView(APIView):
 
 
 class LoginView(APIView):
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [AllowAny]
     serializer_class = LoginSerializer
 
     def post(self, request):
         serializer = self.serializer_class(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        user = serializer.validated_data["user"]
-        refresh = CustomRefreshToken.for_user(user)
-        redis_client.setex(f"refresh:{user.id}:{refresh['jti']}", 7 * 24 * 3600, 1)
-        return Response(
-            {
-                "access": str(refresh.access_token),
-                "refresh": str(refresh),
-                "user": UserSerializer(user).data,
+        if serializer.is_valid():
+            user = serializer.validated_data["user"]
+            access_token = self._generate_access_token(user)
+            refresh_token = self._generate_refresh_token(user)
+
+            # 세션 ID 생성 및 Redis에 저장
+            session_id = self._generate_session_id()
+            session_data = {
+                "user_id": str(user.id),
+                "refresh_token": refresh_token,
             }
+            redis_client.setex(
+                f"session:{session_id}",
+                settings.REFRESH_TOKEN_LIFETIME,
+                json.dumps(session_data),
+            )
+
+            # Audit 로그 기록
+            log_auth_action(
+                user=user,
+                action="login",
+                request=request,
+                details={"session_id": session_id},
+            )
+
+            response = Response(
+                {
+                    "access_token": access_token,
+                    "user": UserSerializer(user).data,
+                },
+                status=status.HTTP_200_OK,
+            )
+
+            # 세션 ID를 쿠키로 설정
+            response.set_cookie(
+                "sid",
+                session_id,
+                max_age=settings.REFRESH_TOKEN_LIFETIME,
+                httponly=True,
+                secure=settings.DEBUG is False,
+                samesite="Lax",
+                domain=None,
+                path="/",
+            )
+
+            return response
+        else:
+            # 실패한 로그인 시도 기록
+            log_auth_action(
+                user=None,
+                action="failed_login",
+                request=request,
+                details={"errors": serializer.errors},
+            )
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def _generate_access_token(self, user):
+        payload = {
+            "user_id": str(user.id),
+            "exp": datetime.utcnow()
+            + timedelta(minutes=settings.ACCESS_TOKEN_LIFETIME),
+            "iat": datetime.utcnow(),
+        }
+        return jwt.encode(payload, settings.SECRET_KEY, algorithm="HS256")
+
+    def _generate_refresh_token(self, user):
+        payload = {
+            "user_id": str(user.id),
+            "exp": datetime.utcnow() + timedelta(days=settings.REFRESH_TOKEN_LIFETIME),
+            "iat": datetime.utcnow(),
+        }
+        return jwt.encode(payload, settings.SECRET_KEY, algorithm="HS256")
+
+    def _generate_session_id(self):
+        return jwt.encode(
+            {"timestamp": datetime.utcnow().timestamp()},
+            settings.SECRET_KEY,
+            algorithm="HS256",
         )
 
 
 class LogoutView(APIView):
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [AllowAny]
+    authentication_classes = [JWTCookieAuthentication]
 
     def post(self, request):
-        try:
-            refresh_token = request.data["refresh"]
-            token = RefreshToken(refresh_token)
-            token.blacklist()
-            redis_client.delete(f"refresh:{request.user.id}:{token['jti']}")
-            return Response(status=status.HTTP_205_RESET_CONTENT)
-        except Exception as e:
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+        session_id = request.COOKIES.get("sid")
+
+        # 세션 ID가 있다면 Redis 세션 삭제 및 쿠키 제거 시도
+        if session_id:
+            # Redis에서 세션 데이터 삭제 시도 (세션이 없을 수도 있음)
+            redis_client.delete(f"session:{session_id}")
+
+            # Audit 로그 기록 (성공/실패 여부는 Redis 결과로 판단 가능)
+            log_auth_action(
+                user=request.user if request.user.is_authenticated else None,
+                action="logout",
+                request=request,
+                details={
+                    "session_id": session_id,
+                    "message": "Logout attempt (session ID found)",
+                },
+            )
+
+            response = Response(status=status.HTTP_205_RESET_CONTENT)
+            # 쿠키 삭제 (로그인 시 설정된 옵션과 일관성 유지)
+            response.delete_cookie(
+                "sid",
+                path="/",
+                domain=None,
+                samesite="Lax",
+            )
+            # CSRF 쿠키 삭제
+            response.delete_cookie(
+                settings.CSRF_COOKIE_NAME,
+                path="/",
+                domain=None,
+                samesite="Lax",
+            )
+            return response
+
+        # 세션 ID가 없는 경우
+        log_auth_action(
+            user=request.user if request.user.is_authenticated else None,
+            action="logout",
+            request=request,
+            details={
+                "message": "Logout attempt (no session ID)",
+                "session_id": session_id,
+            },
+        )
+
+        # 세션 ID가 없더라도 쿠키 삭제 응답 반환 (클라이언트 정리 목적)
+        response = Response(
+            {"detail": "Logout successful or no active session."},
+            status=status.HTTP_205_RESET_CONTENT,
+        )
+        # 쿠키 삭제 (로그인 시 설정된 옵션과 일관성 유지)
+        response.delete_cookie(
+            "sid",
+            path="/",
+            domain=None,
+            samesite="Lax",
+        )
+        # CSRF 쿠키 삭제
+        response.delete_cookie(
+            settings.CSRF_COOKIE_NAME,
+            path="/",
+            domain=None,
+            samesite="Lax",
+        )
+
+        return response
 
 
 class AccountDeleteView(APIView):
@@ -335,3 +469,60 @@ def get_categories(request):
     serializer = CategorySerializer(categories, many=True)
     cache.set(cache_key, serializer.data, 60 * 15)  # 15분 캐싱
     return Response(serializer.data)
+
+
+class RefreshTokenView(APIView):
+    permission_classes = [AllowAny]
+    authentication_classes = []
+
+    def post(self, request):
+        session_id = request.COOKIES.get("sid")
+
+        if not session_id:
+            return Response(
+                {"error": "No session ID found"}, status=status.HTTP_401_UNAUTHORIZED
+            )
+
+        session_data = redis_client.get(f"session:{session_id}")
+        if not session_data:
+            return Response(
+                {"error": "Invalid session"}, status=status.HTTP_401_UNAUTHORIZED
+            )
+
+        session_data = json.loads(session_data)
+        user_id = session_data.get("user_id")
+        refresh_token = session_data.get("refresh_token")
+
+        try:
+            payload = jwt.decode(
+                refresh_token, settings.SECRET_KEY, algorithms=["HS256"]
+            )
+            user = User.objects.get(id=user_id)
+
+            # 새로운 액세스 토큰 생성
+            new_access_token = self._generate_access_token(user)
+
+            # Audit 로그 기록
+            log_auth_action(
+                user=user,
+                action="refresh_token",
+                request=request,
+                details={"session_id": session_id},
+            )
+
+            return Response(
+                {"access_token": new_access_token}, status=status.HTTP_200_OK
+            )
+        except (jwt.ExpiredSignatureError, jwt.InvalidTokenError, User.DoesNotExist):
+            return Response(
+                {"error": "Invalid refresh token"}, status=status.HTTP_401_UNAUTHORIZED
+            )
+
+    def _generate_access_token(self, user):
+        payload = {
+            "user_id": str(user.id),
+            "exp": datetime.utcnow()
+            + timedelta(minutes=settings.ACCESS_TOKEN_LIFETIME),
+            "iat": datetime.utcnow(),
+        }
+        return jwt.encode(payload, settings.SECRET_KEY, algorithm="HS256")
