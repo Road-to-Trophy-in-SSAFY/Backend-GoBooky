@@ -1,6 +1,7 @@
 import datetime
 from django.db import models
 from django.conf import settings
+from django.urls import reverse
 
 
 # Create your models here.
@@ -48,3 +49,8 @@ class Thread(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_cover_img_url(self):
+        if self.cover_img and hasattr(self.cover_img, "url"):
+            return self.cover_img.url
+        return "/media/default_images/default_thread_image.jpg"

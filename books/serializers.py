@@ -42,10 +42,19 @@ class BookTitleWithCategorySerializer(serializers.ModelSerializer):
 # 전체 쓰레드
 class ThreadListSerializer(serializers.ModelSerializer):
     book = BookTitleWithCategorySerializer()
+    cover_img_url = serializers.SerializerMethodField()
 
     class Meta:
         model = Thread
-        fields = ("id", "title", "book")
+        fields = ("id", "title", "book", "cover_img", "cover_img_url")
+
+    def get_cover_img_url(self, obj):
+        if obj.cover_img:
+            request = self.context.get("request")
+            if request is not None:
+                return request.build_absolute_uri(obj.cover_img.url)
+            return obj.cover_img.url
+        return None
 
 
 # 쓰레드 상세
@@ -68,6 +77,7 @@ class ThreadSerializer(serializers.ModelSerializer):
 # 단일 쓰레드
 class ThreadDetailSerializer(serializers.ModelSerializer):
     book = BookTitleSerializer(read_only=True)
+    cover_img_url = serializers.SerializerMethodField()
 
     class Meta:
         model = Thread
@@ -76,7 +86,17 @@ class ThreadDetailSerializer(serializers.ModelSerializer):
             "book",
             "title",
             "content",
+            "cover_img",
+            "cover_img_url",
             "reading_date",
             "created_at",
             "updated_at",
         )
+
+    def get_cover_img_url(self, obj):
+        if obj.cover_img:
+            request = self.context.get("request")
+            if request is not None:
+                return request.build_absolute_uri(obj.cover_img.url)
+            return obj.cover_img.url
+        return None
