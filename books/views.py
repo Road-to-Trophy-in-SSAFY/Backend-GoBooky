@@ -50,7 +50,7 @@ def thread_list(request):
     if cached:
         return Response(cached)
     threads = Thread.objects.all().order_by("-created_at")
-    serializer = ThreadListSerializer(threads, many=True)
+    serializer = ThreadListSerializer(threads, many=True, context={"request": request})
     cache.set(cache_key, serializer.data, settings.CACHE_TTL)
     return Response(serializer.data)
 
@@ -62,7 +62,7 @@ def thread_detail(request, thread_id):
     if cached:
         return Response(cached)
     thread = get_object_or_404(Thread, id=thread_id)
-    serializer = ThreadDetailSerializer(thread)
+    serializer = ThreadDetailSerializer(thread, context={"request": request})
     cache.set(cache_key, serializer.data, settings.CACHE_TTL)
     return Response(serializer.data)
 
@@ -82,7 +82,7 @@ def thread_create(request):
         reading_date=request.data.get("reading_date"),
     )
     thread.save()
-    serializer = ThreadDetailSerializer(thread)
+    serializer = ThreadDetailSerializer(thread, context={"request": request})
     return Response(serializer.data, status=201)
 
 
@@ -96,7 +96,7 @@ def thread_update(request, thread_id):
     thread.content = request.data.get("content", thread.content)
     thread.reading_date = request.data.get("reading_date", thread.reading_date)
     thread.save()
-    serializer = ThreadDetailSerializer(thread)
+    serializer = ThreadDetailSerializer(thread, context={"request": request})
     return Response(serializer.data)
 
 
@@ -121,4 +121,14 @@ def thread_like(request, thread_id):
     else:
         thread.likes.add(user)
         liked = True
+
+    # 좋아요 변경 후 관련 캐시 무효화
+    cache_key_thread_list = f"{settings.CACHE_KEY_PREFIX}:thread_list"
+    cache_key_thread_detail = f"{settings.CACHE_KEY_PREFIX}:thread_detail:{thread_id}"
+    cache.delete(cache_key_thread_list)
+    cache.delete(cache_key_thread_detail)
+    cache_key_thread_detail = f"{settings.CACHE_KEY_PREFIX}:thread_detail:{thread_id}"
+    cache.delete(cache_key_thread_list)
+    cache.delete(cache_key_thread_detail)
+
     return Response({"liked": liked, "likes_count": thread.likes.count()})
