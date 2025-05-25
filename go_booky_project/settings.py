@@ -68,7 +68,7 @@ INSTALLED_APPS = [
     "allauth.socialaccount.providers.kakao",
     # jwt
     "rest_framework_simplejwt",
-    "rest_framework_simplejwt.token_blacklist",
+    # "rest_framework_simplejwt.token_blacklist",  # Redis JTI 블랙리스트와 충돌 방지
 ]
 
 MIDDLEWARE = [
@@ -112,8 +112,10 @@ SITE_ID = env.int("SITE_ID", default=1)
 
 # CORS 설정
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",  # Vue.js 개발 서버
     "http://127.0.0.1:5173",
+    "http://localhost:5173",
+    "http://localhost:5174",  # Vue.js 개발 서버 (포트 변경 시)
+    "http://127.0.0.1:5174",
 ]
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_METHODS = [
@@ -140,8 +142,8 @@ CORS_ALLOW_HEADERS = [
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=15),  # 15분
     "REFRESH_TOKEN_LIFETIME": timedelta(days=7),  # 7일
-    "ROTATE_REFRESH_TOKENS": True,  # 토큰 갱신 시 새 refresh 토큰 발급
-    "BLACKLIST_AFTER_ROTATION": True,  # 토큰 갱신 후 이전 토큰 블랙리스트
+    "ROTATE_REFRESH_TOKENS": False,  # 간단한 해결책: 토큰 로테이션 비활성화
+    "BLACKLIST_AFTER_ROTATION": False,  # 간단한 해결책: 블랙리스트 비활성화
     "UPDATE_LAST_LOGIN": True,
     "ALGORITHM": "HS256",
     "SIGNING_KEY": SECRET_KEY,
@@ -159,12 +161,16 @@ SIMPLE_JWT = {
     "TOKEN_TYPE_CLAIM": "token_type",
     "TOKEN_USER_CLASS": "rest_framework_simplejwt.models.TokenUser",
     "JTI_CLAIM": "jti",
-    "AUTH_COOKIE": "gobooky-auth",  # 쿠키 이름
-    "AUTH_COOKIE_REFRESH": "gobooky-refresh",  # 리프레시 토큰 쿠키 이름
-    "AUTH_COOKIE_DOMAIN": None,  # 쿠키 도메인
-    "AUTH_COOKIE_SECURE": False,  # 개발 환경에서는 False
+    # 커스텀 시리얼라이저 설정 (지침 권장 방식)
+    "TOKEN_OBTAIN_SERIALIZER": "accounts.jwt_views.CustomTokenObtainPairSerializer",
+    "TOKEN_REFRESH_SERIALIZER": "accounts.jwt_views.CustomTokenRefreshSerializer",
+    # HttpOnly 쿠키 설정 (지침 권장 방식)
+    "AUTH_COOKIE": None,  # Access token은 메모리에만 저장
+    "AUTH_COOKIE_REFRESH": "gobooky-refresh",  # Refresh token만 HttpOnly 쿠키
+    "AUTH_COOKIE_DOMAIN": None,
+    "AUTH_COOKIE_SECURE": False,  # 개발 환경에서는 False로 설정
     "AUTH_COOKIE_HTTP_ONLY": True,  # XSS 방지
-    "AUTH_COOKIE_PATH": "/",  # 쿠키 경로
+    "AUTH_COOKIE_PATH": "/",
     "AUTH_COOKIE_SAMESITE": "Lax",  # CSRF 방지
 }
 

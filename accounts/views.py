@@ -307,7 +307,7 @@ class ProfileCompleteView(APIView):
         return Response({"detail": "회원가입이 완료되었습니다."}, status=201)
 
 
-class LoginView(APIView):
+class LegacyLoginView(APIView):  # 백업용으로 이름 변경
     permission_classes = [AllowAny]
     serializer_class = LoginSerializer
 
@@ -398,7 +398,7 @@ class LoginView(APIView):
         )
 
 
-class LogoutView(APIView):
+class LegacyLogoutView(APIView):  # 백업용으로 이름 변경
     permission_classes = [AllowAny]
     authentication_classes = []
     # authentication_classes = [JWTCookieAuthentication]
@@ -687,7 +687,7 @@ class ProfileDetailView(generics.RetrieveUpdateAPIView):
     #     return obj
 
 
-class RefreshTokenView(APIView):
+class LegacyRefreshTokenView(APIView):  # 백업용으로 이름 변경
     permission_classes = [AllowAny]
     authentication_classes = []
 

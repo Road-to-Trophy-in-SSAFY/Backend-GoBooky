@@ -22,8 +22,10 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", include("accounts.urls")),
-    path("books/", include("books.urls")),
+    # 인증 관련 API
+    path("auth/", include("accounts.urls")),
+    # Books & Threads API (ViewSet 기반)
+    path("", include("books.urls")),
 ]
 
 # 개발 환경에서 미디어 파일 제공

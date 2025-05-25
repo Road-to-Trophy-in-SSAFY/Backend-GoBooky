@@ -48,7 +48,15 @@ class ThreadListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Thread
-        fields = ("id", "title", "book", "likes_count", "liked", "cover_img", "cover_img_url")
+        fields = (
+            "id",
+            "title",
+            "book",
+            "likes_count",
+            "liked",
+            "cover_img",
+            "cover_img_url",
+        )
 
     def get_likes_count(self, obj):
         return obj.likes.count()
@@ -68,11 +76,11 @@ class ThreadListSerializer(serializers.ModelSerializer):
         return None
 
 
-# 쓰레드 상세
+# 쓰레드 생성/수정용
 class ThreadSerializer(serializers.ModelSerializer):
-    book = BookTitleSerializer(read_only=True)
-    likes_count = serializers.SerializerMethodField()
-    liked = serializers.SerializerMethodField()
+    book = serializers.PrimaryKeyRelatedField(queryset=Book.objects.all())
+    likes_count = serializers.SerializerMethodField(read_only=True)
+    liked = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
         model = Thread
@@ -108,6 +116,7 @@ class ThreadSerializer(serializers.ModelSerializer):
 # 단일 쓰레드
 class ThreadDetailSerializer(serializers.ModelSerializer):
     book = BookTitleSerializer(read_only=True)
+    user = serializers.SerializerMethodField()
     likes_count = serializers.SerializerMethodField()
     liked = serializers.SerializerMethodField()
     cover_img_url = serializers.SerializerMethodField()
@@ -117,6 +126,7 @@ class ThreadDetailSerializer(serializers.ModelSerializer):
         fields = (
             "id",
             "book",
+            "user",
             "title",
             "content",
             "cover_img",
@@ -127,6 +137,13 @@ class ThreadDetailSerializer(serializers.ModelSerializer):
             "likes_count",
             "liked",
         )
+
+    def get_user(self, obj):
+        return {
+            "id": obj.user.id,
+            "email": obj.user.email,
+            "username": obj.user.username,
+        }
 
     def get_likes_count(self, obj):
         return obj.likes.count()

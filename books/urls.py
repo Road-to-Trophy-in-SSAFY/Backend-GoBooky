@@ -1,13 +1,23 @@
-from django.urls import path
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
 from . import views
 
+# ViewSet을 위한 라우터 설정 (지침 권장 방식)
+router = DefaultRouter()
+router.register(r"books", views.BookViewSet, basename="book")
+router.register(r"threads", views.ThreadViewSet, basename="thread")
+router.register(r"categories", views.CategoryViewSet, basename="category")
+
+# 기존 함수 기반 뷰 URL 패턴 (호환성 유지)
+legacy_urlpatterns = [
+    path("books/", views.book_list, name="book-list-legacy"),
+    path("books/<int:book_id>/", views.book_detail, name="book-detail-legacy"),
+    # 기존 함수 기반 뷰들은 레거시로 유지
+]
+
 urlpatterns = [
-    path("", views.book_list),
-    path("<int:book_id>/", views.book_detail),
-    path("threads/", views.thread_list),
-    path("threads/<int:thread_id>/", views.thread_detail),
-    path("threads/create/", views.thread_create),
-    path("threads/<int:thread_id>/update/", views.thread_update),
-    path("threads/<int:thread_id>/delete/", views.thread_delete),
-    path("threads/<int:thread_id>/like/", views.thread_like),
+    # ViewSet 기반 URL (권장)
+    path("api/", include(router.urls)),
+    # 레거시 URL 패턴 (호환성 유지)
+    path("legacy/", include(legacy_urlpatterns)),
 ]
