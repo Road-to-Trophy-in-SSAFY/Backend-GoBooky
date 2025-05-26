@@ -170,23 +170,33 @@ class ThreadViewSet(viewsets.ModelViewSet):
         # 작성자를 현재 사용자로 설정
         thread = serializer.save(user=request.user)
 
-        try:
-            # 이미지 생성 및 쓰레드에 설정
-            image_path = create_thread_image(thread)
-            if image_path:
-                thread.cover_img = image_path
-                thread.save()
-                logger.info(f"✅ 쓰레드 이미지 생성 완료: {thread.id}")
-        except Exception as e:
-            # 이미지 생성 실패해도 쓰레드는 생성
-            logger.error(f"❌ 쓰레드 이미지 생성 실패: {thread.id}, {str(e)}")
-
         # 관련 캐시 무효화
         self._invalidate_thread_cache()
 
         logger.info(f"✅ 쓰레드 생성 완료: {thread.id} by {request.user.email}")
 
-        # 응답에는 상세 시리얼라이저 사용
+        # 백그라운드에서 이미지 생성 (비동기)
+        import threading
+
+        def generate_image_async():
+            try:
+                logger.info(f"🎨 백그라운드 이미지 생성 시작: {thread.id}")
+                image_path = create_thread_image(thread)
+                if image_path:
+                    thread.cover_img = image_path
+                    thread.save()
+                    logger.info(f"✅ 백그라운드 이미지 생성 완료: {thread.id}")
+                    # 이미지 생성 후 캐시 무효화
+                    self._invalidate_thread_cache(thread.id)
+            except Exception as e:
+                logger.error(f"❌ 백그라운드 이미지 생성 실패: {thread.id}, {str(e)}")
+
+        # 별도 스레드에서 이미지 생성
+        image_thread = threading.Thread(target=generate_image_async)
+        image_thread.daemon = True
+        image_thread.start()
+
+        # 응답에는 상세 시리얼라이저 사용 (이미지 없이 먼저 응답)
         detail_serializer = ThreadDetailSerializer(thread, context={"request": request})
         headers = self.get_success_headers(detail_serializer.data)
         return Response(
