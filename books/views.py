@@ -5,7 +5,7 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from django.shortcuts import get_object_or_404
 from django.core.cache import cache
 from django.conf import settings
-from .models import Book, Thread, Category
+from .models import Book, Thread, Category, BookEmbedding
 from .serializers import (
     BookListSerializer,
     BookDetailSerializer,
@@ -65,20 +65,21 @@ class BookViewSet(viewsets.ReadOnlyModelViewSet):
         return response
 
     def retrieve(self, request, *args, **kwargs):
-        """캐시된 도서 상세 정보 반환"""
+        """캐시된 도서 상세 정보 반환 (연관 도서 포함)"""
         book_id = kwargs.get("pk")
-        cache_key = f"{settings.CACHE_KEY_PREFIX}:book_detail:{book_id}"
+        # 연관 도서 정보를 포함하는 캐시 키
+        cache_key = f"{settings.CACHE_KEY_PREFIX}:book_detail_with_related:{book_id}"
 
         cached = cache.get(cache_key)
         if cached:
-            logger.info(f"📖 [CACHE HIT] Book detail: {cache_key}")
+            logger.info(f"📖 [CACHE HIT] Book detail with related: {cache_key}")
             return Response(cached)
 
         response = super().retrieve(request, *args, **kwargs)
 
         if response.status_code == 200:
             cache.set(cache_key, response.data, settings.CACHE_TTL)
-            logger.info(f"📖 [CACHE SET] Book detail: {cache_key}")
+            logger.info(f"📖 [CACHE SET] Book detail with related: {cache_key}")
 
         return response
 
@@ -330,7 +331,8 @@ def book_detail(request, book_id):
     """호환성 유지용 - ViewSet 사용 권장"""
     logger.warning("⚠️ 레거시 book_detail 함수 사용됨 - ViewSet 사용 권장")
 
-    cache_key = f"{settings.CACHE_KEY_PREFIX}:book_detail:{book_id}"
+    # 연관 도서 정보를 포함하는 캐시 키
+    cache_key = f"{settings.CACHE_KEY_PREFIX}:book_detail_with_related:{book_id}"
     cached = cache.get(cache_key)
     if cached:
         return Response(cached)

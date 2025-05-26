@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Book, Category, Thread
+from .models import Book, Category, Thread, BookEmbedding
 
 
 class BookListSerializer(serializers.ModelSerializer):
@@ -19,10 +19,35 @@ class BookListSerializer(serializers.ModelSerializer):
         )
 
 
+class RelatedBookSerializer(serializers.ModelSerializer):
+    """연관 도서를 위한 간단한 Serializer"""
+
+    class Meta:
+        model = Book
+        fields = (
+            "id",
+            "title",
+            "cover",
+            "author",
+        )
+
+
 class BookDetailSerializer(serializers.ModelSerializer):
+    related_books = serializers.SerializerMethodField()
+
     class Meta:
         model = Book
         fields = "__all__"
+
+    def get_related_books(self, obj):
+        """책과 연관된 도서 3권을 반환합니다."""
+        try:
+            # BookEmbedding 객체가 있는지 확인
+            book_embedding = BookEmbedding.objects.get(book=obj)
+            related_books = book_embedding.related_books.all()[:3]
+            return RelatedBookSerializer(related_books, many=True).data
+        except BookEmbedding.DoesNotExist:
+            return []
 
 
 class BookTitleSerializer(serializers.ModelSerializer):
