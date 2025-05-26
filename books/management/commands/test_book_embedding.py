@@ -92,18 +92,34 @@ class Command(BaseCommand):
             self.stdout.write(f"   유사도: {similarity:.4f}")
             self.stdout.write("-" * 50)
 
-        # 결과를 JSON 파일로 저장 (ID만 저장하는 방식)
-        result_data = {
-            "book_id": target_book.id,
-            "book_title": target_book.title,
-            "related_book_ids": related_book_ids,
-        }
+        # Django fixture 형식으로 결과 저장
+        # 기존 BookEmbedding이 있다면 삭제하고 새로 생성
+        BookEmbedding.objects.filter(book=target_book).delete()
+
+        # 임베딩 객체 생성
+        embedding_obj = BookEmbedding.objects.create(book=target_book)
+
+        # 연관 도서 추가
+        related_books = Book.objects.filter(id__in=related_book_ids)
+        embedding_obj.related_books.add(*related_books)
+
+        # Django fixture 형식으로 저장할 데이터 준비
+        fixture_data = [
+            {
+                "model": "books.bookembedding",
+                "pk": embedding_obj.pk,
+                "fields": {"book": target_book.id, "related_books": related_book_ids},
+            }
+        ]
 
         # JSON 파일로 저장
         with open("books/fixtures/test_related_book.json", "w", encoding="utf-8") as f:
-            json.dump(result_data, f, ensure_ascii=False, indent=2)
+            json.dump(fixture_data, f, ensure_ascii=False, indent=2)
 
         self.stdout.write(self.style.SUCCESS("테스트 완료!"))
         self.stdout.write(
             f"테스트 결과가 books/fixtures/test_related_book.json 파일로 저장되었습니다."
+        )
+        self.stdout.write(
+            "Django fixture 형식으로 저장되어 'python manage.py loaddata test_related_book'로 로드할 수 있습니다."
         )

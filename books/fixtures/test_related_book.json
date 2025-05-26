@@ -1,0 +1,14 @@
+[
+  {
+    "model": "books.bookembedding",
+    "pk": 949,
+    "fields": {
+      "book": 1,
+      "related_books": [
+        258,
+        947,
+        278
+      ]
+    }
+  }
+]

@@ -36,17 +36,10 @@ class BookEmbedding(models.Model):
     book = models.OneToOneField(
         Book, on_delete=models.CASCADE, related_name="embedding"
     )
-    embedding_vector = models.JSONField(
-        null=True, blank=True
-    )  # 임베딩 벡터를 JSON으로 저장
     related_books = models.ManyToManyField(Book, related_name="related_to", blank=True)
 
     def __str__(self):
-        return f"Embedding for {self.book.title}"
-
-    def get_related_book_ids(self):
-        """관련 도서의 ID 목록을 반환합니다."""
-        return list(self.related_books.values_list("id", flat=True))
+        return f"Related books for {self.book.title}"
 
 
 class Thread(models.Model):

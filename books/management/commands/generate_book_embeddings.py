@@ -92,6 +92,8 @@ class Command(BaseCommand):
 
         # 연관 도서 추출 및 저장
         start_time = time.time()
+        embeddings_to_save = []
+
         with transaction.atomic():
             # 기존 임베딩 데이터 삭제 (처리하는 책에 대해서만)
             BookEmbedding.objects.filter(book_id__in=book_ids).delete()
@@ -112,30 +114,25 @@ class Command(BaseCommand):
                 related_book_ids = [book_ids[idx] for idx in top_indices]
 
                 # 임베딩 저장
-                embedding_obj = BookEmbedding.objects.create(
-                    book=book, embedding_vector=book_embeddings[book_id].tolist()
-                )
+                embedding_obj = BookEmbedding.objects.create(book=book)
 
                 # 연관 도서 추가
                 related_books = Book.objects.filter(id__in=related_book_ids)
                 embedding_obj.related_books.add(*related_books)
 
+                # Django fixture 형식으로 저장할 데이터 준비
+                embeddings_to_save.append(
+                    {
+                        "model": "books.bookembedding",
+                        "pk": embedding_obj.pk,
+                        "fields": {"book": book.id, "related_books": related_book_ids},
+                    }
+                )
+
         self.stdout.write(f"DB 저장 완료 ({time.time() - start_time:.2f}초)")
 
-        # 결과를 JSON 파일로 저장
+        # Django fixture 형식으로 JSON 파일 저장
         start_time = time.time()
-        result_data = []
-        for book_embedding in BookEmbedding.objects.filter(book_id__in=book_ids):
-            # ID만 저장하는 방식으로 변경
-            related_book_ids = book_embedding.get_related_book_ids()
-
-            result_data.append(
-                {
-                    "book_id": book_embedding.book.id,
-                    "book_title": book_embedding.book.title,
-                    "related_book_ids": related_book_ids,
-                }
-            )
 
         # 파일명 결정 (배치 처리 시 구분)
         if batch_size > 0 or start_id > 1 or end_id > 0:
@@ -143,9 +140,9 @@ class Command(BaseCommand):
         else:
             file_name = "related_books.json"
 
-        # JSON 파일로 저장
+        # Django fixture 형식으로 JSON 파일 저장
         with open(f"books/fixtures/{file_name}", "w", encoding="utf-8") as f:
-            json.dump(result_data, f, ensure_ascii=False, indent=2)
+            json.dump(embeddings_to_save, f, ensure_ascii=False, indent=2)
 
         self.stdout.write(f"JSON 파일 저장 완료 ({time.time() - start_time:.2f}초)")
 
@@ -154,4 +151,7 @@ class Command(BaseCommand):
         )
         self.stdout.write(
             f"연관 도서 데이터가 books/fixtures/{file_name} 파일로 저장되었습니다."
+        )
+        self.stdout.write(
+            f"Django fixture 형식으로 저장되어 'python manage.py loaddata {file_name.replace('.json', '')}'로 로드할 수 있습니다."
         )
