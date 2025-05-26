@@ -76,8 +76,8 @@ class ThreadListSerializer(serializers.ModelSerializer):
         return None
 
 
-# 쓰레드 생성/수정용
-class ThreadSerializer(serializers.ModelSerializer):
+# 쓰레드 생성용
+class ThreadCreateSerializer(serializers.ModelSerializer):
     book = serializers.PrimaryKeyRelatedField(queryset=Book.objects.all())
     likes_count = serializers.SerializerMethodField(read_only=True)
     liked = serializers.SerializerMethodField(read_only=True)
@@ -102,14 +102,39 @@ class ThreadSerializer(serializers.ModelSerializer):
     def get_liked(self, obj):
         request = self.context.get("request")
         if request and hasattr(request, "user"):
-            print(
-                f"[DRF][get_liked] user: {request.user}, authenticated: {request.user.is_authenticated}, thread_id: {obj.id}"
-            )
-            print(f"[DRF][get_liked] likes: {[u.id for u in obj.likes.all()]}")
             if request.user.is_authenticated:
-                liked = obj.likes.filter(id=request.user.id).exists()
-                print(f"[DRF][get_liked] liked: {liked}")
-                return liked
+                return obj.likes.filter(id=request.user.id).exists()
+        return False
+
+
+# 쓰레드 수정용
+class ThreadUpdateSerializer(serializers.ModelSerializer):
+    book = serializers.PrimaryKeyRelatedField(read_only=True)
+    likes_count = serializers.SerializerMethodField(read_only=True)
+    liked = serializers.SerializerMethodField(read_only=True)
+
+    class Meta:
+        model = Thread
+        fields = (
+            "id",
+            "book",
+            "title",
+            "content",
+            "reading_date",
+            "created_at",
+            "updated_at",
+            "likes_count",
+            "liked",
+        )
+
+    def get_likes_count(self, obj):
+        return obj.likes.count()
+
+    def get_liked(self, obj):
+        request = self.context.get("request")
+        if request and hasattr(request, "user"):
+            if request.user.is_authenticated:
+                return obj.likes.filter(id=request.user.id).exists()
         return False
 
 

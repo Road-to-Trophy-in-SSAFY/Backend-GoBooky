@@ -10,7 +10,8 @@ from .serializers import (
     BookListSerializer,
     BookDetailSerializer,
     ThreadListSerializer,
-    ThreadSerializer,
+    ThreadCreateSerializer,
+    ThreadUpdateSerializer,
     ThreadDetailSerializer,
 )
 from .utils import create_thread_image
@@ -97,8 +98,10 @@ class ThreadViewSet(viewsets.ModelViewSet):
     def get_serializer_class(self):
         if self.action == "list":
             return ThreadListSerializer
-        elif self.action in ["create", "update", "partial_update"]:
-            return ThreadSerializer
+        elif self.action == "create":
+            return ThreadCreateSerializer
+        elif self.action in ["update", "partial_update"]:
+            return ThreadUpdateSerializer
         return ThreadDetailSerializer
 
     def get_permissions(self):
