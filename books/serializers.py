@@ -34,6 +34,8 @@ class RelatedBookSerializer(serializers.ModelSerializer):
 
 class BookDetailSerializer(serializers.ModelSerializer):
     related_books = serializers.SerializerMethodField()
+    is_saved = serializers.SerializerMethodField()
+    saved_count = serializers.SerializerMethodField()
 
     class Meta:
         model = Book
@@ -48,6 +50,17 @@ class BookDetailSerializer(serializers.ModelSerializer):
             return RelatedBookSerializer(related_books, many=True).data
         except BookEmbedding.DoesNotExist:
             return []
+
+    def get_is_saved(self, obj):
+        """현재 사용자가 이 책을 저장했는지 확인"""
+        request = self.context.get("request")
+        if request and request.user.is_authenticated:
+            return obj.saved_by_users.filter(id=request.user.id).exists()
+        return False
+
+    def get_saved_count(self, obj):
+        """이 책을 저장한 사용자 수"""
+        return obj.saved_by_users.count()
 
 
 class BookTitleSerializer(serializers.ModelSerializer):

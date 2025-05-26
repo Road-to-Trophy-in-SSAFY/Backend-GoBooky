@@ -46,6 +46,10 @@ class User(AbstractUser):
     following = models.ManyToManyField(
         "self", symmetrical=False, related_name="followers", blank=True
     )
+    # 사용자가 저장한 책 목록
+    saved_books = models.ManyToManyField(
+        "books.Book", related_name="saved_by_users", blank=True
+    )
 
     objects = CustomUserManager()
 

@@ -858,3 +858,184 @@ class FollowToggleView(APIView):
                 "followers_count": target_user.followers.count(),
             }
         )
+
+
+class UserBooksView(APIView):
+    """사용자가 저장한 책 목록 조회"""
+
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, username):
+        try:
+            user = User.objects.get(username=username)
+
+            # 본인만 조회 가능
+            if user != request.user:
+                return Response(
+                    {"detail": "본인의 저장된 책만 조회할 수 있습니다."}, status=403
+                )
+
+            from django.core.paginator import Paginator
+            from books.serializers import BookListSerializer
+
+            books = user.saved_books.all().order_by("-id")
+
+            # 페이지네이션
+            page = request.GET.get("page", 1)
+            paginator = Paginator(books, 10)
+            page_obj = paginator.get_page(page)
+
+            serializer = BookListSerializer(page_obj, many=True)
+
+            return Response(
+                {
+                    "results": serializer.data,
+                    "count": paginator.count,
+                    "num_pages": paginator.num_pages,
+                    "current_page": page_obj.number,
+                    "has_next": page_obj.has_next(),
+                    "has_previous": page_obj.has_previous(),
+                }
+            )
+
+        except User.DoesNotExist:
+            return Response({"detail": "사용자를 찾을 수 없습니다."}, status=404)
+
+
+class UserCommentsView(APIView):
+    """사용자의 댓글/대댓글 목록 조회"""
+
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, username):
+        try:
+            user = User.objects.get(username=username)
+
+            # 본인만 조회 가능
+            if user != request.user:
+                return Response(
+                    {"detail": "본인의 댓글만 조회할 수 있습니다."}, status=403
+                )
+
+            from django.core.paginator import Paginator
+            from books.serializers import CommentSerializer, ReplySerializer
+            from books.models import Comment, Reply
+
+            # 댓글과 대댓글을 함께 조회
+            comments = Comment.objects.filter(user=user, is_deleted=False).order_by(
+                "-created_at"
+            )
+            replies = Reply.objects.filter(user=user, is_deleted=False).order_by(
+                "-created_at"
+            )
+
+            # 페이지네이션
+            page = request.GET.get("page", 1)
+
+            # 댓글 페이지네이션
+            comment_paginator = Paginator(comments, 5)
+            comment_page_obj = comment_paginator.get_page(page)
+
+            # 대댓글 페이지네이션
+            reply_paginator = Paginator(replies, 5)
+            reply_page_obj = reply_paginator.get_page(page)
+
+            comment_serializer = CommentSerializer(comment_page_obj, many=True)
+            reply_serializer = ReplySerializer(reply_page_obj, many=True)
+
+            return Response(
+                {
+                    "comments": {
+                        "results": comment_serializer.data,
+                        "count": comment_paginator.count,
+                        "num_pages": comment_paginator.num_pages,
+                        "current_page": comment_page_obj.number,
+                        "has_next": comment_page_obj.has_next(),
+                        "has_previous": comment_page_obj.has_previous(),
+                    },
+                    "replies": {
+                        "results": reply_serializer.data,
+                        "count": reply_paginator.count,
+                        "num_pages": reply_paginator.num_pages,
+                        "current_page": reply_page_obj.number,
+                        "has_next": reply_page_obj.has_next(),
+                        "has_previous": reply_page_obj.has_previous(),
+                    },
+                }
+            )
+
+        except User.DoesNotExist:
+            return Response({"detail": "사용자를 찾을 수 없습니다."}, status=404)
+
+
+class UserThreadsView(APIView):
+    """사용자의 쓰레드 목록 조회"""
+
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, username):
+        try:
+            user = User.objects.get(username=username)
+
+            # 본인만 조회 가능
+            if user != request.user:
+                return Response(
+                    {"detail": "본인의 쓰레드만 조회할 수 있습니다."}, status=403
+                )
+
+            from django.core.paginator import Paginator
+            from books.serializers import ThreadListSerializer
+            from books.models import Thread
+
+            threads = Thread.objects.filter(user=user).order_by("-created_at")
+
+            # 페이지네이션
+            page = request.GET.get("page", 1)
+            paginator = Paginator(threads, 10)
+            page_obj = paginator.get_page(page)
+
+            serializer = ThreadListSerializer(page_obj, many=True)
+
+            return Response(
+                {
+                    "results": serializer.data,
+                    "count": paginator.count,
+                    "num_pages": paginator.num_pages,
+                    "current_page": page_obj.number,
+                    "has_next": page_obj.has_next(),
+                    "has_previous": page_obj.has_previous(),
+                }
+            )
+
+        except User.DoesNotExist:
+            return Response({"detail": "사용자를 찾을 수 없습니다."}, status=404)
+
+
+class BookSaveToggleView(APIView):
+    """책 저장/해제 토글"""
+
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, book_id):
+        try:
+            from books.models import Book
+
+            book = Book.objects.get(id=book_id)
+
+            if request.user.saved_books.filter(id=book_id).exists():
+                request.user.saved_books.remove(book)
+                is_saved = False
+                message = "책이 저장 목록에서 제거되었습니다."
+            else:
+                request.user.saved_books.add(book)
+                is_saved = True
+                message = "책이 저장 목록에 추가되었습니다."
+
+            saved_count = book.saved_by_users.count()
+
+            return Response(
+                {"is_saved": is_saved, "saved_count": saved_count, "message": message}
+            )
+
+        except Book.DoesNotExist:
+            return Response({"detail": "책을 찾을 수 없습니다."}, status=404)

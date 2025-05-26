@@ -9,6 +9,10 @@ from .views import (
     CheckNicknameView,
     ProfileDetailView,
     FollowToggleView,
+    UserBooksView,
+    UserCommentsView,
+    UserThreadsView,
+    BookSaveToggleView,
 )
 
 # 새로운 JWT 뷰들 import
@@ -48,5 +52,27 @@ urlpatterns = [
         "auth/profile/<str:username>/follow/",
         FollowToggleView.as_view(),
         name="profile-follow-toggle",
+    ),
+    # 사용자별 데이터 조회 API
+    path(
+        "auth/profile/<str:username>/books/",
+        UserBooksView.as_view(),
+        name="user-books",
+    ),
+    path(
+        "auth/profile/<str:username>/comments/",
+        UserCommentsView.as_view(),
+        name="user-comments",
+    ),
+    path(
+        "auth/profile/<str:username>/threads/",
+        UserThreadsView.as_view(),
+        name="user-threads",
+    ),
+    # 책 저장 토글 API
+    path(
+        "auth/books/<int:book_id>/save/",
+        BookSaveToggleView.as_view(),
+        name="book-save-toggle",
     ),
 ]
