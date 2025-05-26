@@ -1,0 +1,8525 @@
+[
+  {
+    "book_id": 1,
+    "book_title": "소년이 온다",
+    "related_book_ids": [
+      258,
+      947,
+      278
+    ]
+  },
+  {
+    "book_id": 2,
+    "book_title": "작별하지 않는다",
+    "related_book_ids": [
+      10,
+      43,
+      5
+    ]
+  },
+  {
+    "book_id": 3,
+    "book_title": "채식주의자 (리마스터판)",
+    "related_book_ids": [
+      241,
+      163,
+      156
+    ]
+  },
+  {
+    "book_id": 4,
+    "book_title": "흰",
+    "related_book_ids": [
+      83,
+      156,
+      5
+    ]
+  },
+  {
+    "book_id": 5,
+    "book_title": "서랍에 저녁을 넣어 두었다",
+    "related_book_ids": [
+      41,
+      10,
+      43
+    ]
+  },
+  {
+    "book_id": 6,
+    "book_title": "희랍어 시간",
+    "related_book_ids": [
+      3,
+      526,
+      447
+    ]
+  },
+  {
+    "book_id": 7,
+    "book_title": "언젠가 우리가 같은 별을 바라본다면",
+    "related_book_ids": [
+      360,
+      305,
+      444
+    ]
+  },
+  {
+    "book_id": 8,
+    "book_title": "디 에센셜 한강 (무선 보급판)",
+    "related_book_ids": [
+      795,
+      13,
+      191
+    ]
+  },
+  {
+    "book_id": 9,
+    "book_title": "모순 - 개정판",
+    "related_book_ids": [
+      890,
+      387,
+      420
+    ]
+  },
+  {
+    "book_id": 10,
+    "book_title": "바람이 분다, 가라",
+    "related_book_ids": [
+      533,
+      5,
+      142
+    ]
+  },
+  {
+    "book_id": 11,
+    "book_title": "작은 땅의 야수들",
+    "related_book_ids": [
+      360,
+      305,
+      396
+    ]
+  },
+  {
+    "book_id": 12,
+    "book_title": "만화로 보는 3분 철학 1 : 서양 고대 철학편",
+    "related_book_ids": [
+      383,
+      38,
+      31
+    ]
+  },
+  {
+    "book_id": 13,
+    "book_title": "여수의 사랑",
+    "related_book_ids": [
+      496,
+      50,
+      19
+    ]
+  },
+  {
+    "book_id": 14,
+    "book_title": "급류",
+    "related_book_ids": [
+      43,
+      5,
+      55
+    ]
+  },
+  {
+    "book_id": 15,
+    "book_title": "클래식 뮤지컬 차이콥스키의 발레곡 호두까기 인형 사운드북",
+    "related_book_ids": [
+      544,
+      100,
+      869
+    ]
+  },
+  {
+    "book_id": 16,
+    "book_title": "사피엔스 : 그래픽 히스토리 Vol.1 - 인류의 탄생",
+    "related_book_ids": [
+      720,
+      33,
+      491
+    ]
+  },
+  {
+    "book_id": 23,
+    "book_title": "사피엔스 - 유인원에서 사이보그까지, 인간 역사의 대담하고 위대한 질문",
+    "related_book_ids": [
+      424,
+      441,
+      310
+    ]
+  },
+  {
+    "book_id": 716,
+    "book_title": "전지적 독자 시점 Part 1 08",
+    "related_book_ids": [
+      690,
+      331,
+      53
+    ]
+  },
+  {
+    "book_id": 17,
+    "book_title": "돈의 심리학 (30만 부 기념 스페셜 에디션) - 당신은 왜 부자가 되지 못했는가",
+    "related_book_ids": [
+      632,
+      945,
+      124
+    ]
+  },
+  {
+    "book_id": 18,
+    "book_title": "데미안 (오리지널 초판본 표지디자인) - 최신 원전 완역본",
+    "related_book_ids": [
+      42,
+      604,
+      838
+    ]
+  },
+  {
+    "book_id": 19,
+    "book_title": "내 여자의 열매",
+    "related_book_ids": [
+      13,
+      43,
+      5
+    ]
+  },
+  {
+    "book_id": 20,
+    "book_title": "검은 사슴",
+    "related_book_ids": [
+      440,
+      9,
+      433
+    ]
+  },
+  {
+    "book_id": 21,
+    "book_title": "일본어 무작정 따라하기 완전판",
+    "related_book_ids": [
+      648,
+      122,
+      293
+    ]
+  },
+  {
+    "book_id": 22,
+    "book_title": "룩 백",
+    "related_book_ids": [
+      730,
+      651,
+      837
+    ]
+  },
+  {
+    "book_id": 24,
+    "book_title": "우리 아기 오감발달 시끌벅적 정글 사운드북",
+    "related_book_ids": [
+      694,
+      670,
+      759
+    ]
+  },
+  {
+    "book_id": 25,
+    "book_title": "코스모스 - 보급판",
+    "related_book_ids": [
+      43,
+      19,
+      196
+    ]
+  },
+  {
+    "book_id": 26,
+    "book_title": "EBS 다큐프라임 자본주의",
+    "related_book_ids": [
+      96,
+      532,
+      189
+    ]
+  },
+  {
+    "book_id": 27,
+    "book_title": "삼국지 원전 완역판 세트 - 전10권",
+    "related_book_ids": [
+      660,
+      636,
+      637
+    ]
+  },
+  {
+    "book_id": 28,
+    "book_title": "눈물상자",
+    "related_book_ids": [
+      869,
+      758,
+      15
+    ]
+  },
+  {
+    "book_id": 785,
+    "book_title": "딸에 대하여",
+    "related_book_ids": [
+      872,
+      457,
+      707
+    ]
+  },
+  {
+    "book_id": 29,
+    "book_title": "ETS 토익 단기 공략 750+ (LC + RC) - 기출문제 한국 독점출간 / 기출 문항으로 보강된 단기완성 시리즈 / 본책 + 해설집 + 실전 모의고사 1회분 + 무료 MP3 파일",
+    "related_book_ids": [
+      217,
+      98,
+      594
+    ]
+  },
+  {
+    "book_id": 30,
+    "book_title": "해커스 토익 RC Reading(리딩) 기본서 - 최신기출경향 완벽 반영｜실전모의고사 4회분 [시험장에도 들고 가는 토익 RC 필수 어휘 & 단어암기 MP3 제공]",
+    "related_book_ids": [
+      48,
+      129,
+      645
+    ]
+  },
+  {
+    "book_id": 31,
+    "book_title": "만화로 보는 3분 철학 2 : 서양 중세·근대 철학편",
+    "related_book_ids": [
+      12,
+      38,
+      383
+    ]
+  },
+  {
+    "book_id": 32,
+    "book_title": "긴긴밤 - 제21회 문학동네어린이문학상 대상 수상작",
+    "related_book_ids": [
+      512,
+      589,
+      53
+    ]
+  },
+  {
+    "book_id": 33,
+    "book_title": "구의 증명",
+    "related_book_ids": [
+      496,
+      9,
+      843
+    ]
+  },
+  {
+    "book_id": 45,
+    "book_title": "사자왕 형제의 모험 - 아스트리드 린드그렌 장편동화",
+    "related_book_ids": [
+      786,
+      690,
+      331
+    ]
+  },
+  {
+    "book_id": 34,
+    "book_title": "ETS 토익기출 파트별 VOCA 보카 - 최신개정판 / 교재+단어 암기 어플+단어 시험 출제마법사+MP3 / 최신 기출예문, 기출문제 독점수록",
+    "related_book_ids": [
+      98,
+      594,
+      29
+    ]
+  },
+  {
+    "book_id": 35,
+    "book_title": "세이노의 가르침 (화이트 에디션) - 피보다 진하게 살아라",
+    "related_book_ids": [
+      232,
+      25,
+      196
+    ]
+  },
+  {
+    "book_id": 36,
+    "book_title": "총 균 쇠 - 인간 사회의 운명을 바꾼 힘",
+    "related_book_ids": [
+      786,
+      147,
+      598
+    ]
+  },
+  {
+    "book_id": 37,
+    "book_title": "대도시의 사랑법",
+    "related_book_ids": [
+      456,
+      584,
+      181
+    ]
+  },
+  {
+    "book_id": 38,
+    "book_title": "만화로 보는 3분 철학 3 : 서양 현대 철학편",
+    "related_book_ids": [
+      12,
+      622,
+      31
+    ]
+  },
+  {
+    "book_id": 39,
+    "book_title": "싯다르타",
+    "related_book_ids": [
+      18,
+      204,
+      604
+    ]
+  },
+  {
+    "book_id": 154,
+    "book_title": "사카모토 데이즈 2 - 하드보일드",
+    "related_book_ids": [
+      209,
+      662,
+      223
+    ]
+  },
+  {
+    "book_id": 40,
+    "book_title": "맡겨진 소녀",
+    "related_book_ids": [
+      576,
+      146,
+      14
+    ]
+  },
+  {
+    "book_id": 41,
+    "book_title": "리틀 라이프 1",
+    "related_book_ids": [
+      507,
+      60,
+      5
+    ]
+  },
+  {
+    "book_id": 42,
+    "book_title": "면도날",
+    "related_book_ids": [
+      18,
+      316,
+      663
+    ]
+  },
+  {
+    "book_id": 43,
+    "book_title": "그대의 차가운 손",
+    "related_book_ids": [
+      13,
+      19,
+      5
+    ]
+  },
+  {
+    "book_id": 44,
+    "book_title": "달리기를 말할 때 내가 하고 싶은 이야기",
+    "related_book_ids": [
+      904,
+      67,
+      5
+    ]
+  },
+  {
+    "book_id": 46,
+    "book_title": "이기적 유전자 - 40주년 기념판",
+    "related_book_ids": [
+      441,
+      222,
+      159
+    ]
+  },
+  {
+    "book_id": 47,
+    "book_title": "돈의 속성 (300쇄 리커버 에디션, 양장) - 최상위 부자가 말하는 돈에 대한 모든 것",
+    "related_book_ids": [
+      240,
+      211,
+      532
+    ]
+  },
+  {
+    "book_id": 48,
+    "book_title": "해커스 토익 LC Listening(리스닝) 기본서 - 최신기출경향 완벽 반영｜실전모의고사 4회분 [시험장에도 들고 가는 토익 LC 필수 어휘 & 단어암기 MP3 제공]",
+    "related_book_ids": [
+      161,
+      30,
+      230
+    ]
+  },
+  {
+    "book_id": 49,
+    "book_title": "진짜 쓰는 실무 엑셀 - 유튜브 대표 엑셀 채널, 오빠두가 알려 주는 엑셀 함수, 보고서 작성, 데이터 분석 노하우!",
+    "related_book_ids": [
+      280,
+      227,
+      477
+    ]
+  },
+  {
+    "book_id": 50,
+    "book_title": "파친코 1 - 개정판",
+    "related_book_ids": [
+      13,
+      343,
+      55
+    ]
+  },
+  {
+    "book_id": 181,
+    "book_title": "고래 - 제10회 문학동네소설상 수상작",
+    "related_book_ids": [
+      280,
+      584,
+      763
+    ]
+  },
+  {
+    "book_id": 51,
+    "book_title": "죽음의 수용소에서 - 개정보급판",
+    "related_book_ids": [
+      121,
+      564,
+      311
+    ]
+  },
+  {
+    "book_id": 52,
+    "book_title": "지적 대화를 위한 넓고 얕은 지식 1 - 현실 편 : 역사 / 경제 / 정치 / 사회 / 윤리",
+    "related_book_ids": [
+      313,
+      90,
+      108
+    ]
+  },
+  {
+    "book_id": 53,
+    "book_title": "홍학의 자리",
+    "related_book_ids": [
+      754,
+      716,
+      686
+    ]
+  },
+  {
+    "book_id": 54,
+    "book_title": "데일 카네기 인간관계론 (50만부 돌파 초판 무삭제 완역본)",
+    "related_book_ids": [
+      130,
+      738,
+      298
+    ]
+  },
+  {
+    "book_id": 55,
+    "book_title": "파친코 2 - 개정판",
+    "related_book_ids": [
+      50,
+      13,
+      343
+    ]
+  },
+  {
+    "book_id": 56,
+    "book_title": "내면소통 - 삶의 변화를 가져오는 마음근력 훈련",
+    "related_book_ids": [
+      160,
+      893,
+      349
+    ]
+  },
+  {
+    "book_id": 57,
+    "book_title": "한강 : 회복하는 인간 Convalescence",
+    "related_book_ids": [
+      488,
+      353,
+      61
+    ]
+  },
+  {
+    "book_id": 58,
+    "book_title": "물고기는 존재하지 않는다 - 상실, 사랑 그리고 숨어 있는 삶의 질서에 관한 이야기",
+    "related_book_ids": [
+      89,
+      236,
+      191
+    ]
+  },
+  {
+    "book_id": 59,
+    "book_title": "나는 소망한다 내게 금지된 것을",
+    "related_book_ids": [
+      176,
+      232,
+      392
+    ]
+  },
+  {
+    "book_id": 60,
+    "book_title": "리틀 라이프 2",
+    "related_book_ids": [
+      41,
+      5,
+      14
+    ]
+  },
+  {
+    "book_id": 61,
+    "book_title": "죽이고 싶은 아이",
+    "related_book_ids": [
+      241,
+      146,
+      675
+    ]
+  },
+  {
+    "book_id": 62,
+    "book_title": "몽고반점",
+    "related_book_ids": [
+      386,
+      676,
+      471
+    ]
+  },
+  {
+    "book_id": 63,
+    "book_title": "JLPT 일본어능력시험 한권으로 끝내기 N3 - 최신 개정판",
+    "related_book_ids": [
+      150,
+      134,
+      86
+    ]
+  },
+  {
+    "book_id": 64,
+    "book_title": "인간 실격",
+    "related_book_ids": [
+      712,
+      904,
+      61
+    ]
+  },
+  {
+    "book_id": 65,
+    "book_title": "세상의 마지막 기차역 (리커버 에디션)",
+    "related_book_ids": [
+      832,
+      106,
+      818
+    ]
+  },
+  {
+    "book_id": 66,
+    "book_title": "1984 (오리지널 초판본 표지 디자인)",
+    "related_book_ids": [
+      1,
+      906,
+      59
+    ]
+  },
+  {
+    "book_id": 67,
+    "book_title": "수레바퀴 아래서 (오리지널 초판본 표지디자인) - 최신 원전 완역본",
+    "related_book_ids": [
+      18,
+      444,
+      14
+    ]
+  },
+  {
+    "book_id": 68,
+    "book_title": "내 이름은 태양꽃",
+    "related_book_ids": [
+      353,
+      661,
+      614
+    ]
+  },
+  {
+    "book_id": 69,
+    "book_title": "키득키득 사운드북 : 동물 오케스트라",
+    "related_book_ids": [
+      513,
+      242,
+      759
+    ]
+  },
+  {
+    "book_id": 70,
+    "book_title": "소년과 두더지와 여우와 말",
+    "related_book_ids": [
+      265,
+      829,
+      167
+    ]
+  },
+  {
+    "book_id": 71,
+    "book_title": "이방인",
+    "related_book_ids": [
+      394,
+      268,
+      604
+    ]
+  },
+  {
+    "book_id": 72,
+    "book_title": "우리 아기 오감발달 동물 오케스트라의 모차르트 사운드북",
+    "related_book_ids": [
+      481,
+      355,
+      588
+    ]
+  },
+  {
+    "book_id": 73,
+    "book_title": "일본어 문법 무작정 따라하기",
+    "related_book_ids": [
+      84,
+      213,
+      334
+    ]
+  },
+  {
+    "book_id": 74,
+    "book_title": "한 권으로 끝내는 해커스 토익 700+ (LC+RC+VOCA) - 최신기출유형 100%반영ㅣ기초부터 실전까지 20일 완성 [실전모의고사 2회(교재1회+온라인1회) 제공]",
+    "related_book_ids": [
+      329,
+      403,
+      79
+    ]
+  },
+  {
+    "book_id": 75,
+    "book_title": "부자의 언어 (양장 리커버 골드씨드 에디션) - 어떻게 살아야 부자가 되는지 묻는 아들에게",
+    "related_book_ids": [
+      240,
+      849,
+      115
+    ]
+  },
+  {
+    "book_id": 76,
+    "book_title": "김재우의 영어회화 100 - 원어민처럼 말하는 진짜 영어회화",
+    "related_book_ids": [
+      113,
+      867,
+      452
+    ]
+  },
+  {
+    "book_id": 183,
+    "book_title": "사카모토 데이즈 4 - 객차 내애서는 정숙히",
+    "related_book_ids": [
+      851,
+      190,
+      223
+    ]
+  },
+  {
+    "book_id": 77,
+    "book_title": "원씽 The One Thing (60만 부 기념 스페셜 에디션) - 복잡한 세상을 이기는 단순함의 힘",
+    "related_book_ids": [
+      211,
+      868,
+      926
+    ]
+  },
+  {
+    "book_id": 78,
+    "book_title": "사피엔스 : 그래픽 히스토리 Vol.2 - 문명의 기둥",
+    "related_book_ids": [
+      16,
+      808,
+      85
+    ]
+  },
+  {
+    "book_id": 79,
+    "book_title": "28시간에 끝내는 토익스피킹 스타트 - 최신 개정",
+    "related_book_ids": [
+      170,
+      74,
+      693
+    ]
+  },
+  {
+    "book_id": 80,
+    "book_title": "프로젝트 헤일메리",
+    "related_book_ids": [
+      507,
+      132,
+      931
+    ]
+  },
+  {
+    "book_id": 81,
+    "book_title": "세계를 건너 너에게 갈게 - 제8회 문학동네청소년문학상 대상 수상작",
+    "related_book_ids": [
+      360,
+      250,
+      14
+    ]
+  },
+  {
+    "book_id": 82,
+    "book_title": "천둥 꼬마 선녀 번개 꼬마 선녀",
+    "related_book_ids": [
+      651,
+      869,
+      934
+    ]
+  },
+  {
+    "book_id": 83,
+    "book_title": "파과 (리커버)",
+    "related_book_ids": [
+      19,
+      4,
+      581
+    ]
+  },
+  {
+    "book_id": 84,
+    "book_title": "일본어 상용한자 무작정 따라하기 1 - 일본어 한자 읽기, 암기에도 우선순위가 있다!",
+    "related_book_ids": [
+      681,
+      213,
+      518
+    ]
+  },
+  {
+    "book_id": 85,
+    "book_title": "동물농장 (오리지널 초판본 표지 디자인)",
+    "related_book_ids": [
+      232,
+      66,
+      78
+    ]
+  },
+  {
+    "book_id": 86,
+    "book_title": "JLPT 일본어능력시험 한권으로 끝내기 N2 - 최신 개정판",
+    "related_book_ids": [
+      591,
+      150,
+      63
+    ]
+  },
+  {
+    "book_id": 87,
+    "book_title": "회복탄력성 (15만부 기념 리커버) - 시련을 행운으로 바꾸는 마음 근력의 힘",
+    "related_book_ids": [
+      176,
+      155,
+      398
+    ]
+  },
+  {
+    "book_id": 88,
+    "book_title": "타이탄의 도구들 (블랙 에디션) - 정상의 자리에 오른 사람들의 61가지 성공 비밀",
+    "related_book_ids": [
+      89,
+      595,
+      580
+    ]
+  },
+  {
+    "book_id": 89,
+    "book_title": "그릿 GRIT (골드 에디션) - IQ, 재능, 환경을 뛰어넘는 열정적 끈기의 힘",
+    "related_book_ids": [
+      88,
+      90,
+      580
+    ]
+  },
+  {
+    "book_id": 90,
+    "book_title": "지적 대화를 위한 넓고 얕은 지식 2 - 현실 편 : 철학 / 과학 / 예술 / 종교 / 신비",
+    "related_book_ids": [
+      108,
+      617,
+      52
+    ]
+  },
+  {
+    "book_id": 91,
+    "book_title": "정의란 무엇인가 - 한국 200만 부 돌파, 37개국에서 출간된 세계적 베스트셀러",
+    "related_book_ids": [
+      936,
+      327,
+      191
+    ]
+  },
+  {
+    "book_id": 102,
+    "book_title": "내가 틀릴 수도 있습니다 - 숲속의 현자가 전하는 마지막 인생 수업",
+    "related_book_ids": [
+      857,
+      121,
+      904
+    ]
+  },
+  {
+    "book_id": 92,
+    "book_title": "브람스를 좋아하세요...",
+    "related_book_ids": [
+      592,
+      661,
+      935
+    ]
+  },
+  {
+    "book_id": 93,
+    "book_title": "THE FOOD LAB 더 푸드 랩 : 더 나은 요리를 위한 주방 과학의 모든것!",
+    "related_book_ids": [
+      224,
+      621,
+      454
+    ]
+  },
+  {
+    "book_id": 94,
+    "book_title": "불편한 편의점 (벚꽃 에디션)",
+    "related_book_ids": [
+      769,
+      419,
+      165
+    ]
+  },
+  {
+    "book_id": 95,
+    "book_title": "어린 왕자 (오리지널 초판본)",
+    "related_book_ids": [
+      296,
+      925,
+      728
+    ]
+  },
+  {
+    "book_id": 96,
+    "book_title": "권력과 진보 - 기술과 번영을 둘러싼 천년의 쟁투, 2024 노벨경제학상 수상작가",
+    "related_book_ids": [
+      824,
+      145,
+      431
+    ]
+  },
+  {
+    "book_id": 103,
+    "book_title": "지구별 인간",
+    "related_book_ids": [
+      216,
+      499,
+      648
+    ]
+  },
+  {
+    "book_id": 97,
+    "book_title": "백년 허리 2 : 치료편 - 내 허리 사용 설명서",
+    "related_book_ids": [
+      155,
+      172,
+      127
+    ]
+  },
+  {
+    "book_id": 98,
+    "book_title": "ETS 토익 단기 공략 850+ (LC + RC) - 본책 + 해설집 + 실전 모의고사 1회분 + 무료 MP3 파일 / TOEIC 고난도 최신 기출문항으로 완성된 단기완성 시리즈",
+    "related_book_ids": [
+      217,
+      594,
+      29
+    ]
+  },
+  {
+    "book_id": 99,
+    "book_title": "부자 아빠 가난한 아빠 1 (20주년 특별 기념판) - 개정증보판",
+    "related_book_ids": [
+      96,
+      757,
+      831
+    ]
+  },
+  {
+    "book_id": 100,
+    "book_title": "클래식 뮤지컬 비발디의 협주곡 사계 사운드북",
+    "related_book_ids": [
+      544,
+      481,
+      15
+    ]
+  },
+  {
+    "book_id": 101,
+    "book_title": "사랑의 기술",
+    "related_book_ids": [
+      218,
+      126,
+      935
+    ]
+  },
+  {
+    "book_id": 110,
+    "book_title": "어떻게 민주주의는 무너지는가 - 우리가 놓치는 민주주의 위기 신호",
+    "related_book_ids": [
+      96,
+      451,
+      23
+    ]
+  },
+  {
+    "book_id": 104,
+    "book_title": "와일드 로봇",
+    "related_book_ids": [
+      536,
+      275,
+      828
+    ]
+  },
+  {
+    "book_id": 105,
+    "book_title": "삐뽀삐뽀 119 이유식 - 소아청소년과 전문의 하정훈이 전하는 건강한 아가 밥상",
+    "related_book_ids": [
+      385,
+      203,
+      639
+    ]
+  },
+  {
+    "book_id": 106,
+    "book_title": "철도원 삼대",
+    "related_book_ids": [
+      216,
+      932,
+      13
+    ]
+  },
+  {
+    "book_id": 107,
+    "book_title": "우리 아기 오감발달 시원한 바닷가 사운드북",
+    "related_book_ids": [
+      24,
+      242,
+      670
+    ]
+  },
+  {
+    "book_id": 108,
+    "book_title": "지적 대화를 위한 넓고 얕은 지식 : 제로 편 - 지혜를 찾아 138억 년을 달리는 시간 여행서",
+    "related_book_ids": [
+      849,
+      90,
+      52
+    ]
+  },
+  {
+    "book_id": 109,
+    "book_title": "10일 만에 끝내는 해커스 OPIc 오픽 (Advanced 공략) - 한 권으로 오픽 IH/AL 달성, 최신 오픽 서베이 항목 반영! [무료 온라인 실전모의고사 + 교재 MP3 + 주제별 답변 아이디어&표현 사전]",
+    "related_book_ids": [
+      264,
+      371,
+      645
+    ]
+  },
+  {
+    "book_id": 111,
+    "book_title": "노르웨이의 숲",
+    "related_book_ids": [
+      665,
+      50,
+      865
+    ]
+  },
+  {
+    "book_id": 112,
+    "book_title": "도둑맞은 집중력 - 집중력 위기의 시대, 삶의 주도권을 되찾는 법",
+    "related_book_ids": [
+      451,
+      532,
+      454
+    ]
+  },
+  {
+    "book_id": 113,
+    "book_title": "최소한의 한국사 - 5천 년 역사가 단숨에 이해되는",
+    "related_book_ids": [
+      401,
+      867,
+      76
+    ]
+  },
+  {
+    "book_id": 114,
+    "book_title": "전설로 떠나는 월가의 영웅 - 주식투자에서 상식으로 성공하는 법, 2021 최신개정판",
+    "related_book_ids": [
+      515,
+      627,
+      211
+    ]
+  },
+  {
+    "book_id": 115,
+    "book_title": "이토록 공부가 재미있어지는 순간 (50만 부 기념 우리들 에디션) - 공부에 지친 청소년들을 위한 힐링 에세이",
+    "related_book_ids": [
+      936,
+      874,
+      661
+    ]
+  },
+  {
+    "book_id": 152,
+    "book_title": "우리가 겨울을 지나온 방식 (리커버) - 제19회 세계문학상 수상작",
+    "related_book_ids": [
+      440,
+      499,
+      932
+    ]
+  },
+  {
+    "book_id": 116,
+    "book_title": "노인과 바다",
+    "related_book_ids": [
+      67,
+      604,
+      663
+    ]
+  },
+  {
+    "book_id": 117,
+    "book_title": "나를 찾는 수업 - 타인의 잣대에서 벗어나 내 안의 진짜 나를 만나는 법",
+    "related_book_ids": [
+      865,
+      302,
+      359
+    ]
+  },
+  {
+    "book_id": 118,
+    "book_title": "아주 작은 습관의 힘 - 최고의 변화는 어떻게 만들어지는가",
+    "related_book_ids": [
+      64,
+      801,
+      904
+    ]
+  },
+  {
+    "book_id": 119,
+    "book_title": "사업의 철학 - 성공한 사람들은 절대 말해 주지 않는 성공의 모든 것",
+    "related_book_ids": [
+      251,
+      685,
+      798
+    ]
+  },
+  {
+    "book_id": 153,
+    "book_title": "기분이 태도가 되지 말자 (20만 부 기념 개정판) - 감정조절이 필요한 당신을 위한 책",
+    "related_book_ids": [
+      545,
+      563,
+      614
+    ]
+  },
+  {
+    "book_id": 120,
+    "book_title": "오늘의 일인분 일식 - 나를 위한 맛있는 일본 가정식 한 끼",
+    "related_book_ids": [
+      187,
+      748,
+      701
+    ]
+  },
+  {
+    "book_id": 121,
+    "book_title": "우리는 모두 죽는다는 것을 기억하라 (알라딘 단독 리커버)",
+    "related_book_ids": [
+      740,
+      412,
+      661
+    ]
+  },
+  {
+    "book_id": 122,
+    "book_title": "설국",
+    "related_book_ids": [
+      648,
+      858,
+      21
+    ]
+  },
+  {
+    "book_id": 123,
+    "book_title": "이은경쌤의 초등어휘일력 365 (스프링) - 국어 문학 속 어휘 완전정복!",
+    "related_book_ids": [
+      681,
+      874,
+      549
+    ]
+  },
+  {
+    "book_id": 124,
+    "book_title": "생각에 관한 생각 - 우리의 행동을 지배하는 생각의 반란!",
+    "related_book_ids": [
+      17,
+      269,
+      943
+    ]
+  },
+  {
+    "book_id": 125,
+    "book_title": "달과 6펜스",
+    "related_book_ids": [
+      249,
+      556,
+      663
+    ]
+  },
+  {
+    "book_id": 126,
+    "book_title": "자유로부터의 도피",
+    "related_book_ids": [
+      284,
+      101,
+      559
+    ]
+  },
+  {
+    "book_id": 127,
+    "book_title": "백년 허리 1 : 진단편 - 내 허리 통증 해석하기, 개정증보판",
+    "related_book_ids": [
+      763,
+      172,
+      239
+    ]
+  },
+  {
+    "book_id": 128,
+    "book_title": "ETS 토익 정기시험 기출문제집 1000 Vol. 3 Reading (리딩) - TOEIC 기출문제 한국 독점출간 / 문제집 + 해설집 + APP 모바일 학습 / 2022 대비 최신판",
+    "related_book_ids": [
+      899,
+      501,
+      143
+    ]
+  },
+  {
+    "book_id": 129,
+    "book_title": "해커스 토익 스타트 RC Reading (리딩) 입문서 - 최신기출경향 반영 | 초보를 위한 토익 리딩 입문서 | 기초 문법ㆍ어휘ㆍ독해 4주 완성 [실전모의고사(별책)+ 단어암기장&MP3 제공]",
+    "related_book_ids": [
+      161,
+      30,
+      254
+    ]
+  },
+  {
+    "book_id": 130,
+    "book_title": "데일 카네기 자기관리론 - 국내최초 초판 무삭제 완역본",
+    "related_book_ids": [
+      258,
+      67,
+      798
+    ]
+  },
+  {
+    "book_id": 131,
+    "book_title": "사람, 장소, 환대",
+    "related_book_ids": [
+      298,
+      374,
+      623
+    ]
+  },
+  {
+    "book_id": 132,
+    "book_title": "종의 기원",
+    "related_book_ids": [
+      793,
+      947,
+      5
+    ]
+  },
+  {
+    "book_id": 133,
+    "book_title": "용의자 X의 헌신 - 제134회 나오키상 수상작",
+    "related_book_ids": [
+      232,
+      331,
+      239
+    ]
+  },
+  {
+    "book_id": 134,
+    "book_title": "JLPT 일본어능력시험 한권으로 끝내기 N4 - 최신 개정판",
+    "related_book_ids": [
+      164,
+      150,
+      63
+    ]
+  },
+  {
+    "book_id": 135,
+    "book_title": "천 개의 파랑",
+    "related_book_ids": [
+      496,
+      443,
+      854
+    ]
+  },
+  {
+    "book_id": 136,
+    "book_title": "삼체 1~3 세트 - 전3권",
+    "related_book_ids": [
+      417,
+      220,
+      473
+    ]
+  },
+  {
+    "book_id": 137,
+    "book_title": "보도 섀퍼의 돈",
+    "related_book_ids": [
+      17,
+      262,
+      207
+    ]
+  },
+  {
+    "book_id": 138,
+    "book_title": "쓸 만한 인간 - 개정증보판",
+    "related_book_ids": [
+      420,
+      686,
+      711
+    ]
+  },
+  {
+    "book_id": 139,
+    "book_title": "성취하는 뇌 - 기억력·집중력·공부머리를 끌어올려 최상의 뇌로 이끄는 법",
+    "related_book_ids": [
+      356,
+      157,
+      903
+    ]
+  },
+  {
+    "book_id": 140,
+    "book_title": "당신은 결국 무엇이든 해내는 사람 (특별 리커버 에디션)",
+    "related_book_ids": [
+      786,
+      387,
+      686
+    ]
+  },
+  {
+    "book_id": 141,
+    "book_title": "꽃을 보듯 너를 본다",
+    "related_book_ids": [
+      41,
+      60,
+      925
+    ]
+  },
+  {
+    "book_id": 142,
+    "book_title": "밝은 밤",
+    "related_book_ids": [
+      533,
+      156,
+      5
+    ]
+  },
+  {
+    "book_id": 143,
+    "book_title": "ETS 토익 정기시험 기출문제집 1000 Vol. 3 Listening (리스닝) - TOEIC 기출문제 한국 독점출간 / 문제집 + 해설집 + ETS 성우 음원 MP3 파일 + APP 모바일 학습 / 2022 대비 최신판",
+    "related_book_ids": [
+      128,
+      501,
+      653
+    ]
+  },
+  {
+    "book_id": 144,
+    "book_title": "내가 되는 꿈 (리커버)",
+    "related_book_ids": [
+      786,
+      499,
+      420
+    ]
+  },
+  {
+    "book_id": 145,
+    "book_title": "국가는 왜 실패하는가",
+    "related_book_ids": [
+      96,
+      469,
+      454
+    ]
+  },
+  {
+    "book_id": 146,
+    "book_title": "당연하게도 나는 너를",
+    "related_book_ids": [
+      533,
+      156,
+      61
+    ]
+  },
+  {
+    "book_id": 147,
+    "book_title": "불안의 서",
+    "related_book_ids": [
+      456,
+      690,
+      763
+    ]
+  },
+  {
+    "book_id": 148,
+    "book_title": "똑게육아 - 영유아 수면교육",
+    "related_book_ids": [
+      386,
+      867,
+      854
+    ]
+  },
+  {
+    "book_id": 149,
+    "book_title": "순례 주택",
+    "related_book_ids": [
+      456,
+      227,
+      231
+    ]
+  },
+  {
+    "book_id": 150,
+    "book_title": "JLPT 일본어능력시험 한권으로 끝내기 N1 - 최신 개정판",
+    "related_book_ids": [
+      134,
+      164,
+      86
+    ]
+  },
+  {
+    "book_id": 151,
+    "book_title": "칵테일, 러브, 좀비 (리커버)",
+    "related_book_ids": [
+      232,
+      257,
+      489
+    ]
+  },
+  {
+    "book_id": 155,
+    "book_title": "상처받지 않는 영혼 - 내면의 자유를 위한 놓아 보내기 연습",
+    "related_book_ids": [
+      216,
+      499,
+      103
+    ]
+  },
+  {
+    "book_id": 156,
+    "book_title": "아주 희미한 빛으로도",
+    "related_book_ids": [
+      576,
+      146,
+      142
+    ]
+  },
+  {
+    "book_id": 157,
+    "book_title": "결국 해내는 사람들의 원칙 (리커버 에디션) - 최신 뇌과학이 밝혀낸 성공의 비밀",
+    "related_book_ids": [
+      856,
+      475,
+      903
+    ]
+  },
+  {
+    "book_id": 158,
+    "book_title": "다운튼 애비 애프터눈 티 쿡북",
+    "related_book_ids": [
+      771,
+      187,
+      748
+    ]
+  },
+  {
+    "book_id": 159,
+    "book_title": "위대한 나의 발견 강점 혁명",
+    "related_book_ids": [
+      249,
+      798,
+      751
+    ]
+  },
+  {
+    "book_id": 160,
+    "book_title": "프레임 - 나를 바꾸는 심리학의 지혜",
+    "related_book_ids": [
+      155,
+      269,
+      398
+    ]
+  },
+  {
+    "book_id": 161,
+    "book_title": "해커스 토익 스타트 LC Listening (리스닝) 입문서 - 최신기출경향 반영 | 초보를 위한 토익 리스닝 입문서 | 기초 리스닝 4주 완성 [실전모의고사(별책)+단어암기장&MP3 제공]",
+    "related_book_ids": [
+      48,
+      129,
+      802
+    ]
+  },
+  {
+    "book_id": 162,
+    "book_title": "영어 회화 핵심패턴 233 - 단어만 갈아 끼우면 회화가 튀어 나온다!",
+    "related_book_ids": [
+      843,
+      595,
+      343
+    ]
+  },
+  {
+    "book_id": 163,
+    "book_title": "오늘 밤, 세계에서 이 사랑이 사라진다 해도",
+    "related_book_ids": [
+      250,
+      61,
+      367
+    ]
+  },
+  {
+    "book_id": 164,
+    "book_title": "JLPT 일본어능력시험 한권으로 끝내기 N5",
+    "related_book_ids": [
+      150,
+      134,
+      591
+    ]
+  },
+  {
+    "book_id": 165,
+    "book_title": "불편한 편의점 2 (단풍 에디션)",
+    "related_book_ids": [
+      676,
+      181,
+      94
+    ]
+  },
+  {
+    "book_id": 166,
+    "book_title": "열다섯에 곰이라니",
+    "related_book_ids": [
+      305,
+      739,
+      907
+    ]
+  },
+  {
+    "book_id": 167,
+    "book_title": "괴테와의 대화 1",
+    "related_book_ids": [
+      357,
+      533,
+      61
+    ]
+  },
+  {
+    "book_id": 168,
+    "book_title": "부의 추월차선 (10주년 스페셜 에디션) - 부자들이 말해 주지 않는 진정한 부를 얻는 방법",
+    "related_book_ids": [
+      176,
+      480,
+      211
+    ]
+  },
+  {
+    "book_id": 169,
+    "book_title": "우리가 빛의 속도로 갈 수 없다면",
+    "related_book_ids": [
+      144,
+      186,
+      916
+    ]
+  },
+  {
+    "book_id": 170,
+    "book_title": "키위엔 영어회화 하루 5분의 기적 - 기초도 3개월이면 회화가 되는 특허 받은 영어 학습법",
+    "related_book_ids": [
+      459,
+      693,
+      79
+    ]
+  },
+  {
+    "book_id": 182,
+    "book_title": "Do it! 점프 투 파이썬 - 중학생도 첫날부터 실습하는 초고속 입문서, 전면 개정 2판",
+    "related_book_ids": [
+      195,
+      395,
+      709
+    ]
+  },
+  {
+    "book_id": 171,
+    "book_title": "리얼리티 트랜서핑 1 - 러시아 물리학자의 시크릿 노트",
+    "related_book_ids": [
+      277,
+      253,
+      247
+    ]
+  },
+  {
+    "book_id": 172,
+    "book_title": "백년운동 - 척추.관절 아프지 않게 100세까지 운동하는 방법",
+    "related_book_ids": [
+      497,
+      854,
+      127
+    ]
+  },
+  {
+    "book_id": 173,
+    "book_title": "사카모토 데이즈 6 - 운이 나쁘구나",
+    "related_book_ids": [
+      209,
+      754,
+      183
+    ]
+  },
+  {
+    "book_id": 174,
+    "book_title": "제로 투 원 (리커버) - 스탠퍼드대학교 스타트업 최고 명강의",
+    "related_book_ids": [
+      77,
+      926,
+      359
+    ]
+  },
+  {
+    "book_id": 175,
+    "book_title": "회색 인간",
+    "related_book_ids": [
+      9,
+      13,
+      343
+    ]
+  },
+  {
+    "book_id": 176,
+    "book_title": "미움받을 용기 (200만 부 기념 스페셜 에디션) - 자유롭고 행복한 삶을 위한 아들러의 가르침",
+    "related_book_ids": [
+      168,
+      496,
+      59
+    ]
+  },
+  {
+    "book_id": 177,
+    "book_title": "해커스톡 여행영어 10분의 기적 - 왕초보도 상황별로 바로 찾아 말하는 여행영어회화|하루 10분으로 왕초보 탈출ㅣ무료 해설강의/MP3ㅣ모바일 스피킹 훈련 프로그램",
+    "related_book_ids": [
+      409,
+      563,
+      535
+    ]
+  },
+  {
+    "book_id": 178,
+    "book_title": "자기 앞의 생",
+    "related_book_ids": [
+      746,
+      675,
+      559
+    ]
+  },
+  {
+    "book_id": 179,
+    "book_title": "멋진 신세계",
+    "related_book_ids": [
+      249,
+      18,
+      604
+    ]
+  },
+  {
+    "book_id": 180,
+    "book_title": "문과 남자의 과학 공부 - 나는 무엇이고 왜 존재하며 어디로 가는가?",
+    "related_book_ids": [
+      284,
+      789,
+      374
+    ]
+  },
+  {
+    "book_id": 184,
+    "book_title": "창조적 행위 : 존재의 방식",
+    "related_book_ids": [
+      500,
+      421,
+      790
+    ]
+  },
+  {
+    "book_id": 185,
+    "book_title": "카라마조프 가의 형제들 세트 - 전3권",
+    "related_book_ids": [
+      304,
+      447,
+      247
+    ]
+  },
+  {
+    "book_id": 186,
+    "book_title": "지구 끝의 온실",
+    "related_book_ids": [
+      392,
+      169,
+      496
+    ]
+  },
+  {
+    "book_id": 187,
+    "book_title": "오늘은 아무래도 덮밥",
+    "related_book_ids": [
+      376,
+      771,
+      158
+    ]
+  },
+  {
+    "book_id": 188,
+    "book_title": "왜 나는 너를 사랑하는가 (70만 부 기념 리커버)",
+    "related_book_ids": [
+      890,
+      211,
+      661
+    ]
+  },
+  {
+    "book_id": 189,
+    "book_title": "레버리지 (20만 부 기념 블랙에디션) - 자본주의 속에 숨겨진 부의 비밀",
+    "related_book_ids": [
+      240,
+      945,
+      211
+    ]
+  },
+  {
+    "book_id": 190,
+    "book_title": "사카모토 데이즈 1 - 전설의 킬러",
+    "related_book_ids": [
+      851,
+      324,
+      183
+    ]
+  },
+  {
+    "book_id": 191,
+    "book_title": "아비투스 (양장) - 인간의 품격을 결정하는 7가지 자본",
+    "related_book_ids": [
+      496,
+      401,
+      398
+    ]
+  },
+  {
+    "book_id": 192,
+    "book_title": "5번 레인 - 제21회 문학동네어린이문학상 대상 수상작",
+    "related_book_ids": [
+      681,
+      619,
+      876
+    ]
+  },
+  {
+    "book_id": 193,
+    "book_title": "NEW 미꽃체 손글씨 노트 - 손글씨를 인쇄된 폰트처럼, 개정증보판",
+    "related_book_ids": [
+      640,
+      739,
+      509
+    ]
+  },
+  {
+    "book_id": 194,
+    "book_title": "참을 수 없는 존재의 가벼움 (리커버) - 국내 출간 30주년 기념 특별판",
+    "related_book_ids": [
+      394,
+      526,
+      519
+    ]
+  },
+  {
+    "book_id": 195,
+    "book_title": "회사는 엑셀을 가르쳐주지 않아요",
+    "related_book_ids": [
+      709,
+      689,
+      485
+    ]
+  },
+  {
+    "book_id": 196,
+    "book_title": "소유냐 존재냐",
+    "related_book_ids": [
+      25,
+      306,
+      204
+    ]
+  },
+  {
+    "book_id": 197,
+    "book_title": "군주론 (무삭제 완역본)",
+    "related_book_ids": [
+      906,
+      747,
+      39
+    ]
+  },
+  {
+    "book_id": 198,
+    "book_title": "하루 고전 - 날마다 내공이 쌓이는 고전 일력 365",
+    "related_book_ids": [
+      761,
+      218,
+      343
+    ]
+  },
+  {
+    "book_id": 199,
+    "book_title": "쉽게 배우는 인체 드로잉",
+    "related_book_ids": [
+      778,
+      790,
+      914
+    ]
+  },
+  {
+    "book_id": 200,
+    "book_title": "ETS 토익 정기시험 기출입문서 RC 리딩 - TOEIC 기출문제 한국 독점출간/ 본책 + 해설집 + 무료 동영상 강의(QR 코드) +  \n단어장 파일/ MP3 + 온라인 모의고사 + APP 모바일 학습  / 2022 대비 최신판",
+    "related_book_ids": [
+      225,
+      924,
+      909
+    ]
+  },
+  {
+    "book_id": 201,
+    "book_title": "아몬드 - 제10회 창비 청소년문학상 수상작",
+    "related_book_ids": [
+      89,
+      507,
+      580
+    ]
+  },
+  {
+    "book_id": 202,
+    "book_title": "다정한 것이 살아남는다 - 친화력으로 세상을 바꾸는 인류의 진화에 관하여",
+    "related_book_ids": [
+      512,
+      705,
+      236
+    ]
+  },
+  {
+    "book_id": 203,
+    "book_title": "아이주도 이유식 유아식 매뉴얼 세트 - 스스로, 그리고 함께하는 행복한 맘마, 개정판",
+    "related_book_ids": [
+      105,
+      748,
+      639
+    ]
+  },
+  {
+    "book_id": 204,
+    "book_title": "아버지의 해방일지",
+    "related_book_ids": [
+      196,
+      132,
+      675
+    ]
+  },
+  {
+    "book_id": 205,
+    "book_title": "고발",
+    "related_book_ids": [
+      738,
+      527,
+      23
+    ]
+  },
+  {
+    "book_id": 206,
+    "book_title": "달러는 왜 비트코인을 싫어하는가",
+    "related_book_ids": [
+      462,
+      262,
+      47
+    ]
+  },
+  {
+    "book_id": 207,
+    "book_title": "월급쟁이 부자로 은퇴하라 (10만 부 돌파 기념 증보판)",
+    "related_book_ids": [
+      609,
+      211,
+      262
+    ]
+  },
+  {
+    "book_id": 338,
+    "book_title": "완전한 행복",
+    "related_book_ids": [
+      873,
+      140,
+      37
+    ]
+  },
+  {
+    "book_id": 208,
+    "book_title": "해리 포터와 마법사의 돌 (미나리마 에디션)",
+    "related_book_ids": [
+      345,
+      418,
+      389
+    ]
+  },
+  {
+    "book_id": 209,
+    "book_title": "사카모토 데이즈 7 - 별말씀을",
+    "related_book_ids": [
+      745,
+      154,
+      370
+    ]
+  },
+  {
+    "book_id": 210,
+    "book_title": "나혼자 끝내는 독학 일본어 첫걸음 - 최신 증보판",
+    "related_book_ids": [
+      213,
+      819,
+      21
+    ]
+  },
+  {
+    "book_id": 211,
+    "book_title": "나의 돈 많은 고등학교 친구 - 슈퍼리치와의 대화에서 찾아낸 부자의 길",
+    "related_book_ids": [
+      168,
+      484,
+      189
+    ]
+  },
+  {
+    "book_id": 212,
+    "book_title": "불안 - 개정판",
+    "related_book_ids": [
+      717,
+      697,
+      453
+    ]
+  },
+  {
+    "book_id": 213,
+    "book_title": "일본어 잘하고 싶을 땐 다락원 독학 첫걸음",
+    "related_book_ids": [
+      210,
+      819,
+      84
+    ]
+  },
+  {
+    "book_id": 225,
+    "book_title": "ETS 토익 정기시험 기출입문서 LC 리스닝 - TOEIC 기출문제 한국 독점출간 / 본책 + 해설집 + 무료 동영상 강의(QR코드) + ETS 성우 음원 MP3 파일 + 단어장 파일/MP3 + 온라인 모의고사 + APP 모바일 학습 / 2022 대비 최신판",
+    "related_book_ids": [
+      200,
+      924,
+      909
+    ]
+  },
+  {
+    "book_id": 214,
+    "book_title": "침묵의 세계 - 개정3판",
+    "related_book_ids": [
+      353,
+      61,
+      873
+    ]
+  },
+  {
+    "book_id": 215,
+    "book_title": "주식투자 무작정 따라하기 - 100만 왕초보가 감동한 최고의 주식투자 입문서, 2023년 최신개정판",
+    "related_book_ids": [
+      843,
+      595,
+      580
+    ]
+  },
+  {
+    "book_id": 216,
+    "book_title": "그래도 괜찮아",
+    "related_book_ids": [
+      386,
+      763,
+      103
+    ]
+  },
+  {
+    "book_id": 217,
+    "book_title": "ETS 토익 단기 공략 650+ (LC + RC) - 출제기관 독점제공 / 기출 문항으로 보강된 단기완성 개정판 / 본책 + 해설집 + 실전 모의고사 1회분 + 무료 MP3 파일",
+    "related_book_ids": [
+      98,
+      594,
+      29
+    ]
+  },
+  {
+    "book_id": 218,
+    "book_title": "인생의 역사 - '공무도하가'에서 '사랑의 발명'까지",
+    "related_book_ids": [
+      890,
+      5,
+      343
+    ]
+  },
+  {
+    "book_id": 219,
+    "book_title": "예루살렘의 아이히만",
+    "related_book_ids": [
+      197,
+      774,
+      39
+    ]
+  },
+  {
+    "book_id": 220,
+    "book_title": "삼체 1부 : 삼체문제",
+    "related_book_ids": [
+      136,
+      417,
+      473
+    ]
+  },
+  {
+    "book_id": 221,
+    "book_title": "초역 비트겐슈타인의 말",
+    "related_book_ids": [
+      468,
+      813,
+      383
+    ]
+  },
+  {
+    "book_id": 222,
+    "book_title": "역행자 확장판 - 돈·시간·운명으로부터 완전한 자유를 얻는 7단계 인생 공략집",
+    "related_book_ids": [
+      202,
+      46,
+      666
+    ]
+  },
+  {
+    "book_id": 223,
+    "book_title": "사카모토 데이즈 3 - 마시모 헤이스케",
+    "related_book_ids": [
+      154,
+      827,
+      183
+    ]
+  },
+  {
+    "book_id": 224,
+    "book_title": "전기밥솥 레시피",
+    "related_book_ids": [
+      120,
+      187,
+      93
+    ]
+  },
+  {
+    "book_id": 226,
+    "book_title": "이반 일리치의 죽음",
+    "related_book_ids": [
+      433,
+      620,
+      873
+    ]
+  },
+  {
+    "book_id": 227,
+    "book_title": "바깥은 여름",
+    "related_book_ids": [
+      280,
+      584,
+      231
+    ]
+  },
+  {
+    "book_id": 228,
+    "book_title": "호밀밭의 파수꾼",
+    "related_book_ids": [
+      737,
+      444,
+      831
+    ]
+  },
+  {
+    "book_id": 229,
+    "book_title": "매일 조금씩 쓰고 버린다 - 마음까지 가벼워지는 비움의 기술",
+    "related_book_ids": [
+      112,
+      781,
+      359
+    ]
+  },
+  {
+    "book_id": 230,
+    "book_title": "해커스 토익 실전 1000제 1 LC Listening(리스닝) 문제집 - 최신기출유형 100% 반영 [교재 실전용+복습용 MP3ㅣ온라인 실전 모의고사ㅣ무료 동영상강의 제공]",
+    "related_book_ids": [
+      48,
+      802,
+      365
+    ]
+  },
+  {
+    "book_id": 231,
+    "book_title": "한국단편소설 40 - 중고생이 꼭 읽어야 할, ‘인물 관계도’ 수록, 개정증보판",
+    "related_book_ids": [
+      280,
+      584,
+      227
+    ]
+  },
+  {
+    "book_id": 232,
+    "book_title": "저주토끼 - 개정판",
+    "related_book_ids": [
+      426,
+      675,
+      421
+    ]
+  },
+  {
+    "book_id": 233,
+    "book_title": "사카모토 데이즈 10 - 재회",
+    "related_book_ids": [
+      320,
+      405,
+      183
+    ]
+  },
+  {
+    "book_id": 234,
+    "book_title": "명상록 (그리스어 원전 완역본) - 철학자 황제가 전쟁터에서 자신에게 쓴 일기",
+    "related_book_ids": [
+      388,
+      286,
+      526
+    ]
+  },
+  {
+    "book_id": 235,
+    "book_title": "현명한 투자자 - 벤저민 그레이엄 직접 쓴 마지막 개정판, 개정4판",
+    "related_book_ids": [
+      632,
+      945,
+      541
+    ]
+  },
+  {
+    "book_id": 236,
+    "book_title": "침팬지 폴리틱스 - 권력 투쟁의 동물적 기원",
+    "related_book_ids": [
+      705,
+      658,
+      310
+    ]
+  },
+  {
+    "book_id": 237,
+    "book_title": "나의 눈부신 친구 (리커버 특별판)",
+    "related_book_ids": [
+      746,
+      933,
+      894
+    ]
+  },
+  {
+    "book_id": 238,
+    "book_title": "악의",
+    "related_book_ids": [
+      33,
+      858,
+      13
+    ]
+  },
+  {
+    "book_id": 239,
+    "book_title": "오만과 편견",
+    "related_book_ids": [
+      721,
+      388,
+      557
+    ]
+  },
+  {
+    "book_id": 240,
+    "book_title": "부자의 그릇 (블랙 에디션) - 돈을 다루는 능력을 키우는 법",
+    "related_book_ids": [
+      400,
+      189,
+      262
+    ]
+  },
+  {
+    "book_id": 241,
+    "book_title": "아가미 (리커버)",
+    "related_book_ids": [
+      426,
+      435,
+      61
+    ]
+  },
+  {
+    "book_id": 242,
+    "book_title": "우리 아기 오감발달 부릉부릉 탈것 사운드북",
+    "related_book_ids": [
+      24,
+      107,
+      670
+    ]
+  },
+  {
+    "book_id": 243,
+    "book_title": "나는 오래된 거리처럼 너를 사랑하고",
+    "related_book_ids": [
+      288,
+      614,
+      663
+    ]
+  },
+  {
+    "book_id": 244,
+    "book_title": "고요한 우연 - 제13회 문학동네청소년문학상 대상 수상작",
+    "related_book_ids": [
+      146,
+      61,
+      413
+    ]
+  },
+  {
+    "book_id": 245,
+    "book_title": "자기결단력 - 미루고 후회하는 사이클을 끊어내는 5단계 기술",
+    "related_book_ids": [
+      856,
+      260,
+      157
+    ]
+  },
+  {
+    "book_id": 246,
+    "book_title": "나는 어떻게 삶의 해답을 찾는가",
+    "related_book_ids": [
+      849,
+      108,
+      661
+    ]
+  },
+  {
+    "book_id": 247,
+    "book_title": "죄와 벌 1",
+    "related_book_ids": [
+      304,
+      185,
+      813
+    ]
+  },
+  {
+    "book_id": 248,
+    "book_title": "스토너",
+    "related_book_ids": [
+      41,
+      364,
+      580
+    ]
+  },
+  {
+    "book_id": 249,
+    "book_title": "월든 - 완결판",
+    "related_book_ids": [
+      179,
+      364,
+      663
+    ]
+  },
+  {
+    "book_id": 250,
+    "book_title": "체리새우 : 비밀글입니다 - 제9회 문학동네청소년문학상 대상 수상작",
+    "related_book_ids": [
+      163,
+      244,
+      413
+    ]
+  },
+  {
+    "book_id": 251,
+    "book_title": "원칙 Principles (한정판 필사노트 에디션)",
+    "related_book_ids": [
+      552,
+      632,
+      157
+    ]
+  },
+  {
+    "book_id": 252,
+    "book_title": "지방 대사 켜는 스위치온 다이어트 - 3주 만에 근육은 살리고 체지방만 뺀다",
+    "related_book_ids": [
+      752,
+      804,
+      565
+    ]
+  },
+  {
+    "book_id": 253,
+    "book_title": "리얼리티 트랜서핑 2 - 성공의 물결로 갈아타는 선택의 비밀",
+    "related_book_ids": [
+      171,
+      460,
+      277
+    ]
+  },
+  {
+    "book_id": 254,
+    "book_title": "해커스 토익 왕기초 RC Reading (리딩) - 최신기출경향 반영ㅣ토익 초보 토린이를 위한 토익 첫걸음",
+    "related_book_ids": [
+      129,
+      365,
+      30
+    ]
+  },
+  {
+    "book_id": 255,
+    "book_title": "공정하다는 착각",
+    "related_book_ids": [
+      400,
+      284,
+      327
+    ]
+  },
+  {
+    "book_id": 256,
+    "book_title": "달러구트 꿈 백화점 - 주문하신 꿈은 매진입니다",
+    "related_book_ids": [
+      465,
+      634,
+      484
+    ]
+  },
+  {
+    "book_id": 257,
+    "book_title": "트로피컬 나이트",
+    "related_book_ids": [
+      232,
+      426,
+      151
+    ]
+  },
+  {
+    "book_id": 258,
+    "book_title": "거꾸로 읽는 세계사 - 전면개정",
+    "related_book_ids": [
+      218,
+      132,
+      343
+    ]
+  },
+  {
+    "book_id": 259,
+    "book_title": "괴수 8호 5",
+    "related_book_ids": [
+      290,
+      317,
+      399
+    ]
+  },
+  {
+    "book_id": 260,
+    "book_title": "리액트 - 반응이 변하면 현실이 변한다",
+    "related_book_ids": [
+      288,
+      269,
+      157
+    ]
+  },
+  {
+    "book_id": 261,
+    "book_title": "네이티브 영어표현력 사전 - 진짜 영어로 가는 17가지 핵심 법칙",
+    "related_book_ids": [
+      401,
+      514,
+      341
+    ]
+  },
+  {
+    "book_id": 262,
+    "book_title": "수급단타왕 수급매매 절대비기 - 100% 수익을 보장하는 퍼펙트 수급매매 실전강의",
+    "related_book_ids": [
+      17,
+      945,
+      189
+    ]
+  },
+  {
+    "book_id": 263,
+    "book_title": "사장학개론",
+    "related_book_ids": [
+      106,
+      323,
+      726
+    ]
+  },
+  {
+    "book_id": 264,
+    "book_title": "ETS 토익 정기시험 실전 1000 Vol. 1 RC(리딩) - TOEIC 출제기관 독점제공 / ETS 실전문제 9회·최신기출 1회 / +APP 모바일 학습",
+    "related_book_ids": [
+      281,
+      98,
+      924
+    ]
+  },
+  {
+    "book_id": 265,
+    "book_title": "내 삶의 글쓰기 - 기억을 회고록으로, 아이디어를 에세이로, 삶을 문학으로 담는 법",
+    "related_book_ids": [
+      196,
+      614,
+      519
+    ]
+  },
+  {
+    "book_id": 266,
+    "book_title": "현대 심리치료와 상담 이론 - 마음의 치유와 성장으로 가는 길",
+    "related_book_ids": [
+      664,
+      564,
+      269
+    ]
+  },
+  {
+    "book_id": 267,
+    "book_title": "여덟 단어 - 인생을 대하는 우리의 자세",
+    "related_book_ids": [
+      496,
+      401,
+      191
+    ]
+  },
+  {
+    "book_id": 268,
+    "book_title": "시지프 신화",
+    "related_book_ids": [
+      746,
+      604,
+      71
+    ]
+  },
+  {
+    "book_id": 269,
+    "book_title": "설득의 심리학 1 (20주년 기념 개정증보판) - 사람의 마음을 사로잡는 7가지 불변의 원칙",
+    "related_book_ids": [
+      160,
+      738,
+      155
+    ]
+  },
+  {
+    "book_id": 270,
+    "book_title": "해커스 토플 리딩 인터미디엇 (Hackers TOEFL Reading Intermediate) : 2023년 7월 26일 개정 시험 완벽 반영, 개정증보판 - iBT 리딩 실전모의고사, 지문녹음&단어암기 MP3, 토플 중급독해 4주완성",
+    "related_book_ids": [
+      352,
+      428,
+      548
+    ]
+  },
+  {
+    "book_id": 271,
+    "book_title": "마케팅 설계자 - 자동 수익을 실현하는 28가지 마케팅 과학",
+    "related_book_ids": [
+      912,
+      523,
+      350
+    ]
+  },
+  {
+    "book_id": 272,
+    "book_title": "읽으면서 바로 써먹는 어린이 속담",
+    "related_book_ids": [
+      731,
+      549,
+      739
+    ]
+  },
+  {
+    "book_id": 273,
+    "book_title": "브로콜리지만 사랑받고 싶어 - 초등 1학년 국어교과서 수록 도서",
+    "related_book_ids": [
+      549,
+      907,
+      413
+    ]
+  },
+  {
+    "book_id": 274,
+    "book_title": "영어회화 100일의 기적 - 100일 후에는 나도 영어로 말한다!, 개정판",
+    "related_book_ids": [
+      161,
+      409,
+      535
+    ]
+  },
+  {
+    "book_id": 275,
+    "book_title": "와일드 로봇의 탈출",
+    "related_book_ids": [
+      104,
+      512,
+      828
+    ]
+  },
+  {
+    "book_id": 276,
+    "book_title": "김락희의 인체 드로잉",
+    "related_book_ids": [
+      720,
+      911,
+      103
+    ]
+  },
+  {
+    "book_id": 277,
+    "book_title": "리얼리티 트랜서핑 3 - 운명을 주무를 수 있는 강력한 기법들",
+    "related_book_ids": [
+      171,
+      460,
+      253
+    ]
+  },
+  {
+    "book_id": 278,
+    "book_title": "시와 산책",
+    "related_book_ids": [
+      156,
+      53,
+      614
+    ]
+  },
+  {
+    "book_id": 279,
+    "book_title": "변신·시골의사",
+    "related_book_ids": [
+      585,
+      433,
+      814
+    ]
+  },
+  {
+    "book_id": 284,
+    "book_title": "자유론 (무삭제 완역본)",
+    "related_book_ids": [
+      180,
+      469,
+      126
+    ]
+  },
+  {
+    "book_id": 280,
+    "book_title": "지금 알고 있는 걸 그때도 알았더라면 - 잠언 시집",
+    "related_book_ids": [
+      584,
+      227,
+      231
+    ]
+  },
+  {
+    "book_id": 281,
+    "book_title": "ETS 토익 정기시험 실전 1000 Vol. 1 LC(리스닝) - TOEIC 출제기관 독점제공 / ETS 실전문제 9회·최신기출 1회+정기시험 성우 음성+APP 모바일 학습",
+    "related_book_ids": [
+      264,
+      98,
+      653
+    ]
+  },
+  {
+    "book_id": 282,
+    "book_title": "갈매기에게 나는 법을 가르쳐준 고양이",
+    "related_book_ids": [
+      746,
+      604,
+      933
+    ]
+  },
+  {
+    "book_id": 283,
+    "book_title": "돈은 좋지만 재테크는 겁나는 너에게 - 혼자서는 막막한 20대에게 뿅글이가 알려주는 돈을 다루고 불리는 비밀",
+    "related_book_ids": [
+      440,
+      842,
+      37
+    ]
+  },
+  {
+    "book_id": 285,
+    "book_title": "기분의 발견 - 오늘부터 가볍게 시작하는 일상 우울 대처법",
+    "related_book_ids": [
+      488,
+      353,
+      564
+    ]
+  },
+  {
+    "book_id": 286,
+    "book_title": "돈키호테 1",
+    "related_book_ids": [
+      348,
+      557,
+      239
+    ]
+  },
+  {
+    "book_id": 287,
+    "book_title": "인어 사냥",
+    "related_book_ids": [
+      169,
+      19,
+      13
+    ]
+  },
+  {
+    "book_id": 288,
+    "book_title": "아티스트 웨이, 마음의 소리를 듣는 시간 - 세상의 모든 소리에 귀 기울여 나를 바꾸는 법",
+    "related_book_ids": [
+      361,
+      243,
+      614
+    ]
+  },
+  {
+    "book_id": 289,
+    "book_title": "괴수 8호 9",
+    "related_book_ids": [
+      290,
+      363,
+      317
+    ]
+  },
+  {
+    "book_id": 290,
+    "book_title": "괴수 8호 6",
+    "related_book_ids": [
+      363,
+      259,
+      317
+    ]
+  },
+  {
+    "book_id": 291,
+    "book_title": "이파라파냐무냐무",
+    "related_book_ids": [
+      24,
+      874,
+      694
+    ]
+  },
+  {
+    "book_id": 292,
+    "book_title": "넛지 : 파이널 에디션 - 복잡한 세상에서 똑똑한 선택을 이끄는 힘",
+    "related_book_ids": [
+      16,
+      808,
+      67
+    ]
+  },
+  {
+    "book_id": 293,
+    "book_title": "어서 오세요, 휴남동 서점입니다 (일본서점대상 수상기념 리커버)",
+    "related_book_ids": [
+      688,
+      122,
+      21
+    ]
+  },
+  {
+    "book_id": 294,
+    "book_title": "손자병법 - 시공을 초월한 전쟁론의 고전, 개정판",
+    "related_book_ids": [
+      722,
+      885,
+      310
+    ]
+  },
+  {
+    "book_id": 295,
+    "book_title": "어린이라는 세계",
+    "related_book_ids": [
+      728,
+      874,
+      549
+    ]
+  },
+  {
+    "book_id": 296,
+    "book_title": "초판본 어린 왕자 (무선)",
+    "related_book_ids": [
+      756,
+      925,
+      95
+    ]
+  },
+  {
+    "book_id": 297,
+    "book_title": "해커스 첫토익 LC + RC + VOCA 기초입문서 - 최신기출경향 반영｜한 권으로 10일만에 토린이 졸업! [미니 단어장+무료 강의&노트 제공]",
+    "related_book_ids": [
+      74,
+      403,
+      254
+    ]
+  },
+  {
+    "book_id": 298,
+    "book_title": "인간 본성의 법칙",
+    "related_book_ids": [
+      846,
+      131,
+      54
+    ]
+  },
+  {
+    "book_id": 299,
+    "book_title": "해커스 토익 왕기초 LC Listening (리스닝) - 최신기출경향 반영｜토익 초보 토린이를 위한 토익 첫걸음",
+    "related_book_ids": [
+      48,
+      161,
+      254
+    ]
+  },
+  {
+    "book_id": 300,
+    "book_title": "살인자의 기억법",
+    "related_book_ids": [
+      9,
+      858,
+      555
+    ]
+  },
+  {
+    "book_id": 301,
+    "book_title": "해커스 토플 라이팅 (Hackers TOEFL Writing) : 2023년 7월 26일 개정 시험 완벽 반영, 개정증보판 - 기출 경향을 반영한 토론형 30문제의 Model Essay 수록, iBT 라이팅 실전모의고사 + 통합형 문제학습 MP3 제공",
+    "related_book_ids": [
+      352,
+      571,
+      548
+    ]
+  },
+  {
+    "book_id": 469,
+    "book_title": "좁은 회랑 : 국가, 사회 그리고 자유의 운명",
+    "related_book_ids": [
+      96,
+      145,
+      284
+    ]
+  },
+  {
+    "book_id": 302,
+    "book_title": "어느 멋진 여행",
+    "related_book_ids": [
+      244,
+      117,
+      413
+    ]
+  },
+  {
+    "book_id": 303,
+    "book_title": "당신 인생의 이야기",
+    "related_book_ids": [
+      144,
+      650,
+      823
+    ]
+  },
+  {
+    "book_id": 304,
+    "book_title": "죄와 벌 2",
+    "related_book_ids": [
+      185,
+      813,
+      247
+    ]
+  },
+  {
+    "book_id": 305,
+    "book_title": "오백 년째 열다섯",
+    "related_book_ids": [
+      360,
+      842,
+      728
+    ]
+  },
+  {
+    "book_id": 306,
+    "book_title": "부의 인문학 (20만부 기념 개정증보판) - 슈퍼리치의 서재에서 찾아낸 부자의 길",
+    "related_book_ids": [
+      196,
+      132,
+      211
+    ]
+  },
+  {
+    "book_id": 307,
+    "book_title": "10대를 위한 정의란 무엇인가 - 하버드대 마이클 샌델 교수의 정의 수업",
+    "related_book_ids": [
+      936,
+      138,
+      327
+    ]
+  },
+  {
+    "book_id": 308,
+    "book_title": "긴 호흡 - 시를 사랑하고 시를 짓기 위하여",
+    "related_book_ids": [
+      851,
+      686,
+      727
+    ]
+  },
+  {
+    "book_id": 309,
+    "book_title": "후지모토 타츠키 단편집 22-26",
+    "related_book_ids": [
+      640,
+      347,
+      22
+    ]
+  },
+  {
+    "book_id": 310,
+    "book_title": "그야말로 모든 역사 - 빅뱅, 호모 사피엔스, 피라미드, 전쟁… 그리고 일일이 언급하기에 너무 많은 것들",
+    "related_book_ids": [
+      424,
+      604,
+      23
+    ]
+  },
+  {
+    "book_id": 311,
+    "book_title": "빅터 프랭클의 죽음의 수용소에서 (양장)",
+    "related_book_ids": [
+      64,
+      801,
+      51
+    ]
+  },
+  {
+    "book_id": 312,
+    "book_title": "지리의 힘 - 지리는 어떻게 개인의 운명을, 세계사를, 세계 경제를 좌우하는가",
+    "related_book_ids": [
+      881,
+      797,
+      807
+    ]
+  },
+  {
+    "book_id": 313,
+    "book_title": "혼자 공부하는 컴퓨터 구조 + 운영체제 - 1:1 과외하듯 배우는 컴퓨터공학 자습서",
+    "related_book_ids": [
+      521,
+      195,
+      395
+    ]
+  },
+  {
+    "book_id": 314,
+    "book_title": "괴수 8호 8",
+    "related_book_ids": [
+      289,
+      363,
+      317
+    ]
+  },
+  {
+    "book_id": 315,
+    "book_title": "더 골 1 The Goal - 당신의 목표는 무엇인가?, 30주년 기념 개정판 번역본",
+    "related_book_ids": [
+      189,
+      422,
+      191
+    ]
+  },
+  {
+    "book_id": 316,
+    "book_title": "어떻게 지내요",
+    "related_book_ids": [
+      433,
+      873,
+      343
+    ]
+  },
+  {
+    "book_id": 317,
+    "book_title": "괴수 8호 7",
+    "related_book_ids": [
+      290,
+      363,
+      326
+    ]
+  },
+  {
+    "book_id": 318,
+    "book_title": "사카모토 데이즈 8 - 3차 시험",
+    "related_book_ids": [
+      223,
+      314,
+      183
+    ]
+  },
+  {
+    "book_id": 319,
+    "book_title": "포인트 캐릭터 드로잉 - 전2권",
+    "related_book_ids": [
+      276,
+      421,
+      199
+    ]
+  },
+  {
+    "book_id": 320,
+    "book_title": "주술회전 0 : 외전",
+    "related_book_ids": [
+      851,
+      405,
+      887
+    ]
+  },
+  {
+    "book_id": 327,
+    "book_title": "돈으로 살 수 없는 것들 - 무엇이 가치를 결정하는가",
+    "related_book_ids": [
+      307,
+      91,
+      189
+    ]
+  },
+  {
+    "book_id": 321,
+    "book_title": "무기가 되는 스토리 - 브랜드 전쟁에서 살아남는 7가지 문장 공식",
+    "related_book_ids": [
+      784,
+      138,
+      267
+    ]
+  },
+  {
+    "book_id": 322,
+    "book_title": "보이지 않는 친구 1",
+    "related_book_ids": [
+      377,
+      517,
+      14
+    ]
+  },
+  {
+    "book_id": 323,
+    "book_title": "왜 일하는가 - 지금 당신이 가장 뜨겁게 물어야 할 첫 번째 질문",
+    "related_book_ids": [
+      263,
+      262,
+      207
+    ]
+  },
+  {
+    "book_id": 324,
+    "book_title": "괴수 8호 1",
+    "related_book_ids": [
+      290,
+      363,
+      317
+    ]
+  },
+  {
+    "book_id": 325,
+    "book_title": "사과가 쿵! (보드북)",
+    "related_book_ids": [
+      24,
+      907,
+      759
+    ]
+  },
+  {
+    "book_id": 326,
+    "book_title": "괴수 8호 4",
+    "related_book_ids": [
+      290,
+      363,
+      317
+    ]
+  },
+  {
+    "book_id": 328,
+    "book_title": "자연스러운 인체 드로잉 - 해부학부터 옷 주름까지 배우는",
+    "related_book_ids": [
+      914,
+      276,
+      199
+    ]
+  },
+  {
+    "book_id": 329,
+    "book_title": "20일 만에 끝내는 해커스 토익 750+ LC(리스닝) - 최신 토익기출경향 완벽 반영 | 기출 LC 유형 완성 [최빈출 어휘 & 실전모의고사 3회분(별책 1회+온라인 2회) & 무료 MP3 제공]",
+    "related_book_ids": [
+      129,
+      74,
+      161
+    ]
+  },
+  {
+    "book_id": 330,
+    "book_title": "젊은 베르테르의 슬픔",
+    "related_book_ids": [
+      842,
+      420,
+      814
+    ]
+  },
+  {
+    "book_id": 331,
+    "book_title": "나미야 잡화점의 기적 (무선)",
+    "related_book_ids": [
+      851,
+      932,
+      103
+    ]
+  },
+  {
+    "book_id": 332,
+    "book_title": "가재가 노래하는 곳",
+    "related_book_ids": [
+      576,
+      842,
+      14
+    ]
+  },
+  {
+    "book_id": 333,
+    "book_title": "어제와 똑같은 내가 싫어서 심리학을 공부하기 시작했습니다 - 나를 바꾸는 39가지 방법",
+    "related_book_ids": [
+      856,
+      738,
+      349
+    ]
+  },
+  {
+    "book_id": 334,
+    "book_title": "어른의 어휘력 (양장) - 말에 품격을 더하고 세상을 올바르게 이해하는 힘",
+    "related_book_ids": [
+      216,
+      873,
+      867
+    ]
+  },
+  {
+    "book_id": 335,
+    "book_title": "전제의 법칙 - 이미 이루어진 것처럼 살아라",
+    "related_book_ids": [
+      306,
+      260,
+      157
+    ]
+  },
+  {
+    "book_id": 336,
+    "book_title": "거래의 기술 - 트럼프는 어떻게 원하는 것을 얻는가 - The Art of the Deal 한국어판",
+    "related_book_ids": [
+      271,
+      350,
+      207
+    ]
+  },
+  {
+    "book_id": 337,
+    "book_title": "훌훌 - 제12회 문학동네청소년문학상 대상 수상작",
+    "related_book_ids": [
+      544,
+      860,
+      549
+    ]
+  },
+  {
+    "book_id": 339,
+    "book_title": "재미만점 두뇌계발 스도쿠 퍼즐 1 : 초급/중급 (스프링북) - 추리력.사고력.논리력.집중력 향상 숫자 퍼즐 게임",
+    "related_book_ids": [
+      528,
+      741,
+      654
+    ]
+  },
+  {
+    "book_id": 340,
+    "book_title": "믿는 만큼 자라는 아이들 - 박혜란의 세 아들 이야기, 개정판",
+    "related_book_ids": [
+      728,
+      675,
+      204
+    ]
+  },
+  {
+    "book_id": 341,
+    "book_title": "한국단편소설 50 - 중고생이 꼭 읽어야 할",
+    "related_book_ids": [
+      689,
+      514,
+      499
+    ]
+  },
+  {
+    "book_id": 342,
+    "book_title": "E=mc² - 세상에서 가장 유명한 방정식의 일생",
+    "related_book_ids": [
+      922,
+      643,
+      372
+    ]
+  },
+  {
+    "book_id": 343,
+    "book_title": "사서함 110호의 우편물",
+    "related_book_ids": [
+      9,
+      218,
+      890
+    ]
+  },
+  {
+    "book_id": 344,
+    "book_title": "방구석 미술관 (40만 부 기념 특별판) - 가볍고 편하게 시작하는 유쾌한 교양 미술",
+    "related_book_ids": [
+      491,
+      607,
+      599
+    ]
+  },
+  {
+    "book_id": 345,
+    "book_title": "해리 포터와 비밀의 방 (미나리마 에디션)",
+    "related_book_ids": [
+      208,
+      418,
+      389
+    ]
+  },
+  {
+    "book_id": 346,
+    "book_title": "세줄쓰기 - 하루 세 줄로 글쓰기 기초 체력을 길러요",
+    "related_book_ids": [
+      874,
+      731,
+      549
+    ]
+  },
+  {
+    "book_id": 347,
+    "book_title": "후지모토 타츠키 단편집 17-21",
+    "related_book_ids": [
+      640,
+      309,
+      22
+    ]
+  },
+  {
+    "book_id": 348,
+    "book_title": "돈키호테 2",
+    "related_book_ids": [
+      388,
+      286,
+      239
+    ]
+  },
+  {
+    "book_id": 354,
+    "book_title": "바다가 들리는 편의점",
+    "related_book_ids": [
+      573,
+      484,
+      53
+    ]
+  },
+  {
+    "book_id": 349,
+    "book_title": "오십의 기술 - 나이 들수록 재미, 가족, 관계, 행복, 품격, 지식이 높아지는",
+    "related_book_ids": [
+      160,
+      113,
+      565
+    ]
+  },
+  {
+    "book_id": 350,
+    "book_title": "보랏빛 소가 온다 - 21세기 최고의 마케팅 바이블",
+    "related_book_ids": [
+      537,
+      580,
+      189
+    ]
+  },
+  {
+    "book_id": 351,
+    "book_title": "단다단 1",
+    "related_book_ids": [
+      411,
+      486,
+      463
+    ]
+  },
+  {
+    "book_id": 352,
+    "book_title": "해커스 토플 리딩 베이직 (Hackers TOEFL Reading Basic) : 2023년 7월 26일 개정 시험 완벽 반영, 개정증보판 - iBT 토플 리딩 실전모의고사, 지문녹음&단어암기 MP3 제공, 토플 리딩의 기본서",
+    "related_book_ids": [
+      428,
+      270,
+      548
+    ]
+  },
+  {
+    "book_id": 353,
+    "book_title": "초역 니체의 말",
+    "related_book_ids": [
+      592,
+      661,
+      614
+    ]
+  },
+  {
+    "book_id": 365,
+    "book_title": "해커스 토익 실전 1000제 2 RC Reading(리딩) 문제집 - 최신기출유형 100% 반영 [무료 Part 5&6 해설ㅣ온라인 실전모의고사ㅣ무료 동영상강의 제공]",
+    "related_book_ids": [
+      645,
+      30,
+      230
+    ]
+  },
+  {
+    "book_id": 355,
+    "book_title": "우리 아기 오감발달 동물 오케스트라의 바흐 사운드북",
+    "related_book_ids": [
+      72,
+      481,
+      611
+    ]
+  },
+  {
+    "book_id": 356,
+    "book_title": "이토록 뜻밖의 뇌과학 - 뇌가 당신에 관해 말할 수 있는 7과 1/2가지 진실",
+    "related_book_ids": [
+      393,
+      139,
+      903
+    ]
+  },
+  {
+    "book_id": 357,
+    "book_title": "괴테와의 대화 2",
+    "related_book_ids": [
+      426,
+      61,
+      167
+    ]
+  },
+  {
+    "book_id": 358,
+    "book_title": "볼린저 밴드 투자기법 - 월가 역사상 최고의 승률, 창시자 볼린저가 직접 쓴 실전 기법",
+    "related_book_ids": [
+      945,
+      235,
+      541
+    ]
+  },
+  {
+    "book_id": 359,
+    "book_title": "거인의 노트 - 인생에서 무엇을 보고 어떻게 기록할 것인가",
+    "related_book_ids": [
+      856,
+      563,
+      717
+    ]
+  },
+  {
+    "book_id": 382,
+    "book_title": "페인트 (반양장) - 제12회 창비청소년문학상 수상작",
+    "related_book_ids": [
+      570,
+      739,
+      860
+    ]
+  },
+  {
+    "book_id": 360,
+    "book_title": "오백 년째 열다섯 2 - 구슬의 무게",
+    "related_book_ids": [
+      728,
+      305,
+      598
+    ]
+  },
+  {
+    "book_id": 361,
+    "book_title": "차라투스트라는 이렇게 말했다",
+    "related_book_ids": [
+      517,
+      435,
+      421
+    ]
+  },
+  {
+    "book_id": 362,
+    "book_title": "박태균의 이슈 한국사 - 둘만 모여도 의견이 갈리는 현대사 쟁점",
+    "related_book_ids": [
+      936,
+      113,
+      867
+    ]
+  },
+  {
+    "book_id": 363,
+    "book_title": "괴수 8호 2",
+    "related_book_ids": [
+      290,
+      317,
+      399
+    ]
+  },
+  {
+    "book_id": 364,
+    "book_title": "위대한 개츠비",
+    "related_book_ids": [
+      248,
+      249,
+      5
+    ]
+  },
+  {
+    "book_id": 366,
+    "book_title": "아직도 가야 할 길",
+    "related_book_ids": [
+      41,
+      364,
+      249
+    ]
+  },
+  {
+    "book_id": 367,
+    "book_title": "어느 날, 내 죽음에 네가 들어왔다",
+    "related_book_ids": [
+      241,
+      163,
+      533
+    ]
+  },
+  {
+    "book_id": 368,
+    "book_title": "나는 왜 네 말이 힘들까 - 상대의 말이 듣기 힘들 때 후회되는 말을 했을 때, 꼬인 관계를 풀어주는 연결의 대화 수업",
+    "related_book_ids": [
+      488,
+      250,
+      374
+    ]
+  },
+  {
+    "book_id": 369,
+    "book_title": "나, 버지니아 울프 - 한 사람의 인생이 모두의 이야기가 되기까지",
+    "related_book_ids": [
+      288,
+      204,
+      812
+    ]
+  },
+  {
+    "book_id": 370,
+    "book_title": "사카모토 데이즈 9 - 하드모드",
+    "related_book_ids": [
+      209,
+      154,
+      745
+    ]
+  },
+  {
+    "book_id": 371,
+    "book_title": "10일 만에 끝내는 해커스 토익스피킹(토스) - 최신 개정 시험 완벽 반영ㅣ한 권으로 토스 고득점 점수 달성!ㅣ무료 온라인 실전모의고사 + 무료 교재 MP3 제공",
+    "related_book_ids": [
+      297,
+      109,
+      645
+    ]
+  },
+  {
+    "book_id": 394,
+    "book_title": "페스트",
+    "related_book_ids": [
+      194,
+      894,
+      71
+    ]
+  },
+  {
+    "book_id": 372,
+    "book_title": "하늘과 바람과 별과 인간 - 원자에서 인간까지",
+    "related_book_ids": [
+      169,
+      18,
+      642
+    ]
+  },
+  {
+    "book_id": 373,
+    "book_title": "100층짜리 집",
+    "related_book_ids": [
+      432,
+      848,
+      888
+    ]
+  },
+  {
+    "book_id": 374,
+    "book_title": "논어 (무삭제 완역본)",
+    "related_book_ids": [
+      873,
+      494,
+      495
+    ]
+  },
+  {
+    "book_id": 375,
+    "book_title": "아임 오케이 유어 오케이 - 성격의 비밀, 교류분석이 풀다",
+    "related_book_ids": [
+      856,
+      738,
+      623
+    ]
+  },
+  {
+    "book_id": 376,
+    "book_title": "생각을 모으는 사람",
+    "related_book_ids": [
+      913,
+      748,
+      934
+    ]
+  },
+  {
+    "book_id": 377,
+    "book_title": "보이지 않는 친구 2",
+    "related_book_ids": [
+      322,
+      517,
+      14
+    ]
+  },
+  {
+    "book_id": 378,
+    "book_title": "엄마의 역사 편지 - 초등학생을 위한 세계사",
+    "related_book_ids": [
+      113,
+      681,
+      76
+    ]
+  },
+  {
+    "book_id": 379,
+    "book_title": "우리 아기 오감발달 동물원 사운드북",
+    "related_book_ids": [
+      24,
+      694,
+      670
+    ]
+  },
+  {
+    "book_id": 380,
+    "book_title": "맨큐의 경제학 - 9판",
+    "related_book_ids": [
+      824,
+      945,
+      258
+    ]
+  },
+  {
+    "book_id": 381,
+    "book_title": "탤런트 코드 (특별합본판) - 재능을 지배하는 세 가지 법칙",
+    "related_book_ids": [
+      617,
+      797,
+      191
+    ]
+  },
+  {
+    "book_id": 411,
+    "book_title": "단다단 2",
+    "related_book_ids": [
+      486,
+      438,
+      463
+    ]
+  },
+  {
+    "book_id": 383,
+    "book_title": "당신의 인생이 왜 힘들지 않아야 한다고 생각하십니까 (리커버) - 쇼펜하우어 아포리즘",
+    "related_book_ids": [
+      453,
+      813,
+      221
+    ]
+  },
+  {
+    "book_id": 384,
+    "book_title": "생각정리를 위한 업무의 기술 - 보고서와 기획서를 손쉽게 정리하는 57개의 방법!",
+    "related_book_ids": [
+      709,
+      458,
+      157
+    ]
+  },
+  {
+    "book_id": 385,
+    "book_title": "세상에서 제일 재밌는 종이접기 - 색종이 한 장이면 장난감 뚝딱!",
+    "related_book_ids": [
+      513,
+      689,
+      341
+    ]
+  },
+  {
+    "book_id": 386,
+    "book_title": "담을 넘은 아이",
+    "related_book_ids": [
+      520,
+      763,
+      231
+    ]
+  },
+  {
+    "book_id": 412,
+    "book_title": "아주 세속적인 지혜 - 400년 동안 사랑받은 인생의 고전",
+    "related_book_ids": [
+      121,
+      18,
+      453
+    ]
+  },
+  {
+    "book_id": 387,
+    "book_title": "오늘 밤, 세계에서 이 눈물이 사라진다 해도",
+    "related_book_ids": [
+      9,
+      491,
+      599
+    ]
+  },
+  {
+    "book_id": 388,
+    "book_title": "고도를 기다리며",
+    "related_book_ids": [
+      814,
+      286,
+      239
+    ]
+  },
+  {
+    "book_id": 389,
+    "book_title": "마루는 강쥐 1",
+    "related_book_ids": [
+      651,
+      675,
+      739
+    ]
+  },
+  {
+    "book_id": 390,
+    "book_title": "결혼·여름 - 태양, 입맞춤, 압생트 향… 청년 카뮈의 찬란한 감성",
+    "related_book_ids": [
+      690,
+      147,
+      707
+    ]
+  },
+  {
+    "book_id": 391,
+    "book_title": "돌이킬 수 있는",
+    "related_book_ids": [
+      169,
+      851,
+      103
+    ]
+  },
+  {
+    "book_id": 392,
+    "book_title": "희망",
+    "related_book_ids": [
+      858,
+      59,
+      13
+    ]
+  },
+  {
+    "book_id": 393,
+    "book_title": "건강의 뇌과학 - 날마다 젊어지는 뇌의 비밀",
+    "related_book_ids": [
+      562,
+      356,
+      903
+    ]
+  },
+  {
+    "book_id": 395,
+    "book_title": "혼자 공부하는 파이썬 - 1:1 과외하듯 배우는 프로그래밍 자습서, 개정판",
+    "related_book_ids": [
+      624,
+      313,
+      521
+    ]
+  },
+  {
+    "book_id": 396,
+    "book_title": "푸른 사자 와니니",
+    "related_book_ids": [
+      634,
+      11,
+      421
+    ]
+  },
+  {
+    "book_id": 397,
+    "book_title": "백종원이 추천하는 집밥 메뉴 애장판",
+    "related_book_ids": [
+      748,
+      158,
+      455
+    ]
+  },
+  {
+    "book_id": 398,
+    "book_title": "나의 한국현대사 1959",
+    "related_book_ids": [
+      160,
+      808,
+      191
+    ]
+  },
+  {
+    "book_id": 399,
+    "book_title": "괴수 8호 3",
+    "related_book_ids": [
+      363,
+      259,
+      317
+    ]
+  },
+  {
+    "book_id": 434,
+    "book_title": "H마트에서 울다",
+    "related_book_ids": [
+      176,
+      595,
+      332
+    ]
+  },
+  {
+    "book_id": 400,
+    "book_title": "생각하라 그리고 부자가 되어라 - 나폴레온 힐, 부와 성공의 원칙",
+    "related_book_ids": [
+      240,
+      532,
+      902
+    ]
+  },
+  {
+    "book_id": 401,
+    "book_title": "아는 만큼 보인다 : 한 권으로 읽는 나의 문화유산답사기",
+    "related_book_ids": [
+      113,
+      452,
+      191
+    ]
+  },
+  {
+    "book_id": 402,
+    "book_title": "어디 있을까? 숨은그림찾기 1000",
+    "related_book_ids": [
+      432,
+      848,
+      888
+    ]
+  },
+  {
+    "book_id": 403,
+    "book_title": "한 권으로 끝내는 토익 실전 LC + RC 1 (모의고사 문제집 + 해설집) - Listening 5회분 + Reading 5회분 l 최신기출유형 100% 반영 ㅣ 2주 완성 [교재 실전용+복습용 MP3ㅣ온라인 실전모의고사 제공]",
+    "related_book_ids": [
+      74,
+      365,
+      30
+    ]
+  },
+  {
+    "book_id": 404,
+    "book_title": "여름은 오래 그곳에 남아",
+    "related_book_ids": [
+      620,
+      37,
+      181
+    ]
+  },
+  {
+    "book_id": 405,
+    "book_title": "사카모토 데이즈 11 - 한 방",
+    "related_book_ids": [
+      320,
+      233,
+      370
+    ]
+  },
+  {
+    "book_id": 406,
+    "book_title": "내 문장이 그렇게 이상한가요? - 내가 쓴 글, 내가 다듬는 법",
+    "related_book_ids": [
+      265,
+      452,
+      726
+    ]
+  },
+  {
+    "book_id": 407,
+    "book_title": "너무 잘하려고 애쓰지 마라",
+    "related_book_ids": [
+      198,
+      142,
+      661
+    ]
+  },
+  {
+    "book_id": 408,
+    "book_title": "속뜻풀이 초등국어사전 (제5판)",
+    "related_book_ids": [
+      874,
+      940,
+      549
+    ]
+  },
+  {
+    "book_id": 409,
+    "book_title": "해커스톡 왕초보 영어회화 10분의 기적 : 기초패턴으로 말하기 - 미국인이 가장 많이 쓰는 표현으로 원어민처럼 말하기|하루 10분으로 왕초보 탈출ㅣ무료 해설강의/MP3ㅣ모바일 스피킹 훈련 프로그램",
+    "related_book_ids": [
+      177,
+      513,
+      535
+    ]
+  },
+  {
+    "book_id": 410,
+    "book_title": "도파민네이션 (리미티드 에디션) - 쾌락 과잉 시대에서 균형 찾기",
+    "related_book_ids": [
+      427,
+      846,
+      327
+    ]
+  },
+  {
+    "book_id": 413,
+    "book_title": "햇빛초 대나무 숲에 새 글이 올라왔습니다",
+    "related_book_ids": [
+      146,
+      250,
+      244
+    ]
+  },
+  {
+    "book_id": 414,
+    "book_title": "박혜원 파워토익 VOCA",
+    "related_book_ids": [
+      689,
+      388,
+      693
+    ]
+  },
+  {
+    "book_id": 415,
+    "book_title": "마인드셋 (리커버 에디션) - 스탠퍼드 인간 성장 프로젝트",
+    "related_book_ids": [
+      875,
+      157,
+      767
+    ]
+  },
+  {
+    "book_id": 416,
+    "book_title": "아홉 살 마음 사전",
+    "related_book_ids": [
+      731,
+      540,
+      495
+    ]
+  },
+  {
+    "book_id": 417,
+    "book_title": "삼체 2부 : 암흑의 숲",
+    "related_book_ids": [
+      136,
+      473,
+      220
+    ]
+  },
+  {
+    "book_id": 418,
+    "book_title": "크툴루의 부름 : 수호자 룰북",
+    "related_book_ids": [
+      232,
+      436,
+      805
+    ]
+  },
+  {
+    "book_id": 419,
+    "book_title": "고양이 해결사 깜냥 1 - 아파트의 평화를 지켜라!",
+    "related_book_ids": [
+      618,
+      605,
+      750
+    ]
+  },
+  {
+    "book_id": 420,
+    "book_title": "눈부신 안부",
+    "related_book_ids": [
+      9,
+      890,
+      814
+    ]
+  },
+  {
+    "book_id": 421,
+    "book_title": "금각사 (무선)",
+    "related_book_ids": [
+      232,
+      361,
+      517
+    ]
+  },
+  {
+    "book_id": 422,
+    "book_title": "비상식적 성공 법칙 - 부의 추월차선에 올라타는 가장 강력한 8가지 습관",
+    "related_book_ids": [
+      168,
+      889,
+      176
+    ]
+  },
+  {
+    "book_id": 423,
+    "book_title": "망고와 수류탄 - 생활사 이론",
+    "related_book_ids": [
+      936,
+      738,
+      795
+    ]
+  },
+  {
+    "book_id": 424,
+    "book_title": "잃어버린 것들의 목록 - 소멸을 통해 우리가 기억해야 하는 것들",
+    "related_book_ids": [
+      449,
+      258,
+      310
+    ]
+  },
+  {
+    "book_id": 425,
+    "book_title": "진짜 하루만에 이해하는 반도체 산업 - 챗GPT 시대, 기회는 반도체 산업에 있습니다!",
+    "related_book_ids": [
+      709,
+      685,
+      510
+    ]
+  },
+  {
+    "book_id": 426,
+    "book_title": "눈사람 자살 사건",
+    "related_book_ids": [
+      232,
+      241,
+      675
+    ]
+  },
+  {
+    "book_id": 427,
+    "book_title": "더 좋은 삶을 위한 철학 - 천사와 악마 사이 더 나은 선택을 위한 안내서",
+    "related_book_ids": [
+      12,
+      453,
+      527
+    ]
+  },
+  {
+    "book_id": 428,
+    "book_title": "해커스 토플 액츄얼 테스트 리딩 (Hackers TOEFL Actual Test Reading) : 2023년 7월 26일 개정 시험 완벽 반영, 개정증보판 - iBT 리딩 실전모의고사 10회(교재 9회+온라인 1회), 단어암기&지문녹음 MP3, 토플 시험 실전서",
+    "related_book_ids": [
+      352,
+      578,
+      270
+    ]
+  },
+  {
+    "book_id": 429,
+    "book_title": "사랑해 사랑해 사랑해 (보드북) - 출간 15주년 기념판",
+    "related_book_ids": [
+      842,
+      661,
+      711
+    ]
+  },
+  {
+    "book_id": 430,
+    "book_title": "날개 환상통",
+    "related_book_ids": [
+      584,
+      763,
+      181
+    ]
+  },
+  {
+    "book_id": 431,
+    "book_title": "경제기사 궁금증 300문 300답 - 불확실성의 시대, 경제기사 속에 답이 있다, 2023 개정증보판",
+    "related_book_ids": [
+      96,
+      817,
+      824
+    ]
+  },
+  {
+    "book_id": 432,
+    "book_title": "바다 100층짜리 집",
+    "related_book_ids": [
+      848,
+      888,
+      373
+    ]
+  },
+  {
+    "book_id": 433,
+    "book_title": "파쇄",
+    "related_book_ids": [
+      620,
+      420,
+      814
+    ]
+  },
+  {
+    "book_id": 435,
+    "book_title": "연금술사",
+    "related_book_ids": [
+      241,
+      421,
+      361
+    ]
+  },
+  {
+    "book_id": 436,
+    "book_title": "세계 미스터리 걸작선 01 : 살인자 외",
+    "related_book_ids": [
+      418,
+      916,
+      583
+    ]
+  },
+  {
+    "book_id": 437,
+    "book_title": "해커스 토플 리스닝 인터미디엇 (Hackers TOEFL Listening Intermediate)",
+    "related_book_ids": [
+      635,
+      548,
+      270
+    ]
+  },
+  {
+    "book_id": 438,
+    "book_title": "단다단 3",
+    "related_book_ids": [
+      411,
+      486,
+      463
+    ]
+  },
+  {
+    "book_id": 439,
+    "book_title": "아홉 살에 시작하는 똑똑한 초등신문 - 초등학생이 꼭 알아야 하는 최신 뉴스",
+    "related_book_ids": [
+      817,
+      549,
+      831
+    ]
+  },
+  {
+    "book_id": 440,
+    "book_title": "너무 보고플 땐 눈이 온다 - 고명재 산문집",
+    "related_book_ids": [
+      456,
+      37,
+      606
+    ]
+  },
+  {
+    "book_id": 441,
+    "book_title": "10대를 위한 사피엔스 - 한 번에 정리하는 인류 문명의 역사",
+    "related_book_ids": [
+      747,
+      926,
+      23
+    ]
+  },
+  {
+    "book_id": 442,
+    "book_title": "슈뻘맨의 숨은 과학 찾기 1 - 엉뚱 도전 속에 숨은 과학 상식",
+    "related_book_ids": [
+      888,
+      739,
+      654
+    ]
+  },
+  {
+    "book_id": 443,
+    "book_title": "한국이 싫어서",
+    "related_book_ids": [
+      216,
+      499,
+      648
+    ]
+  },
+  {
+    "book_id": 444,
+    "book_title": "서찰을 전하는 아이",
+    "related_book_ids": [
+      305,
+      874,
+      61
+    ]
+  },
+  {
+    "book_id": 445,
+    "book_title": "단다단 5",
+    "related_book_ids": [
+      461,
+      486,
+      463
+    ]
+  },
+  {
+    "book_id": 446,
+    "book_title": "생활영어 문법패턴 + 장소별 여행영어 519",
+    "related_book_ids": [
+      627,
+      757,
+      710
+    ]
+  },
+  {
+    "book_id": 452,
+    "book_title": "책 읽고 글쓰기 - 서울대 나민애 교수의 몹시 친절한 서평 가이드",
+    "related_book_ids": [
+      401,
+      681,
+      76
+    ]
+  },
+  {
+    "book_id": 447,
+    "book_title": "안나 카레니나 세트 - 전3권",
+    "related_book_ids": [
+      185,
+      894,
+      526
+    ]
+  },
+  {
+    "book_id": 448,
+    "book_title": "자기 결정 - 행복하고 존엄한 삶은 내가 결정하는 삶이다",
+    "related_book_ids": [
+      849,
+      121,
+      527
+    ]
+  },
+  {
+    "book_id": 449,
+    "book_title": "책방으로 가다 - 사소한 일상의 세밀한 기록",
+    "related_book_ids": [
+      132,
+      5,
+      661
+    ]
+  },
+  {
+    "book_id": 450,
+    "book_title": "앵무새 죽이기",
+    "related_book_ids": [
+      178,
+      895,
+      559
+    ]
+  },
+  {
+    "book_id": 451,
+    "book_title": "힐빌리의 노래 - 위기의 가정과 문화에 대한 회고",
+    "related_book_ids": [
+      842,
+      228,
+      332
+    ]
+  },
+  {
+    "book_id": 578,
+    "book_title": "해커스 토플 액츄얼 테스트 리스닝 (Hackers TOEFL Actual Test Listening) - 고득점을 위한 토플 마무리 실전서, iBT 토플 실전모의고사 7회분 제공 (교재 6회분 + 온라인 1회분)",
+    "related_book_ids": [
+      635,
+      428,
+      437
+    ]
+  },
+  {
+    "book_id": 453,
+    "book_title": "소크라테스 익스프레스",
+    "related_book_ids": [
+      427,
+      527,
+      383
+    ]
+  },
+  {
+    "book_id": 454,
+    "book_title": "왜 세계의 절반은 굶주리는가? - 개정증보판",
+    "related_book_ids": [
+      145,
+      807,
+      23
+    ]
+  },
+  {
+    "book_id": 455,
+    "book_title": "채소는 따뜻하게 먹습니다 - 부담 없이 더 맛있게 즐길 수 있는 따뜻한 채소 레시피 65",
+    "related_book_ids": [
+      105,
+      397,
+      701
+    ]
+  },
+  {
+    "book_id": 456,
+    "book_title": "해가 지는 곳으로",
+    "related_book_ids": [
+      584,
+      227,
+      763
+    ]
+  },
+  {
+    "book_id": 462,
+    "book_title": "비트코인, 그리고 달러의 지정학 - 미·중 패권전쟁과 변화하는 세계질서의 규칙",
+    "related_book_ids": [
+      579,
+      206,
+      431
+    ]
+  },
+  {
+    "book_id": 457,
+    "book_title": "우리는 언제나 다시 만나",
+    "related_book_ids": [
+      544,
+      516,
+      495
+    ]
+  },
+  {
+    "book_id": 458,
+    "book_title": "그림으로 그리는 생각정리의 기술 1 - 성공하는 사람은 비주얼로 생각한다!",
+    "related_book_ids": [
+      384,
+      385,
+      914
+    ]
+  },
+  {
+    "book_id": 459,
+    "book_title": "거의 모든 일상 표현의 영어",
+    "related_book_ids": [
+      170,
+      494,
+      534
+    ]
+  },
+  {
+    "book_id": 460,
+    "book_title": "카지노",
+    "related_book_ids": [
+      169,
+      597,
+      391
+    ]
+  },
+  {
+    "book_id": 461,
+    "book_title": "단다단 6",
+    "related_book_ids": [
+      445,
+      486,
+      463
+    ]
+  },
+  {
+    "book_id": 463,
+    "book_title": "단다단 4",
+    "related_book_ids": [
+      461,
+      445,
+      438
+    ]
+  },
+  {
+    "book_id": 464,
+    "book_title": "모비딕 (무삭제 완역본)",
+    "related_book_ids": [
+      179,
+      604,
+      813
+    ]
+  },
+  {
+    "book_id": 465,
+    "book_title": "아침 그리고 저녁",
+    "related_book_ids": [
+      361,
+      894,
+      663
+    ]
+  },
+  {
+    "book_id": 466,
+    "book_title": "그림 그리기가 이토록 쉬울 줄이야 - 혼자서 가볍게 시작하는 일상 드로잉",
+    "related_book_ids": [
+      265,
+      628,
+      614
+    ]
+  },
+  {
+    "book_id": 467,
+    "book_title": "Holes 홀스 (영어원서 + 워크북 + 음원 QR코드) - 개정판",
+    "related_book_ids": [
+      41,
+      364,
+      580
+    ]
+  },
+  {
+    "book_id": 468,
+    "book_title": "피로사회",
+    "related_book_ids": [
+      221,
+      622,
+      383
+    ]
+  },
+  {
+    "book_id": 470,
+    "book_title": "고양이를 버리다 - 아버지에 대해 이야기할 때",
+    "related_book_ids": [
+      651,
+      605,
+      647
+    ]
+  },
+  {
+    "book_id": 471,
+    "book_title": "트러스트",
+    "related_book_ids": [
+      456,
+      763,
+      181
+    ]
+  },
+  {
+    "book_id": 472,
+    "book_title": "구름빵",
+    "related_book_ids": [
+      82,
+      907,
+      788
+    ]
+  },
+  {
+    "book_id": 473,
+    "book_title": "삼체 3부 : 사신의 영생 - 완결",
+    "related_book_ids": [
+      136,
+      417,
+      220
+    ]
+  },
+  {
+    "book_id": 474,
+    "book_title": "헌터x헌터 HunterXHunter 신장판 37",
+    "related_book_ids": [
+      290,
+      363,
+      589
+    ]
+  },
+  {
+    "book_id": 475,
+    "book_title": "고수의 생각법 (10만 부 기념 스페셜 에디션) - 한국 최고의 승부사 조훈현의 삶의 철학",
+    "related_book_ids": [
+      153,
+      157,
+      545
+    ]
+  },
+  {
+    "book_id": 476,
+    "book_title": "변신",
+    "related_book_ids": [
+      545,
+      707,
+      873
+    ]
+  },
+  {
+    "book_id": 477,
+    "book_title": "경매 권리분석 이렇게 쉬웠어? - 생초보도 할 수 있는 초간단 권리분석법 대공개!",
+    "related_book_ids": [
+      49,
+      227,
+      231
+    ]
+  },
+  {
+    "book_id": 478,
+    "book_title": "우리는 왜 잠을 자야 할까 - 수면과 꿈의 과학",
+    "related_book_ids": [
+      903,
+      180,
+      303
+    ]
+  },
+  {
+    "book_id": 479,
+    "book_title": "창조적 시선 - 인류 최초의 창조 학교 바우하우스 이야기",
+    "related_book_ids": [
+      747,
+      524,
+      604
+    ]
+  },
+  {
+    "book_id": 517,
+    "book_title": "꿈꾸는 책들의 도시",
+    "related_book_ids": [
+      361,
+      421,
+      559
+    ]
+  },
+  {
+    "book_id": 480,
+    "book_title": "만일 내가 인생을 다시 산다면 (35만 부 기념 스페셜 에디션) - 벌써 마흔이 된 당신에게 해 주고 싶은 말들 42",
+    "related_book_ids": [
+      168,
+      576,
+      872
+    ]
+  },
+  {
+    "book_id": 481,
+    "book_title": "우리 아기 오감발달 동물 오케스트라의 베토벤 사운드북",
+    "related_book_ids": [
+      72,
+      611,
+      355
+    ]
+  },
+  {
+    "book_id": 482,
+    "book_title": "스즈키 바이올린 교본 1 - 개정판",
+    "related_book_ids": [
+      806,
+      588,
+      646
+    ]
+  },
+  {
+    "book_id": 483,
+    "book_title": "물어보기 부끄러워 묻지 못한 부동산 상식 - 기본 개념부터 세금, 전월세, 경매까지",
+    "related_book_ids": [
+      552,
+      262,
+      791
+    ]
+  },
+  {
+    "book_id": 484,
+    "book_title": "달러구트 꿈 백화점 2 - 단골손님을 찾습니다",
+    "related_book_ids": [
+      211,
+      5,
+      14
+    ]
+  },
+  {
+    "book_id": 485,
+    "book_title": "오늘 정리 - 하루 1분 쓰기로 정리 정돈 습관 만들기",
+    "related_book_ids": [
+      709,
+      693,
+      901
+    ]
+  },
+  {
+    "book_id": 486,
+    "book_title": "단다단 7",
+    "related_book_ids": [
+      461,
+      411,
+      445
+    ]
+  },
+  {
+    "book_id": 487,
+    "book_title": "악마의 계약서는 만기 되지 않는다",
+    "related_book_ids": [
+      585,
+      433,
+      756
+    ]
+  },
+  {
+    "book_id": 488,
+    "book_title": "나는 왜 사랑할수록 불안해질까",
+    "related_book_ids": [
+      849,
+      882,
+      661
+    ]
+  },
+  {
+    "book_id": 489,
+    "book_title": "폭풍의 언덕",
+    "related_book_ids": [
+      232,
+      241,
+      5
+    ]
+  },
+  {
+    "book_id": 490,
+    "book_title": "유시민의 글쓰기 특강 - 유시민의 30년 베스트셀러 영업기밀",
+    "related_book_ids": [
+      720,
+      633,
+      398
+    ]
+  },
+  {
+    "book_id": 585,
+    "book_title": "백광",
+    "related_book_ids": [
+      690,
+      620,
+      53
+    ]
+  },
+  {
+    "book_id": 491,
+    "book_title": "전지적 독자 시점 Part 1 01",
+    "related_book_ids": [
+      676,
+      181,
+      599
+    ]
+  },
+  {
+    "book_id": 492,
+    "book_title": "그리고 아무도 없었다",
+    "related_book_ids": [
+      754,
+      61,
+      367
+    ]
+  },
+  {
+    "book_id": 493,
+    "book_title": "마법소녀 은퇴합니다 (리커버)",
+    "related_book_ids": [
+      232,
+      754,
+      728
+    ]
+  },
+  {
+    "book_id": 494,
+    "book_title": "문장강화 (리커버 특별판. 양장)",
+    "related_book_ids": [
+      814,
+      873,
+      334
+    ]
+  },
+  {
+    "book_id": 495,
+    "book_title": "어떻게 말해줘야 할까 - 오은영의 현실밀착 육아회화",
+    "related_book_ids": [
+      505,
+      689,
+      620
+    ]
+  },
+  {
+    "book_id": 496,
+    "book_title": "1차원이 되고 싶어 (0차원 에디션)",
+    "related_book_ids": [
+      720,
+      13,
+      854
+    ]
+  },
+  {
+    "book_id": 497,
+    "book_title": "다산, 어른의 하루 - 날마다 새기는 다산의 인생 문장 365",
+    "related_book_ids": [
+      763,
+      37,
+      599
+    ]
+  },
+  {
+    "book_id": 498,
+    "book_title": "진짜 쓰는 프리미어 프로 영상 편집 - 유튜브 및 SNS 콘텐츠 제작을 위한 동영상 편집 실무 강의, 포토샵 + 애프터 이펙트 연동 부록 PDF 제공",
+    "related_book_ids": [
+      385,
+      770,
+      723
+    ]
+  },
+  {
+    "book_id": 499,
+    "book_title": "한강, 채식주의자 깊게 읽기",
+    "related_book_ids": [
+      932,
+      620,
+      103
+    ]
+  },
+  {
+    "book_id": 500,
+    "book_title": "자살",
+    "related_book_ids": [
+      712,
+      746,
+      933
+    ]
+  },
+  {
+    "book_id": 561,
+    "book_title": "비관하는 힘",
+    "related_book_ids": [
+      856,
+      922,
+      157
+    ]
+  },
+  {
+    "book_id": 501,
+    "book_title": "ETS 토익 정기시험 기출문제집 1000 Vol.1 Reading - 기출문제 한국 독점 출간 실전 10회분 / 문제집 + 해설집 + 무료 어플 학습지원 / 점수환산표 수록",
+    "related_book_ids": [
+      128,
+      899,
+      653
+    ]
+  },
+  {
+    "book_id": 502,
+    "book_title": "예술에 대한 여덟 가지 답변의 역사",
+    "related_book_ids": [
+      265,
+      306,
+      795
+    ]
+  },
+  {
+    "book_id": 503,
+    "book_title": "새의 선물 - 제1회 문학동네소설상 수상작, 개정판",
+    "related_book_ids": [
+      808,
+      771,
+      13
+    ]
+  },
+  {
+    "book_id": 504,
+    "book_title": "돈을 이기는 법 - 승부사 알바트로스의",
+    "related_book_ids": [
+      181,
+      62,
+      471
+    ]
+  },
+  {
+    "book_id": 505,
+    "book_title": "자존감 수업 - 하루에 하나, 나를 사랑하게 되는 자존감 회복 훈련",
+    "related_book_ids": [
+      545,
+      893,
+      495
+    ]
+  },
+  {
+    "book_id": 506,
+    "book_title": "사람은 무엇으로 사는가 (러시아 원전 번역본) - 톨스토이 단편선",
+    "related_book_ids": [
+      811,
+      286,
+      239
+    ]
+  },
+  {
+    "book_id": 507,
+    "book_title": "시선으로부터,",
+    "related_book_ids": [
+      41,
+      595,
+      215
+    ]
+  },
+  {
+    "book_id": 508,
+    "book_title": "고객의 80%는 비싸도 구매한다",
+    "related_book_ids": [
+      627,
+      523,
+      271
+    ]
+  },
+  {
+    "book_id": 509,
+    "book_title": "슬램덩크 신장재편판 1 - 강백호",
+    "related_book_ids": [
+      640,
+      613,
+      607
+    ]
+  },
+  {
+    "book_id": 510,
+    "book_title": "칩 워, 누가 반도체 전쟁의 최후 승자가 될 것인가",
+    "related_book_ids": [
+      96,
+      425,
+      569
+    ]
+  },
+  {
+    "book_id": 511,
+    "book_title": "상실의 시대",
+    "related_book_ids": [
+      216,
+      648,
+      103
+    ]
+  },
+  {
+    "book_id": 512,
+    "book_title": "해리엇 - 175년 동안 바다를 품고 살았던 갈라파고스 거북 이야기",
+    "related_book_ids": [
+      360,
+      305,
+      675
+    ]
+  },
+  {
+    "book_id": 513,
+    "book_title": "키득키득 사운드북 : 내 방귀는 안 그래!",
+    "related_book_ids": [
+      24,
+      385,
+      69
+    ]
+  },
+  {
+    "book_id": 514,
+    "book_title": "한국고전소설 45 - 중고생이 꼭 읽어야 할",
+    "related_book_ids": [
+      681,
+      549,
+      341
+    ]
+  },
+  {
+    "book_id": 515,
+    "book_title": "라오어의 미국주식 밸류 리밸런싱 - 레버리지가 아니면 평범한 인생을 바꿀 수 없다",
+    "related_book_ids": [
+      552,
+      114,
+      600
+    ]
+  },
+  {
+    "book_id": 516,
+    "book_title": "엄마 도감 (리커버)",
+    "related_book_ids": [
+      457,
+      871,
+      495
+    ]
+  },
+  {
+    "book_id": 518,
+    "book_title": "일본어 상용한자 무작정 따라하기 2 - 일본어 한자 읽기, 암기에도 우선순위가 있다!",
+    "related_book_ids": [
+      84,
+      134,
+      591
+    ]
+  },
+  {
+    "book_id": 519,
+    "book_title": "멀고도 가까운 - 읽기, 쓰기, 고독, 연대에 관하여",
+    "related_book_ids": [
+      8,
+      786,
+      661
+    ]
+  },
+  {
+    "book_id": 520,
+    "book_title": "선량한 차별주의자",
+    "related_book_ids": [
+      456,
+      386,
+      676
+    ]
+  },
+  {
+    "book_id": 521,
+    "book_title": "혼자 공부하는 머신러닝 + 딥러닝 - 1:1 과외하듯 배우는 인공지능 자습서",
+    "related_book_ids": [
+      313,
+      195,
+      395
+    ]
+  },
+  {
+    "book_id": 527,
+    "book_title": "삶의 격 - 존엄성을 지키며 살아가는 방법",
+    "related_book_ids": [
+      448,
+      453,
+      383
+    ]
+  },
+  {
+    "book_id": 522,
+    "book_title": "세종대왕을 찾아라",
+    "related_book_ids": [
+      280,
+      584,
+      231
+    ]
+  },
+  {
+    "book_id": 523,
+    "book_title": "무조건 팔리는 심리 마케팅 기술 100 - 단번에 매출을 200% 올리는 설득의 심리학",
+    "related_book_ids": [
+      508,
+      269,
+      271
+    ]
+  },
+  {
+    "book_id": 524,
+    "book_title": "칼 융 레드 북",
+    "related_book_ids": [
+      916,
+      813,
+      383
+    ]
+  },
+  {
+    "book_id": 525,
+    "book_title": "유현준의 인문 건축 기행",
+    "related_book_ids": [
+      604,
+      502,
+      479
+    ]
+  },
+  {
+    "book_id": 526,
+    "book_title": "그리스인 조르바",
+    "related_book_ids": [
+      795,
+      421,
+      447
+    ]
+  },
+  {
+    "book_id": 528,
+    "book_title": "재미만점 두뇌계발 스도쿠 퍼즐 2 : 고급/특급 (스프링북)",
+    "related_book_ids": [
+      339,
+      741,
+      654
+    ]
+  },
+  {
+    "book_id": 529,
+    "book_title": "체호프 단편선",
+    "related_book_ids": [
+      185,
+      604,
+      813
+    ]
+  },
+  {
+    "book_id": 530,
+    "book_title": "스프링북 어린이 스도쿠 1 - 초급.중급",
+    "related_book_ids": [
+      731,
+      741,
+      654
+    ]
+  },
+  {
+    "book_id": 531,
+    "book_title": "시간은 흐르지 않는다 - 우리의 직관 너머 물리학의 눈으로 본 우주의 시간",
+    "related_book_ids": [
+      683,
+      372,
+      860
+    ]
+  },
+  {
+    "book_id": 532,
+    "book_title": "이웃집 백만장자 (골드 리커버 에디션) - 푼돈이 모여 어마어마한 재산이 되는 생생한 비법",
+    "related_book_ids": [
+      400,
+      868,
+      902
+    ]
+  },
+  {
+    "book_id": 533,
+    "book_title": "7년의 밤",
+    "related_book_ids": [
+      10,
+      142,
+      146
+    ]
+  },
+  {
+    "book_id": 534,
+    "book_title": "영어 회화의 결정적 단어들",
+    "related_book_ids": [
+      368,
+      459,
+      374
+    ]
+  },
+  {
+    "book_id": 535,
+    "book_title": "영어 필사 100일의 기적 - 하루 10분, 작은 습관이 만드는 커다란 변화",
+    "related_book_ids": [
+      177,
+      274,
+      409
+    ]
+  },
+  {
+    "book_id": 536,
+    "book_title": "프랑켄슈타인 (무선)",
+    "related_book_ids": [
+      304,
+      813,
+      247
+    ]
+  },
+  {
+    "book_id": 537,
+    "book_title": "호모 데우스 - 미래의 역사",
+    "related_book_ids": [
+      595,
+      507,
+      215
+    ]
+  },
+  {
+    "book_id": 538,
+    "book_title": "읽으면서 바로 써먹는 어린이 세계사 퀴즈 1",
+    "related_book_ids": [
+      731,
+      549,
+      654
+    ]
+  },
+  {
+    "book_id": 539,
+    "book_title": "한 권으로 끝내는 중학 영문법 마스터 : 나의 영어 성적 상위 1% 만들기 - 고품질 유튜브 저자 직강 무료 제공",
+    "related_book_ids": [
+      408,
+      681,
+      693
+    ]
+  },
+  {
+    "book_id": 540,
+    "book_title": "감정에 이름을 붙여 봐",
+    "related_book_ids": [
+      416,
+      765,
+      758
+    ]
+  },
+  {
+    "book_id": 541,
+    "book_title": "제시 리버모어의 주식투자 바이블 - 월스트리트의 전설, 추세매매의 아버지, 정식 계약 완역판",
+    "related_book_ids": [
+      632,
+      235,
+      692
+    ]
+  },
+  {
+    "book_id": 542,
+    "book_title": "신곡 세트 - 전3권",
+    "related_book_ids": [
+      947,
+      268,
+      343
+    ]
+  },
+  {
+    "book_id": 555,
+    "book_title": "살육에 이르는 병",
+    "related_book_ids": [
+      433,
+      754,
+      300
+    ]
+  },
+  {
+    "book_id": 543,
+    "book_title": "행운이 너에게 다가오는 중",
+    "related_book_ids": [
+      244,
+      661,
+      711
+    ]
+  },
+  {
+    "book_id": 544,
+    "book_title": "겨울 이불",
+    "related_book_ids": [
+      570,
+      869,
+      15
+    ]
+  },
+  {
+    "book_id": 545,
+    "book_title": "알아차림에 대한 알아차림 - 『내면소통』김주환 교수의 번역으로 만나는 알아차림 명상",
+    "related_book_ids": [
+      353,
+      873,
+      495
+    ]
+  },
+  {
+    "book_id": 546,
+    "book_title": "패배 히로인이 너무 많아! 1 - Novel Engine",
+    "related_book_ids": [
+      728,
+      547,
+      651
+    ]
+  },
+  {
+    "book_id": 547,
+    "book_title": "패배 히로인이 너무 많아! 2 - Novel Engine",
+    "related_book_ids": [
+      546,
+      837,
+      511
+    ]
+  },
+  {
+    "book_id": 548,
+    "book_title": "해커스 토플 라이팅 인터미디엇 (Hackers TOEFL Writing Intermediate) : 2023년 7월 26일 개정 시험 완벽 반영, 개정증보판 - iBT 라이팅 실전모의고사, 통합형 문제학습 MP3, 토플 중급 라이팅 4주완성",
+    "related_book_ids": [
+      571,
+      301,
+      270
+    ]
+  },
+  {
+    "book_id": 577,
+    "book_title": "지구에서 한아뿐",
+    "related_book_ids": [
+      433,
+      83,
+      4
+    ]
+  },
+  {
+    "book_id": 549,
+    "book_title": "읽으면서 바로 써먹는 어린이 사자성어",
+    "related_book_ids": [
+      272,
+      874,
+      731
+    ]
+  },
+  {
+    "book_id": 550,
+    "book_title": "히카루가 죽은 여름 1 - SL Comic",
+    "related_book_ids": [
+      625,
+      163,
+      511
+    ]
+  },
+  {
+    "book_id": 551,
+    "book_title": "환자 혁명 - 약과 병원에 의존하던 건강 주권을 회복하라",
+    "related_book_ids": [
+      266,
+      941,
+      695
+    ]
+  },
+  {
+    "book_id": 552,
+    "book_title": "모든 주식을 소유하라 - 시장과 시간이 검증한 투자의 원칙",
+    "related_book_ids": [
+      515,
+      251,
+      632
+    ]
+  },
+  {
+    "book_id": 553,
+    "book_title": "우리아이 꼭 지켜줄게 - 차별금지법과 인권교육, 표적이 된 당신 아이 동성애와 성전환, 실상을 파헤친다",
+    "related_book_ids": [
+      700,
+      749,
+      374
+    ]
+  },
+  {
+    "book_id": 554,
+    "book_title": "세계 역사 이야기 영어리딩훈련 고대 1 (읽기용 원문 + 해설 + 오리지널 음원)",
+    "related_book_ids": [
+      753,
+      378,
+      874
+    ]
+  },
+  {
+    "book_id": 556,
+    "book_title": "나니아 연대기 (리커버 특별판)",
+    "related_book_ids": [
+      10,
+      5,
+      14
+    ]
+  },
+  {
+    "book_id": 557,
+    "book_title": "신곡 - 지옥.연옥.천국 귀스타브 도레 삽화 수록본",
+    "related_book_ids": [
+      280,
+      584,
+      227
+    ]
+  },
+  {
+    "book_id": 558,
+    "book_title": "헌터x헌터 HunterXHunter 신장판 34",
+    "related_book_ids": [
+      660,
+      586,
+      636
+    ]
+  },
+  {
+    "book_id": 559,
+    "book_title": "갈매기의 꿈 - 완결판",
+    "related_book_ids": [
+      50,
+      517,
+      343
+    ]
+  },
+  {
+    "book_id": 560,
+    "book_title": "원더 니트 - 대바늘뜨기가 즐거워지는",
+    "related_book_ids": [
+      896,
+      20,
+      901
+    ]
+  },
+  {
+    "book_id": 562,
+    "book_title": "우울할 땐 뇌 과학 - 최신 뇌과학과 신경생물학은 우울증을 어떻게 해결하는가",
+    "related_book_ids": [
+      393,
+      356,
+      285
+    ]
+  },
+  {
+    "book_id": 563,
+    "book_title": "오십에 읽는 논어 - 굽이치는 인생을 다잡아 주는 공자의 말",
+    "related_book_ids": [
+      497,
+      878,
+      359
+    ]
+  },
+  {
+    "book_id": 564,
+    "book_title": "마음에서 빠져나와 삶 속으로 들어가라 - 새로운 수용전념치료",
+    "related_book_ids": [
+      488,
+      266,
+      285
+    ]
+  },
+  {
+    "book_id": 565,
+    "book_title": "당신도 느리게 나이 들 수 있습니다 - 나이가 들어도 몸의 시간은 젊게",
+    "related_book_ids": [
+      762,
+      172,
+      349
+    ]
+  },
+  {
+    "book_id": 566,
+    "book_title": "햄릿",
+    "related_book_ids": [
+      42,
+      603,
+      268
+    ]
+  },
+  {
+    "book_id": 567,
+    "book_title": "슬램덩크 신장재편판 2 - 풋내기 슛",
+    "related_book_ids": [
+      640,
+      613,
+      509
+    ]
+  },
+  {
+    "book_id": 568,
+    "book_title": "여름 언덕에서 배운 것",
+    "related_book_ids": [
+      849,
+      661,
+      142
+    ]
+  },
+  {
+    "book_id": 569,
+    "book_title": "Stick 스틱! (15주년 기념판) - 1초 만에 착 달라붙는 메시지, 그 안에 숨은 6가지 법칙",
+    "related_book_ids": [
+      321,
+      425,
+      359
+    ]
+  },
+  {
+    "book_id": 570,
+    "book_title": "나뭇잎을 찾으면",
+    "related_book_ids": [
+      544,
+      731,
+      413
+    ]
+  },
+  {
+    "book_id": 571,
+    "book_title": "해커스 토플 라이팅 베이직 (Hackers TOEFL Writing Basic) : 2023년 7월 26일 개정 시험 완벽 반영, 개정증보판 - iBT라이팅 실전모의고사, 통합형 문제학습 MP3, 토플 라이팅의 기본서",
+    "related_book_ids": [
+      352,
+      548,
+      301
+    ]
+  },
+  {
+    "book_id": 572,
+    "book_title": "군중심리",
+    "related_book_ids": [
+      545,
+      738,
+      623
+    ]
+  },
+  {
+    "book_id": 573,
+    "book_title": "비가 오면 열리는 상점",
+    "related_book_ids": [
+      354,
+      484,
+      53
+    ]
+  },
+  {
+    "book_id": 574,
+    "book_title": "100만 번 산 고양이",
+    "related_book_ids": [
+      602,
+      605,
+      750
+    ]
+  },
+  {
+    "book_id": 575,
+    "book_title": "포스트맨은 벨을 두번 울린다",
+    "related_book_ids": [
+      712,
+      292,
+      812
+    ]
+  },
+  {
+    "book_id": 576,
+    "book_title": "비행운",
+    "related_book_ids": [
+      793,
+      156,
+      13
+    ]
+  },
+  {
+    "book_id": 579,
+    "book_title": "브라질에 비가 내리면 스타벅스 주식을 사라 - 경제의 큰 흐름에서 기회를 잡는 매크로 투자 가이드",
+    "related_book_ids": [
+      824,
+      515,
+      431
+    ]
+  },
+  {
+    "book_id": 580,
+    "book_title": "시크릿 - 수 세기 동안 단 1%만이 알았던 부와 성공의 비밀",
+    "related_book_ids": [
+      248,
+      889,
+      215
+    ]
+  },
+  {
+    "book_id": 581,
+    "book_title": "미안해, 스이카",
+    "related_book_ids": [
+      576,
+      842,
+      728
+    ]
+  },
+  {
+    "book_id": 582,
+    "book_title": "나와 너의 365일",
+    "related_book_ids": [
+      585,
+      82,
+      869
+    ]
+  },
+  {
+    "book_id": 583,
+    "book_title": "세계 미스터리 걸작선 02 : 모래시계 외",
+    "related_book_ids": [
+      491,
+      404,
+      599
+    ]
+  },
+  {
+    "book_id": 584,
+    "book_title": "윤동주 전 시집 : 하늘과 바람과 별과 시 - 서거 77주년, 탄생 105주년 기념 '하늘과 바람과 별과 시' 뉴 에디션",
+    "related_book_ids": [
+      280,
+      227,
+      231
+    ]
+  },
+  {
+    "book_id": 586,
+    "book_title": "헌터x헌터 HunterXHunter 신장판 36",
+    "related_book_ids": [
+      660,
+      636,
+      558
+    ]
+  },
+  {
+    "book_id": 587,
+    "book_title": "소돔의 120일",
+    "related_book_ids": [
+      234,
+      659,
+      197
+    ]
+  },
+  {
+    "book_id": 588,
+    "book_title": "어린이가 알아야 할 오케스트라 사운드북",
+    "related_book_ids": [
+      72,
+      481,
+      355
+    ]
+  },
+  {
+    "book_id": 589,
+    "book_title": "던전밥 12 - S코믹스",
+    "related_book_ids": [
+      634,
+      662,
+      630
+    ]
+  },
+  {
+    "book_id": 590,
+    "book_title": "반짝반짝 소리 나는 긴급 출동! 사운드북",
+    "related_book_ids": [
+      242,
+      379,
+      670
+    ]
+  },
+  {
+    "book_id": 591,
+    "book_title": "JLPT 보카 한권으로 끝내기 - 개정판",
+    "related_book_ids": [
+      134,
+      164,
+      86
+    ]
+  },
+  {
+    "book_id": 592,
+    "book_title": "밤의 사색 - 헤르만 헤세 산문집",
+    "related_book_ids": [
+      353,
+      614,
+      142
+    ]
+  },
+  {
+    "book_id": 593,
+    "book_title": "엄마, 나는 자라고 있어요 - 0~20개월까지, 꼬마 아인슈타인을 위한 두뇌육아법, 개정증보판",
+    "related_book_ids": [
+      876,
+      516,
+      773
+    ]
+  },
+  {
+    "book_id": 594,
+    "book_title": "ETS 토익 단기 공략 550+ LC + RC - 출제기관 독점제공 / 기출 문항으로 보강된 단기완성 시리즈 / 본책 + 해설집 + 실전 모의고사 1회분 + 무료 MP3 파일",
+    "related_book_ids": [
+      217,
+      98,
+      29
+    ]
+  },
+  {
+    "book_id": 595,
+    "book_title": "잘했고 잘하고 있고 잘 될 것이다 (50만 부 기념 전면 개정판)",
+    "related_book_ids": [
+      537,
+      793,
+      215
+    ]
+  },
+  {
+    "book_id": 596,
+    "book_title": "펠로폰네소스 전쟁사",
+    "related_book_ids": [
+      234,
+      310,
+      526
+    ]
+  },
+  {
+    "book_id": 597,
+    "book_title": "운을 부르는 부자의 본능 - 경제적 자유를 꿈꾸는 사람들의 필수 교양",
+    "related_book_ids": [
+      868,
+      532,
+      47
+    ]
+  },
+  {
+    "book_id": 598,
+    "book_title": "한국을 빛낸 100명의 위인들 - 개정판",
+    "related_book_ids": [
+      216,
+      867,
+      387
+    ]
+  },
+  {
+    "book_id": 599,
+    "book_title": "전지적 독자 시점 Part 1 02",
+    "related_book_ids": [
+      491,
+      676,
+      181
+    ]
+  },
+  {
+    "book_id": 600,
+    "book_title": "나의 첫 ETF 포트폴리오 - 게으르게 투자하고 확실하게 수익 내는",
+    "related_book_ids": [
+      515,
+      772,
+      791
+    ]
+  },
+  {
+    "book_id": 601,
+    "book_title": "패배 히로인이 너무 많아! 3 - Novel Engine",
+    "related_book_ids": [
+      674,
+      546,
+      156
+    ]
+  },
+  {
+    "book_id": 602,
+    "book_title": "야옹이 수영 교실 (리커버 에디션)",
+    "related_book_ids": [
+      419,
+      605,
+      750
+    ]
+  },
+  {
+    "book_id": 603,
+    "book_title": "셰익스피어 4대 비극 세트 : 햄릿.오셀로.맥베스.리어 왕 - 전4권",
+    "related_book_ids": [
+      456,
+      620,
+      583
+    ]
+  },
+  {
+    "book_id": 604,
+    "book_title": "픽션들",
+    "related_book_ids": [
+      464,
+      529,
+      746
+    ]
+  },
+  {
+    "book_id": 605,
+    "book_title": "고양이 해결사 깜냥 2 - 최고의 요리에 도전하라!",
+    "related_book_ids": [
+      792,
+      419,
+      750
+    ]
+  },
+  {
+    "book_id": 606,
+    "book_title": "눈 한 송이가 녹는 동안",
+    "related_book_ids": [
+      440,
+      420,
+      37
+    ]
+  },
+  {
+    "book_id": 607,
+    "book_title": "슬램덩크 신장재편판 4 - 첫 시합 능남전 2",
+    "related_book_ids": [
+      613,
+      612,
+      509
+    ]
+  },
+  {
+    "book_id": 608,
+    "book_title": "슬램덩크 신장재편판 20 - 북산vs.산왕공고 5 / 완결",
+    "related_book_ids": [
+      672,
+      669,
+      638
+    ]
+  },
+  {
+    "book_id": 609,
+    "book_title": "피프티 피플 (리마스터판)",
+    "related_book_ids": [
+      204,
+      132,
+      343
+    ]
+  },
+  {
+    "book_id": 610,
+    "book_title": "패배의 신호",
+    "related_book_ids": [
+      10,
+      5,
+      14
+    ]
+  },
+  {
+    "book_id": 621,
+    "book_title": "식탁 위의 세계사",
+    "related_book_ids": [
+      605,
+      549,
+      158
+    ]
+  },
+  {
+    "book_id": 611,
+    "book_title": "우리 아기 오감발달 동물 오케스트라의 차이콥스키 사운드북",
+    "related_book_ids": [
+      72,
+      481,
+      355
+    ]
+  },
+  {
+    "book_id": 612,
+    "book_title": "슬램덩크 신장재편판 3 - 첫 시합 능남전 1",
+    "related_book_ids": [
+      509,
+      181,
+      607
+    ]
+  },
+  {
+    "book_id": 613,
+    "book_title": "슬램덩크 신장재편판 5 - 송태섭과 정대만",
+    "related_book_ids": [
+      640,
+      509,
+      607
+    ]
+  },
+  {
+    "book_id": 614,
+    "book_title": "마음챙김의 시",
+    "related_book_ids": [
+      592,
+      849,
+      661
+    ]
+  },
+  {
+    "book_id": 615,
+    "book_title": "세금 내는 아이들 - 어린이를 위한 경제 교육 동화",
+    "related_book_ids": [
+      817,
+      549,
+      831
+    ]
+  },
+  {
+    "book_id": 655,
+    "book_title": "정재승의 과학 콘서트 (개정증보 2판) - 복잡한 세상 명쾌한 과학",
+    "related_book_ids": [
+      440,
+      331,
+      94
+    ]
+  },
+  {
+    "book_id": 616,
+    "book_title": "계속 가보겠습니다 - 내부 고발 검사, 10년의 기록과 다짐",
+    "related_book_ids": [
+      263,
+      726,
+      191
+    ]
+  },
+  {
+    "book_id": 617,
+    "book_title": "이 책은 돈 버는 법에 관한 이야기 - 서민갑부 고명환의 생각법, 독서법, 장사법",
+    "related_book_ids": [
+      784,
+      90,
+      211
+    ]
+  },
+  {
+    "book_id": 618,
+    "book_title": "고양이 해결사 깜냥 5 - 편의점을 환하게 밝혀라!",
+    "related_book_ids": [
+      419,
+      605,
+      750
+    ]
+  },
+  {
+    "book_id": 619,
+    "book_title": "몬스터 차일드 (리커버) - 제1회 사계절어린이문학상 대상 수상작",
+    "related_book_ids": [
+      681,
+      773,
+      831
+    ]
+  },
+  {
+    "book_id": 620,
+    "book_title": "책과 노니는 집 - 제9회 문학동네어린이문학상 대상 수상작",
+    "related_book_ids": [
+      456,
+      763,
+      404
+    ]
+  },
+  {
+    "book_id": 622,
+    "book_title": "한눈에 보는 서양철학사 연대표",
+    "related_book_ids": [
+      834,
+      468,
+      604
+    ]
+  },
+  {
+    "book_id": 623,
+    "book_title": "당신이 옳다 - 정혜신의 적정심리학",
+    "related_book_ids": [
+      545,
+      738,
+      873
+    ]
+  },
+  {
+    "book_id": 624,
+    "book_title": "혼자 공부하는 C 언어 - 1:1 과외하듯 배우는 프로그래밍 자습서, 개정판",
+    "related_book_ids": [
+      313,
+      395,
+      365
+    ]
+  },
+  {
+    "book_id": 625,
+    "book_title": "히카루가 죽은 여름 2 - SL Comic",
+    "related_book_ids": [
+      550,
+      190,
+      511
+    ]
+  },
+  {
+    "book_id": 626,
+    "book_title": "그대들, 어떻게 살 것인가",
+    "related_book_ids": [
+      305,
+      178,
+      444
+    ]
+  },
+  {
+    "book_id": 753,
+    "book_title": "한 번에 끝내는 중학 세계사 1~2 세트 - 전2권",
+    "related_book_ids": [
+      554,
+      549,
+      874
+    ]
+  },
+  {
+    "book_id": 627,
+    "book_title": "라오어의 미국주식 무한매수법 - 레버리지가 아니면 평범한 인생을 바꿀 수 없다",
+    "related_book_ids": [
+      114,
+      757,
+      47
+    ]
+  },
+  {
+    "book_id": 628,
+    "book_title": "걷는 독서",
+    "related_book_ids": [
+      838,
+      4,
+      614
+    ]
+  },
+  {
+    "book_id": 629,
+    "book_title": "일의 격 - 성장하는 나, 성공하는 조직, 성숙한 삶",
+    "related_book_ids": [
+      661,
+      798,
+      359
+    ]
+  },
+  {
+    "book_id": 630,
+    "book_title": "던전밥 11 - S코믹스",
+    "related_book_ids": [
+      589,
+      317,
+      326
+    ]
+  },
+  {
+    "book_id": 631,
+    "book_title": "너무나 많은 여름이",
+    "related_book_ids": [
+      392,
+      169,
+      793
+    ]
+  },
+  {
+    "book_id": 632,
+    "book_title": "투자에 대한 생각 - 월스트리트가 가장 신뢰한 하워드 막스의 20가지 투자 철학",
+    "related_book_ids": [
+      552,
+      17,
+      541
+    ]
+  },
+  {
+    "book_id": 754,
+    "book_title": "전지적 독자 시점 Part 1 07",
+    "related_book_ids": [
+      9,
+      53,
+      686
+    ]
+  },
+  {
+    "book_id": 633,
+    "book_title": "전지적 독자 시점 Part 1 03",
+    "related_book_ids": [
+      720,
+      770,
+      766
+    ]
+  },
+  {
+    "book_id": 634,
+    "book_title": "원피스 105 - 루피의 꿈",
+    "related_book_ids": [
+      16,
+      756,
+      589
+    ]
+  },
+  {
+    "book_id": 635,
+    "book_title": "해커스 토플 리스닝 베이직 (Hackers TOEFL Listening Basic)",
+    "related_book_ids": [
+      548,
+      437,
+      270
+    ]
+  },
+  {
+    "book_id": 636,
+    "book_title": "헌터x헌터 HunterXHunter 신장판 35",
+    "related_book_ids": [
+      586,
+      660,
+      558
+    ]
+  },
+  {
+    "book_id": 637,
+    "book_title": "13.67 - 개정판",
+    "related_book_ids": [
+      232,
+      27,
+      238
+    ]
+  },
+  {
+    "book_id": 638,
+    "book_title": "슬램덩크 신장재편판 18 - 북산vs.산왕공고 3",
+    "related_book_ids": [
+      672,
+      669,
+      678
+    ]
+  },
+  {
+    "book_id": 639,
+    "book_title": "안밥모 베스트 유아식 - 밥태기 극복하는 네이버 대표카페 안밥모 히트 레시피 194",
+    "related_book_ids": [
+      105,
+      203,
+      773
+    ]
+  },
+  {
+    "book_id": 640,
+    "book_title": "슬램덩크 신장재편판 6 - 북산 문제아 군단",
+    "related_book_ids": [
+      613,
+      509,
+      607
+    ]
+  },
+  {
+    "book_id": 641,
+    "book_title": "슬램덩크 신장재편판 9 - 북산 vs. 해남대 부속 2",
+    "related_book_ids": [
+      649,
+      668,
+      703
+    ]
+  },
+  {
+    "book_id": 642,
+    "book_title": "떨림과 울림 - 물리학자 김상욱이 바라본 우주와 세계 그리고 우리",
+    "related_book_ids": [
+      442,
+      372,
+      926
+    ]
+  },
+  {
+    "book_id": 643,
+    "book_title": "엔드 오브 타임 - 브라이언 그린이 말하는 세상의 시작과 진화, 그리고 끝",
+    "related_book_ids": [
+      863,
+      342,
+      159
+    ]
+  },
+  {
+    "book_id": 644,
+    "book_title": "네가 마지막으로 남긴 노래",
+    "related_book_ids": [
+      163,
+      686,
+      887
+    ]
+  },
+  {
+    "book_id": 645,
+    "book_title": "해커스 토익 실전 1000제 3 RC Reading(리딩) 문제집 - 최신기출유형 100% 반영 [무료 Part 5&6 해설ㅣ온라인 실전모의고사 제공]",
+    "related_book_ids": [
+      802,
+      365,
+      30
+    ]
+  },
+  {
+    "book_id": 646,
+    "book_title": "스즈키 바이올린 교본 3 - 개정판",
+    "related_book_ids": [
+      482,
+      588,
+      806
+    ]
+  },
+  {
+    "book_id": 647,
+    "book_title": "나는 고양이로소이다",
+    "related_book_ids": [
+      576,
+      50,
+      814
+    ]
+  },
+  {
+    "book_id": 648,
+    "book_title": "마음",
+    "related_book_ids": [
+      122,
+      499,
+      103
+    ]
+  },
+  {
+    "book_id": 649,
+    "book_title": "슬램덩크 신장재편판 8 - 북산 vs. 해남대 부속 1",
+    "related_book_ids": [
+      641,
+      668,
+      703
+    ]
+  },
+  {
+    "book_id": 670,
+    "book_title": "우리 아기 오감발달 소곤소곤 한밤중 사운드북",
+    "related_book_ids": [
+      24,
+      242,
+      759
+    ]
+  },
+  {
+    "book_id": 650,
+    "book_title": "숨",
+    "related_book_ids": [
+      891,
+      60,
+      303
+    ]
+  },
+  {
+    "book_id": 651,
+    "book_title": "똥볶이 할멈 1 - 아이들을 지켜라!",
+    "related_book_ids": [
+      272,
+      739,
+      728
+    ]
+  },
+  {
+    "book_id": 652,
+    "book_title": "구덩이",
+    "related_book_ids": [
+      880,
+      244,
+      61
+    ]
+  },
+  {
+    "book_id": 653,
+    "book_title": "ETS 토익 정기시험 기출문제집 1000 Vol.1 Listening - 출제기관 독점제공 / 실전 10회분 / 문제집 + 해설집 + 정기시험 성우 MP3 무료제공 + 무료 어플 학습 지원 / 점수환산표 수록",
+    "related_book_ids": [
+      264,
+      281,
+      501
+    ]
+  },
+  {
+    "book_id": 654,
+    "book_title": "읽으면서 바로 써먹는 어린이 수수께끼",
+    "related_book_ids": [
+      272,
+      731,
+      549
+    ]
+  },
+  {
+    "book_id": 656,
+    "book_title": "화성에서 온 남자 금성에서 온 여자 (100만 부 특별 리커버판)",
+    "related_book_ids": [
+      488,
+      702,
+      54
+    ]
+  },
+  {
+    "book_id": 657,
+    "book_title": "위저드 베이커리 - 제2회 창비 청소년문학상 수상작",
+    "related_book_ids": [
+      842,
+      651,
+      675
+    ]
+  },
+  {
+    "book_id": 658,
+    "book_title": "쥐 The Complete Maus 합본",
+    "related_book_ids": [
+      586,
+      636,
+      389
+    ]
+  },
+  {
+    "book_id": 659,
+    "book_title": "처음 읽는 그리스 로마 신화 1 - 신들의 세계, 올림포스",
+    "related_book_ids": [
+      835,
+      732,
+      917
+    ]
+  },
+  {
+    "book_id": 660,
+    "book_title": "헌터x헌터 HunterXHunter 신장판 33",
+    "related_book_ids": [
+      586,
+      558,
+      927
+    ]
+  },
+  {
+    "book_id": 821,
+    "book_title": "이토록 친밀한 배신자",
+    "related_book_ids": [
+      64,
+      555,
+      190
+    ]
+  },
+  {
+    "book_id": 661,
+    "book_title": "좋은 일이 오려고 그러나 보다 (10만부 기념 행운 에디션)",
+    "related_book_ids": [
+      488,
+      849,
+      614
+    ]
+  },
+  {
+    "book_id": 662,
+    "book_title": "던전밥 10 - S코믹스",
+    "related_book_ids": [
+      698,
+      851,
+      866
+    ]
+  },
+  {
+    "book_id": 663,
+    "book_title": "남아 있는 나날",
+    "related_book_ids": [
+      249,
+      179,
+      465
+    ]
+  },
+  {
+    "book_id": 664,
+    "book_title": "쉽게 풀어 쓴 MMPI-2/A - 해석상담 및 심리상담에서의 적용",
+    "related_book_ids": [
+      488,
+      266,
+      564
+    ]
+  },
+  {
+    "book_id": 671,
+    "book_title": "지텔프코리아 공식 지정 해커스 지텔프(G-TELP) 기출 보카 - 최신개정판 / 최신 기출 어휘 수록 / 지텔프 출제 포인트 / 공무원·경찰·군무원·세무사·노무사·감정평가사·회계사 영어시험 대비",
+    "related_book_ids": [
+      892,
+      676,
+      725
+    ]
+  },
+  {
+    "book_id": 665,
+    "book_title": "이끼숲",
+    "related_book_ids": [
+      136,
+      756,
+      614
+    ]
+  },
+  {
+    "book_id": 666,
+    "book_title": "다섯째 아이",
+    "related_book_ids": [
+      872,
+      457,
+      773
+    ]
+  },
+  {
+    "book_id": 667,
+    "book_title": "슬램덩크 신장재편판 7 - 북산 vs. 상양",
+    "related_book_ids": [
+      649,
+      668,
+      703
+    ]
+  },
+  {
+    "book_id": 668,
+    "book_title": "슬램덩크 신장재편판 11 - 북산 vs 능남 1",
+    "related_book_ids": [
+      641,
+      649,
+      703
+    ]
+  },
+  {
+    "book_id": 669,
+    "book_title": "슬램덩크 신장재편판 19 - 북산vs.산왕공고 4",
+    "related_book_ids": [
+      672,
+      678,
+      638
+    ]
+  },
+  {
+    "book_id": 837,
+    "book_title": "주술회전 21 - 도쿄 제2콜로니 -호운-",
+    "related_book_ids": [
+      920,
+      730,
+      183
+    ]
+  },
+  {
+    "book_id": 672,
+    "book_title": "슬램덩크 신장재편판 16 - 북산vs.산왕공고 1",
+    "related_book_ids": [
+      678,
+      669,
+      638
+    ]
+  },
+  {
+    "book_id": 673,
+    "book_title": "나의 이브 생 로랑에게",
+    "related_book_ids": [
+      944,
+      5,
+      343
+    ]
+  },
+  {
+    "book_id": 674,
+    "book_title": "각각의 계절",
+    "related_book_ids": [
+      144,
+      496,
+      13
+    ]
+  },
+  {
+    "book_id": 675,
+    "book_title": "나의 라임 오렌지나무",
+    "related_book_ids": [
+      232,
+      426,
+      728
+    ]
+  },
+  {
+    "book_id": 676,
+    "book_title": "원미동 사람들",
+    "related_book_ids": [
+      584,
+      181,
+      599
+    ]
+  },
+  {
+    "book_id": 698,
+    "book_title": "던전밥 9 - S코믹스",
+    "related_book_ids": [
+      826,
+      589,
+      662
+    ]
+  },
+  {
+    "book_id": 677,
+    "book_title": "슬램덩크 신장재편판 10 - 해남대 부속 vs. 능남",
+    "related_book_ids": [
+      641,
+      668,
+      703
+    ]
+  },
+  {
+    "book_id": 678,
+    "book_title": "슬램덩크 신장재편판 17 - 북산vs.산왕공고 2",
+    "related_book_ids": [
+      672,
+      669,
+      638
+    ]
+  },
+  {
+    "book_id": 679,
+    "book_title": "봄눈",
+    "related_book_ids": [
+      392,
+      808,
+      5
+    ]
+  },
+  {
+    "book_id": 680,
+    "book_title": "거의 모든 행동 표현의 일본어",
+    "related_book_ids": [
+      213,
+      73,
+      21
+    ]
+  },
+  {
+    "book_id": 681,
+    "book_title": "읽으면서 바로 써먹는 어린이 급수 한자 : 6·7·8급",
+    "related_book_ids": [
+      514,
+      84,
+      549
+    ]
+  },
+  {
+    "book_id": 682,
+    "book_title": "슬램덩크 신장재편판 15 - 북산 전국대회 데뷔!",
+    "related_book_ids": [
+      608,
+      638,
+      672
+    ]
+  },
+  {
+    "book_id": 683,
+    "book_title": "당신을 기다리고 있어",
+    "related_book_ids": [
+      136,
+      169,
+      220
+    ]
+  },
+  {
+    "book_id": 684,
+    "book_title": "사이토 히토리의 1퍼센트 부자의 법칙 - 반드시 성공하는 일천 번의 법칙",
+    "related_book_ids": [
+      532,
+      902,
+      47
+    ]
+  },
+  {
+    "book_id": 685,
+    "book_title": "위대한 기업에 투자하라",
+    "related_book_ids": [
+      552,
+      251,
+      541
+    ]
+  },
+  {
+    "book_id": 686,
+    "book_title": "내가 죽으면 장례식에 누가 와줄까 (너나들이 리커버 에디션)",
+    "related_book_ids": [
+      216,
+      851,
+      140
+    ]
+  },
+  {
+    "book_id": 687,
+    "book_title": "부분과 전체 - 개정증보판",
+    "related_book_ids": [
+      468,
+      221,
+      310
+    ]
+  },
+  {
+    "book_id": 688,
+    "book_title": "만엔 원년의 풋볼 (무선)",
+    "related_book_ids": [
+      808,
+      795,
+      13
+    ]
+  },
+  {
+    "book_id": 689,
+    "book_title": "하루 10분 또박또박 예쁜 글씨 : 초등 고학년용 - 악필을 교정하면 성적이 올라간다!",
+    "related_book_ids": [
+      620,
+      341,
+      901
+    ]
+  },
+  {
+    "book_id": 690,
+    "book_title": "재와 물거품",
+    "related_book_ids": [
+      280,
+      763,
+      456
+    ]
+  },
+  {
+    "book_id": 691,
+    "book_title": "프란츠 카프카 (서거 100주기 특별판)",
+    "related_book_ids": [
+      185,
+      449,
+      529
+    ]
+  },
+  {
+    "book_id": 692,
+    "book_title": "시장의 마법사들 - 최고의 트레이더들과 나눈 대화",
+    "related_book_ids": [
+      912,
+      541,
+      262
+    ]
+  },
+  {
+    "book_id": 693,
+    "book_title": "나도 손글씨 바르게 쓰면 소원이 없겠네 - 악필 교정부터 어른스러운 펜글씨까지 4주 완성 한글 정자체 연습법",
+    "related_book_ids": [
+      689,
+      74,
+      79
+    ]
+  },
+  {
+    "book_id": 694,
+    "book_title": "우리 아기 오감발달 신비한 야생동물 사운드북",
+    "related_book_ids": [
+      24,
+      379,
+      759
+    ]
+  },
+  {
+    "book_id": 695,
+    "book_title": "열방약국 유방암 상담소",
+    "related_book_ids": [
+      266,
+      564,
+      551
+    ]
+  },
+  {
+    "book_id": 696,
+    "book_title": "슬램덩크 신장재편판 13 - 북산 vs 능남 3",
+    "related_book_ids": [
+      641,
+      668,
+      703
+    ]
+  },
+  {
+    "book_id": 697,
+    "book_title": "감정의 발견 - 예일대 감성 지능 센터장 마크 브래킷 교수의 감정 수업",
+    "related_book_ids": [
+      856,
+      212,
+      269
+    ]
+  },
+  {
+    "book_id": 699,
+    "book_title": "대중의 반역",
+    "related_book_ids": [
+      468,
+      572,
+      604
+    ]
+  },
+  {
+    "book_id": 700,
+    "book_title": "아픔이 길이 되려면 - 정의로운 건강을 찾아 질병의 사회적 책임을 묻다",
+    "related_book_ids": [
+      738,
+      884,
+      623
+    ]
+  },
+  {
+    "book_id": 701,
+    "book_title": "홈·브런치",
+    "related_book_ids": [
+      120,
+      748,
+      158
+    ]
+  },
+  {
+    "book_id": 702,
+    "book_title": "아내를 모자로 착각한 남자",
+    "related_book_ids": [
+      947,
+      812,
+      6
+    ]
+  },
+  {
+    "book_id": 703,
+    "book_title": "슬램덩크 신장재편판 12 - 북산 vs 능남 2",
+    "related_book_ids": [
+      696,
+      641,
+      668
+    ]
+  },
+  {
+    "book_id": 704,
+    "book_title": "이끼와 함께 - 작지만 우아한 식물, 이끼가 전하는 지혜",
+    "related_book_ids": [
+      545,
+      665,
+      873
+    ]
+  },
+  {
+    "book_id": 705,
+    "book_title": "동물들처럼 - 진화생물학으로 밝혀내는 늙지 않음의 과학",
+    "related_book_ids": [
+      930,
+      441,
+      202
+    ]
+  },
+  {
+    "book_id": 706,
+    "book_title": "모 이야기 - 숲속 모험, 2024 볼로냐 라가치상 오페라 프리마 스페셜 멘션",
+    "related_book_ids": [
+      792,
+      694,
+      302
+    ]
+  },
+  {
+    "book_id": 707,
+    "book_title": "이 시대의 사랑",
+    "related_book_ids": [
+      873,
+      690,
+      390
+    ]
+  },
+  {
+    "book_id": 708,
+    "book_title": "슬램덩크 신장재편판 14 - 슛 합숙",
+    "related_book_ids": [
+      608,
+      682,
+      667
+    ]
+  },
+  {
+    "book_id": 709,
+    "book_title": "회사에서 바로 통하는 실무 엑셀 + 파워포인트 + 워드 & 한글 - 개념은 쉽게, 기능은 빠르게, 실무활용은 바로_현장밀착형 입문서 (모든 버전 사용 가능)",
+    "related_book_ids": [
+      297,
+      195,
+      485
+    ]
+  },
+  {
+    "book_id": 710,
+    "book_title": "알파벳 따라쓰기 572 - +대표 발음기호",
+    "related_book_ids": [
+      73,
+      681,
+      84
+    ]
+  },
+  {
+    "book_id": 711,
+    "book_title": "행복한 청소부 (50만 부 기념 한정판 리커버)",
+    "related_book_ids": [
+      138,
+      429,
+      661
+    ]
+  },
+  {
+    "book_id": 712,
+    "book_title": "세일즈맨의 죽음",
+    "related_book_ids": [
+      64,
+      5,
+      774
+    ]
+  },
+  {
+    "book_id": 713,
+    "book_title": "나의 투쟁",
+    "related_book_ids": [
+      776,
+      300,
+      885
+    ]
+  },
+  {
+    "book_id": 714,
+    "book_title": "던전밥 1 - S코믹스",
+    "related_book_ids": [
+      730,
+      826,
+      837
+    ]
+  },
+  {
+    "book_id": 715,
+    "book_title": "100 인생 그림책 (리커버)",
+    "related_book_ids": [
+      717,
+      218,
+      661
+    ]
+  },
+  {
+    "book_id": 717,
+    "book_title": "마흔에 읽는 니체 - 지금 이 순간을 살기 위한 철학 수업",
+    "related_book_ids": [
+      856,
+      563,
+      359
+    ]
+  },
+  {
+    "book_id": 718,
+    "book_title": "행복의 조건 - 하버드대학교. 인간성장보고서, 그들은 어떻게 오래도록 행복했을까?",
+    "related_book_ids": [
+      930,
+      349,
+      831
+    ]
+  },
+  {
+    "book_id": 719,
+    "book_title": "진짜 기본 요리책 - 진짜 쉽~고 진짜 맛있고 진짜 정확한 기본 레시피 320개",
+    "related_book_ids": [
+      491,
+      37,
+      599
+    ]
+  },
+  {
+    "book_id": 720,
+    "book_title": "전지적 독자 시점 Part 1 04",
+    "related_book_ids": [
+      633,
+      770,
+      766
+    ]
+  },
+  {
+    "book_id": 721,
+    "book_title": "방주",
+    "related_book_ids": [
+      280,
+      584,
+      181
+    ]
+  },
+  {
+    "book_id": 722,
+    "book_title": "범도 1 - 포수의 원칙",
+    "related_book_ids": [
+      794,
+      27,
+      294
+    ]
+  },
+  {
+    "book_id": 723,
+    "book_title": "유튜브에 빠진 너에게 - 인스타그램부터 가짜 뉴스까지 Z세대를 위한 미디어 수업",
+    "related_book_ids": [
+      41,
+      842,
+      814
+    ]
+  },
+  {
+    "book_id": 724,
+    "book_title": "ETS 토익 단기공략 Part 5 6 - 본책 + 해설집 + 어플 채점서비스 / 기출문제 한국 독점출간 / 실전 모의고사 2회 수록",
+    "related_book_ids": [
+      264,
+      98,
+      653
+    ]
+  },
+  {
+    "book_id": 725,
+    "book_title": "용선생의 시끌벅적 한국사 1~10 세트 - 전10권 (스페셜판, 반양장) - 저자 현장 강의 전면 개정판",
+    "related_book_ids": [
+      584,
+      763,
+      231
+    ]
+  },
+  {
+    "book_id": 726,
+    "book_title": "무조건 통과하는 공문서 작성법",
+    "related_book_ids": [
+      883,
+      406,
+      263
+    ]
+  },
+  {
+    "book_id": 727,
+    "book_title": "사랑하라 한번도 상처받지 않은 것처럼",
+    "related_book_ids": [
+      614,
+      140,
+      308
+    ]
+  },
+  {
+    "book_id": 728,
+    "book_title": "만복이네 떡집",
+    "related_book_ids": [
+      514,
+      651,
+      675
+    ]
+  },
+  {
+    "book_id": 729,
+    "book_title": "최고의 주식 최적의 타이밍 - 개정판, 윌리엄 오닐의 실전 투자 전략",
+    "related_book_ids": [
+      114,
+      235,
+      541
+    ]
+  },
+  {
+    "book_id": 730,
+    "book_title": "노란 책 - 자크 티보라는 이름의 친구",
+    "related_book_ids": [
+      837,
+      276,
+      509
+    ]
+  },
+  {
+    "book_id": 731,
+    "book_title": "읽으면서 바로 써먹는 어린이 고사성어",
+    "related_book_ids": [
+      272,
+      874,
+      549
+    ]
+  },
+  {
+    "book_id": 732,
+    "book_title": "처음 읽는 그리스 로마 신화 2 - 신들의 사랑과 질투",
+    "related_book_ids": [
+      835,
+      659,
+      917
+    ]
+  },
+  {
+    "book_id": 733,
+    "book_title": "마지막 레벨 업 - 제25회 창비 ‘좋은 어린이책’ 원고 공모 대상작(고학년)",
+    "related_book_ids": [
+      929,
+      731,
+      549
+    ]
+  },
+  {
+    "book_id": 734,
+    "book_title": "당신의 마음에 이름을 붙인다면",
+    "related_book_ids": [
+      353,
+      316,
+      873
+    ]
+  },
+  {
+    "book_id": 735,
+    "book_title": "만약 고교야구 여자 매니저가 피터 드러커를 읽는다면 : 매니지먼트 편",
+    "related_book_ids": [
+      910,
+      883,
+      118
+    ]
+  },
+  {
+    "book_id": 736,
+    "book_title": "전지적 독자 시점 Part 3 03",
+    "related_book_ids": [
+      744,
+      787,
+      782
+    ]
+  },
+  {
+    "book_id": 737,
+    "book_title": "프린들 주세요",
+    "related_book_ids": [
+      874,
+      228,
+      549
+    ]
+  },
+  {
+    "book_id": 738,
+    "book_title": "예민함이라는 무기 - 자극에 둔감해진 시대를 살아가는 우리에게 필요한",
+    "related_book_ids": [
+      545,
+      269,
+      623
+    ]
+  },
+  {
+    "book_id": 739,
+    "book_title": "읽으면서 바로 써먹는 어린이 관용구",
+    "related_book_ids": [
+      272,
+      651,
+      731
+    ]
+  },
+  {
+    "book_id": 740,
+    "book_title": "그래도 계속 가라",
+    "related_book_ids": [
+      121,
+      661,
+      353
+    ]
+  },
+  {
+    "book_id": 741,
+    "book_title": "초등수학 만점왕 어린이 스도쿠 : 초급 (스프링)",
+    "related_book_ids": [
+      528,
+      530,
+      339
+    ]
+  },
+  {
+    "book_id": 742,
+    "book_title": "조선미의 현실 육아 상담소",
+    "related_book_ids": [
+      386,
+      867,
+      495
+    ]
+  },
+  {
+    "book_id": 743,
+    "book_title": "전지적 독자 시점 Part 2 02",
+    "related_book_ids": [
+      744,
+      787,
+      815
+    ]
+  },
+  {
+    "book_id": 744,
+    "book_title": "전지적 독자 시점 Part 3 01",
+    "related_book_ids": [
+      736,
+      787,
+      782
+    ]
+  },
+  {
+    "book_id": 745,
+    "book_title": "주술회전 22 - 사쿠라지마 콜로니 -환생-",
+    "related_book_ids": [
+      209,
+      154,
+      851
+    ]
+  },
+  {
+    "book_id": 746,
+    "book_title": "백년의 고독 1",
+    "related_book_ids": [
+      282,
+      604,
+      933
+    ]
+  },
+  {
+    "book_id": 747,
+    "book_title": "축의 시대 - 종교의 탄생과 철학의 시작",
+    "related_book_ids": [
+      464,
+      441,
+      604
+    ]
+  },
+  {
+    "book_id": 815,
+    "book_title": "전지적 독자 시점 Part 2 01",
+    "related_book_ids": [
+      744,
+      787,
+      743
+    ]
+  },
+  {
+    "book_id": 748,
+    "book_title": "밥을 지어요",
+    "related_book_ids": [
+      376,
+      932,
+      495
+    ]
+  },
+  {
+    "book_id": 749,
+    "book_title": "내 아이를 위한 감정코칭 - 최성애.존 가트맨 박사의, 개정판",
+    "related_book_ids": [
+      250,
+      540,
+      758
+    ]
+  },
+  {
+    "book_id": 750,
+    "book_title": "고양이 해결사 깜냥 3 - 태권도의 고수가 되어라!",
+    "related_book_ids": [
+      792,
+      419,
+      605
+    ]
+  },
+  {
+    "book_id": 751,
+    "book_title": "에고라는 적 - 인생의 전환점에서 버려야 할 한 가지",
+    "related_book_ids": [
+      449,
+      5,
+      663
+    ]
+  },
+  {
+    "book_id": 752,
+    "book_title": "뉴만 Kinesiology - 근육뼈대계통의 기능해부학 및 운동학, 3판",
+    "related_book_ids": [
+      328,
+      97,
+      252
+    ]
+  },
+  {
+    "book_id": 755,
+    "book_title": "모든 계절이 유서였다 - Rita's Garten",
+    "related_book_ids": [
+      592,
+      756,
+      878
+    ]
+  },
+  {
+    "book_id": 756,
+    "book_title": "장송의 프리렌 1",
+    "related_book_ids": [
+      241,
+      771,
+      716
+    ]
+  },
+  {
+    "book_id": 757,
+    "book_title": "스티브 잡스 연설문 영어 쉐도잉 + 오 헨리의 20년 후 단편소설",
+    "related_book_ids": [
+      211,
+      446,
+      215
+    ]
+  },
+  {
+    "book_id": 758,
+    "book_title": "네 기분은 어떤 색깔이니?",
+    "related_book_ids": [
+      250,
+      540,
+      495
+    ]
+  },
+  {
+    "book_id": 759,
+    "book_title": "우리 아기 오감발달 행복한 숲속 사운드북",
+    "related_book_ids": [
+      24,
+      242,
+      670
+    ]
+  },
+  {
+    "book_id": 760,
+    "book_title": "지텔프 기출문제 Level 2 - G-TELP KOREA 6회분 독점 제공",
+    "related_book_ids": [
+      802,
+      365,
+      645
+    ]
+  },
+  {
+    "book_id": 761,
+    "book_title": "하루 한 장 마음챙김 긍정 확언 필사집 - 매일 한 장씩 따라쓰는 루이스 헤이의 긍정 확언 베스트 컬렉션",
+    "related_book_ids": [
+      218,
+      661,
+      198
+    ]
+  },
+  {
+    "book_id": 762,
+    "book_title": "어떻게 죽을 것인가 - 현대 의학이 놓치고 있는 삶의 마지막 순간",
+    "related_book_ids": [
+      168,
+      565,
+      349
+    ]
+  },
+  {
+    "book_id": 763,
+    "book_title": "작별인사",
+    "related_book_ids": [
+      456,
+      584,
+      181
+    ]
+  },
+  {
+    "book_id": 764,
+    "book_title": "긴채널! : 은혼 공식 캐릭터북",
+    "related_book_ids": [
+      720,
+      433,
+      331
+    ]
+  },
+  {
+    "book_id": 765,
+    "book_title": "인간의 130가지 감정 표현법 - 감정이 살아있는 캐릭터 만들기",
+    "related_book_ids": [
+      488,
+      250,
+      540
+    ]
+  },
+  {
+    "book_id": 771,
+    "book_title": "여기는 커스터드, 특별한 도시락을 팝니다",
+    "related_book_ids": [
+      232,
+      756,
+      503
+    ]
+  },
+  {
+    "book_id": 766,
+    "book_title": "전지적 독자 시점 Part 1 06",
+    "related_book_ids": [
+      720,
+      633,
+      770
+    ]
+  },
+  {
+    "book_id": 767,
+    "book_title": "불안한 완벽주의자를 위한 책 - 자기증명과 인정욕구로부터 벗어나는 10가지 심리학 기술",
+    "related_book_ids": [
+      856,
+      157,
+      415
+    ]
+  },
+  {
+    "book_id": 768,
+    "book_title": "열세 살의 걷기 클럽",
+    "related_book_ids": [
+      696,
+      682,
+      668
+    ]
+  },
+  {
+    "book_id": 769,
+    "book_title": "송사무장의 부동산 경매의 기술 - 네티즌 17만명이 선정한 경매분야 최고의 책!",
+    "related_book_ids": [
+      331,
+      477,
+      491
+    ]
+  },
+  {
+    "book_id": 770,
+    "book_title": "전지적 독자 시점 Part 1 05",
+    "related_book_ids": [
+      720,
+      633,
+      766
+    ]
+  },
+  {
+    "book_id": 772,
+    "book_title": "나는 노후에 가난하지 않기로 결심했다 - 한 달 30만 원으로 레벨업하는 ETF 연금저축의 기적",
+    "related_book_ids": [
+      600,
+      114,
+      515
+    ]
+  },
+  {
+    "book_id": 773,
+    "book_title": "베싸육아 - 0~4세 알기만 해도 차이를 만드는 육아 대원칙 6",
+    "related_book_ids": [
+      619,
+      123,
+      876
+    ]
+  },
+  {
+    "book_id": 774,
+    "book_title": "카타리나 블룸의 잃어버린 명예",
+    "related_book_ids": [
+      712,
+      489,
+      178
+    ]
+  },
+  {
+    "book_id": 775,
+    "book_title": "불량한 자전거 여행",
+    "related_book_ids": [
+      9,
+      842,
+      13
+    ]
+  },
+  {
+    "book_id": 776,
+    "book_title": "인간의 정의는 어떻게 탄생했는가 - '제노사이드'와 '인도에 반하는 죄'의 기원",
+    "related_book_ids": [
+      304,
+      555,
+      620
+    ]
+  },
+  {
+    "book_id": 777,
+    "book_title": "던전밥 8 - S코믹스",
+    "related_book_ids": [
+      837,
+      317,
+      662
+    ]
+  },
+  {
+    "book_id": 778,
+    "book_title": "문학을 열다 - 전6권 - 나의 첫 문학 수업",
+    "related_book_ids": [
+      514,
+      731,
+      549
+    ]
+  },
+  {
+    "book_id": 779,
+    "book_title": "허브 코헨의 협상의 기술 1 - You Can Negotiate Anything",
+    "related_book_ids": [
+      738,
+      108,
+      391
+    ]
+  },
+  {
+    "book_id": 780,
+    "book_title": "주술회전 1",
+    "related_book_ids": [
+      320,
+      880,
+      326
+    ]
+  },
+  {
+    "book_id": 781,
+    "book_title": "주술회전 20 - 센다이 -연회 중반-",
+    "related_book_ids": [
+      910,
+      851,
+      686
+    ]
+  },
+  {
+    "book_id": 782,
+    "book_title": "전지적 독자 시점 Part 3 02",
+    "related_book_ids": [
+      736,
+      744,
+      787
+    ]
+  },
+  {
+    "book_id": 783,
+    "book_title": "Save the Cat! : 흥행하는 영화 시나리오의 8가지 법칙",
+    "related_book_ids": [
+      889,
+      419,
+      605
+    ]
+  },
+  {
+    "book_id": 784,
+    "book_title": "수급단타왕 주식투자 실전전략 - 상한가 30% 시대에 맞춘 투자전략 완벽 가이드",
+    "related_book_ids": [
+      9,
+      843,
+      387
+    ]
+  },
+  {
+    "book_id": 786,
+    "book_title": "존재의 세 가지 거짓말 (양장)",
+    "related_book_ids": [
+      144,
+      499,
+      814
+    ]
+  },
+  {
+    "book_id": 787,
+    "book_title": "전지적 독자 시점 Part 2 03",
+    "related_book_ids": [
+      744,
+      815,
+      743
+    ]
+  },
+  {
+    "book_id": 788,
+    "book_title": "달님 안녕",
+    "related_book_ids": [
+      544,
+      82,
+      869
+    ]
+  },
+  {
+    "book_id": 789,
+    "book_title": "어떻게 살 것인가 - 힐링에서 스탠딩으로!",
+    "related_book_ids": [
+      448,
+      180,
+      284
+    ]
+  },
+  {
+    "book_id": 790,
+    "book_title": "얼굴과 손 그리기",
+    "related_book_ids": [
+      184,
+      466,
+      199
+    ]
+  },
+  {
+    "book_id": 791,
+    "book_title": "주식투자 최적의 타이밍을 잡는 법 - 월스트리트의 전설적인 시장분석가에게 배우는",
+    "related_book_ids": [
+      552,
+      810,
+      600
+    ]
+  },
+  {
+    "book_id": 792,
+    "book_title": "고양이 해결사 깜냥 4 - 눈썰매장을 씽씽 달려라!",
+    "related_book_ids": [
+      419,
+      605,
+      750
+    ]
+  },
+  {
+    "book_id": 793,
+    "book_title": "이토록 평범한 미래",
+    "related_book_ids": [
+      576,
+      132,
+      5
+    ]
+  },
+  {
+    "book_id": 794,
+    "book_title": "범도 2 - 봉오동의 그들",
+    "related_book_ids": [
+      722,
+      387,
+      676
+    ]
+  },
+  {
+    "book_id": 795,
+    "book_title": "라쇼몬",
+    "related_book_ids": [
+      8,
+      746,
+      688
+    ]
+  },
+  {
+    "book_id": 796,
+    "book_title": "만약 우리의 언어가 위스키라고 한다면 - 위스키의 향기를 찾아 떠나는 무라카미 하루키의 성지여행",
+    "related_book_ids": [
+      177,
+      316,
+      734
+    ]
+  },
+  {
+    "book_id": 797,
+    "book_title": "보도 섀퍼의 이기는 습관 - 불가능을 뛰어넘어 최후의 승자가 된 사람들",
+    "related_book_ids": [
+      906,
+      221,
+      823
+    ]
+  },
+  {
+    "book_id": 798,
+    "book_title": "데일 카네기 성공대화론",
+    "related_book_ids": [
+      130,
+      204,
+      159
+    ]
+  },
+  {
+    "book_id": 799,
+    "book_title": "행복의 정복",
+    "related_book_ids": [
+      545,
+      427,
+      623
+    ]
+  },
+  {
+    "book_id": 800,
+    "book_title": "위험한 과학책 - 지구 생활자들의 엉뚱한 질문에 대한 과학적 답변",
+    "related_book_ids": [
+      528,
+      385,
+      490
+    ]
+  },
+  {
+    "book_id": 801,
+    "book_title": "몸은 기억한다 - 트라우마가 남긴 흔적들",
+    "related_book_ids": [
+      64,
+      449,
+      23
+    ]
+  },
+  {
+    "book_id": 802,
+    "book_title": "해커스 토익 실전 1000제 3 LC Listening(리스닝) 문제집 - 최신기출유형 100% 반영 [교재 실전용+복습용 MP3ㅣ온라인 실전모의고사 제공]",
+    "related_book_ids": [
+      48,
+      645,
+      230
+    ]
+  },
+  {
+    "book_id": 803,
+    "book_title": "가짜 노동 - 스스로 만드는 번아웃의 세계",
+    "related_book_ids": [
+      130,
+      738,
+      253
+    ]
+  },
+  {
+    "book_id": 804,
+    "book_title": "당뇨와 고혈압 잡는 저탄수 균형식 다이어트 - 180일 식단 챌린지로 건강 되찾은 셰프의 맛있는 레시피!",
+    "related_book_ids": [
+      252,
+      397,
+      701
+    ]
+  },
+  {
+    "book_id": 805,
+    "book_title": "크라임 퍼즐 - 문장 속에 숨겨진 범인을 찾는 두뇌 게임 100",
+    "related_book_ids": [
+      528,
+      418,
+      339
+    ]
+  },
+  {
+    "book_id": 806,
+    "book_title": "스즈키 바이올린 교본 4 - 개정판",
+    "related_book_ids": [
+      482,
+      588,
+      646
+    ]
+  },
+  {
+    "book_id": 807,
+    "book_title": "지리의 힘 2 - 지리는 어떻게 나라의 운명을, 세계의 분쟁을, 우리의 선택을 좌우하는가",
+    "related_book_ids": [
+      808,
+      786,
+      310
+    ]
+  },
+  {
+    "book_id": 808,
+    "book_title": "토지 1 - 박경리 대하소설, 1부 1권",
+    "related_book_ids": [
+      13,
+      398,
+      503
+    ]
+  },
+  {
+    "book_id": 809,
+    "book_title": "릴리 슈슈의 모든 것",
+    "related_book_ids": [
+      280,
+      763,
+      181
+    ]
+  },
+  {
+    "book_id": 810,
+    "book_title": "금융시장의 기술적 분석 - 국일 증권 시리즈 20",
+    "related_book_ids": [
+      600,
+      579,
+      791
+    ]
+  },
+  {
+    "book_id": 811,
+    "book_title": "끝과 시작 - 비스와바 쉼보르스카 시선집",
+    "related_book_ids": [
+      433,
+      786,
+      620
+    ]
+  },
+  {
+    "book_id": 812,
+    "book_title": "순수의 시대",
+    "related_book_ids": [
+      249,
+      179,
+      369
+    ]
+  },
+  {
+    "book_id": 813,
+    "book_title": "지하로부터의 수기",
+    "related_book_ids": [
+      304,
+      221,
+      247
+    ]
+  },
+  {
+    "book_id": 814,
+    "book_title": "가녀장의 시대",
+    "related_book_ids": [
+      786,
+      499,
+      420
+    ]
+  },
+  {
+    "book_id": 816,
+    "book_title": "초수익 성장주 투자 - 세계에서 가장 비밀스러운 주식 투자 시스템",
+    "related_book_ids": [
+      235,
+      541,
+      207
+    ]
+  },
+  {
+    "book_id": 817,
+    "book_title": "1일 1단어 1분으로 끝내는 경제공부 - 경제를 공부하는 가장 쉬운 방법",
+    "related_book_ids": [
+      439,
+      539,
+      431
+    ]
+  },
+  {
+    "book_id": 818,
+    "book_title": "리스본행 야간열차",
+    "related_book_ids": [
+      65,
+      106,
+      465
+    ]
+  },
+  {
+    "book_id": 819,
+    "book_title": "버전업! 굿모닝 독학 일본어 첫걸음",
+    "related_book_ids": [
+      213,
+      210,
+      21
+    ]
+  },
+  {
+    "book_id": 820,
+    "book_title": "던전밥 7 - S코믹스",
+    "related_book_ids": [
+      777,
+      837,
+      662
+    ]
+  },
+  {
+    "book_id": 822,
+    "book_title": "두드려 보아요!",
+    "related_book_ids": [
+      874,
+      731,
+      549
+    ]
+  },
+  {
+    "book_id": 823,
+    "book_title": "유혹하는 글쓰기 - 스티븐 킹의 창작론, 리뉴얼판",
+    "related_book_ids": [
+      9,
+      140,
+      303
+    ]
+  },
+  {
+    "book_id": 824,
+    "book_title": "세계 경제지표의 비밀 - 미래 경제 트렌드를 예측하고 투자 기회를 잡는 비법",
+    "related_book_ids": [
+      96,
+      380,
+      431
+    ]
+  },
+  {
+    "book_id": 825,
+    "book_title": "공자가 죽어야 나라가 산다",
+    "related_book_ids": [
+      451,
+      469,
+      623
+    ]
+  },
+  {
+    "book_id": 826,
+    "book_title": "던전밥 2 - S코믹스",
+    "related_book_ids": [
+      777,
+      714,
+      662
+    ]
+  },
+  {
+    "book_id": 942,
+    "book_title": "사탕 트리",
+    "related_book_ids": [
+      544,
+      907,
+      15
+    ]
+  },
+  {
+    "book_id": 827,
+    "book_title": "던전밥 3 - S코믹스",
+    "related_book_ids": [
+      612,
+      477,
+      223
+    ]
+  },
+  {
+    "book_id": 828,
+    "book_title": "로봇 소년, 학교에 가다",
+    "related_book_ids": [
+      104,
+      442,
+      275
+    ]
+  },
+  {
+    "book_id": 829,
+    "book_title": "나는 강물처럼 말해요",
+    "related_book_ids": [
+      609,
+      228,
+      70
+    ]
+  },
+  {
+    "book_id": 830,
+    "book_title": "미키7",
+    "related_book_ids": [
+      650,
+      891,
+      167
+    ]
+  },
+  {
+    "book_id": 831,
+    "book_title": "생기부 필독서 100 - 현직 고등학교 선생님들이 직접 고른",
+    "related_book_ids": [
+      865,
+      619,
+      549
+    ]
+  },
+  {
+    "book_id": 832,
+    "book_title": "하얼빈 (30만 부 기념 에디션)",
+    "related_book_ids": [
+      688,
+      106,
+      794
+    ]
+  },
+  {
+    "book_id": 833,
+    "book_title": "올리브 키터리지",
+    "related_book_ids": [
+      771,
+      426,
+      739
+    ]
+  },
+  {
+    "book_id": 834,
+    "book_title": "서양미술사 (양장)",
+    "related_book_ids": [
+      622,
+      870,
+      502
+    ]
+  },
+  {
+    "book_id": 835,
+    "book_title": "처음 읽는 그리스 로마 신화 3 - 인간의 탄생과 판도라",
+    "related_book_ids": [
+      659,
+      732,
+      917
+    ]
+  },
+  {
+    "book_id": 836,
+    "book_title": "뭔말 과학 용어 200 1 - 장풍쌤이 콕 집은 초등/중등 과학교과서 필수 용어",
+    "related_book_ids": [
+      442,
+      539,
+      926
+    ]
+  },
+  {
+    "book_id": 838,
+    "book_title": "입 속의 검은 잎",
+    "related_book_ids": [
+      592,
+      18,
+      947
+    ]
+  },
+  {
+    "book_id": 839,
+    "book_title": "인생의 베일",
+    "related_book_ids": [
+      712,
+      178,
+      163
+    ]
+  },
+  {
+    "book_id": 840,
+    "book_title": "루디 커피의 세계 세계의 커피 - 만화로 보는 지식사전",
+    "related_book_ids": [
+      484,
+      389,
+      158
+    ]
+  },
+  {
+    "book_id": 841,
+    "book_title": "던전밥 4 - S코믹스",
+    "related_book_ids": [
+      866,
+      589,
+      662
+    ]
+  },
+  {
+    "book_id": 842,
+    "book_title": "유진과 유진 - 개정판",
+    "related_book_ids": [
+      620,
+      420,
+      404
+    ]
+  },
+  {
+    "book_id": 843,
+    "book_title": "채근담",
+    "related_book_ids": [
+      33,
+      387,
+      215
+    ]
+  },
+  {
+    "book_id": 844,
+    "book_title": "유연함의 힘 - 유연함으로 쓰는 새로운 성장 공식",
+    "related_book_ids": [
+      245,
+      157,
+      359
+    ]
+  },
+  {
+    "book_id": 845,
+    "book_title": "눈먼 자들의 도시 (탄생 100주년 기념 스페셜 에디션)",
+    "related_book_ids": [
+      604,
+      5,
+      14
+    ]
+  },
+  {
+    "book_id": 846,
+    "book_title": "집단 착각 - 인간 본능이 빚어낸 집단사고의 오류와 광기에 대하여",
+    "related_book_ids": [
+      298,
+      738,
+      884
+    ]
+  },
+  {
+    "book_id": 847,
+    "book_title": "실존주의는 휴머니즘이다",
+    "related_book_ids": [
+      464,
+      180,
+      813
+    ]
+  },
+  {
+    "book_id": 869,
+    "book_title": "눈아이",
+    "related_book_ids": [
+      544,
+      739,
+      788
+    ]
+  },
+  {
+    "book_id": 848,
+    "book_title": "지하 100층짜리 집 (양장)",
+    "related_book_ids": [
+      432,
+      888,
+      373
+    ]
+  },
+  {
+    "book_id": 849,
+    "book_title": "좋은지 나쁜지 누가 아는가",
+    "related_book_ids": [
+      592,
+      661,
+      614
+    ]
+  },
+  {
+    "book_id": 850,
+    "book_title": "혼자 해도 프로 작가처럼 잘 그리는 아이패드 드로잉 with 프로크리에이트",
+    "related_book_ids": [
+      896,
+      458,
+      199
+    ]
+  },
+  {
+    "book_id": 851,
+    "book_title": "주술회전 17 - 갈대를 입에 물다",
+    "related_book_ids": [
+      331,
+      181,
+      686
+    ]
+  },
+  {
+    "book_id": 852,
+    "book_title": "JPT 최신기출 1000제 30일 완성 VOL.2 - 출제기관 독점제공/ 본책+해설집+정기시험 성우 음원 MP3+무료 동영상강의 10강+JPT 주요 어휘 셀프 테스트",
+    "related_book_ids": [
+      150,
+      86,
+      591
+    ]
+  },
+  {
+    "book_id": 853,
+    "book_title": "내 이름은 빨강 1",
+    "related_book_ids": [
+      232,
+      754,
+      421
+    ]
+  },
+  {
+    "book_id": 854,
+    "book_title": "그 많던 싱아는 누가 다 먹었을까 - 유년의 기억, 박완서 타계 10주기 헌정 개정판",
+    "related_book_ids": [
+      491,
+      676,
+      599
+    ]
+  },
+  {
+    "book_id": 855,
+    "book_title": "평균의 종말 - 평균이라는 허상은 어떻게 교육을 속여왔나",
+    "related_book_ids": [
+      753,
+      943,
+      831
+    ]
+  },
+  {
+    "book_id": 856,
+    "book_title": "게으른 완벽주의자를 위한 심리학 - 미루기의 악순환에서 벗어나고 싶은 당신을 위한 심리 처방",
+    "related_book_ids": [
+      353,
+      157,
+      359
+    ]
+  },
+  {
+    "book_id": 867,
+    "book_title": "용선생 처음 한국사 1 - 선사 시대 ~ 조선 전기",
+    "related_book_ids": [
+      216,
+      386,
+      334
+    ]
+  },
+  {
+    "book_id": 857,
+    "book_title": "인생 수업",
+    "related_book_ids": [
+      353,
+      715,
+      102
+    ]
+  },
+  {
+    "book_id": 858,
+    "book_title": "무진기행",
+    "related_book_ids": [
+      496,
+      13,
+      238
+    ]
+  },
+  {
+    "book_id": 859,
+    "book_title": "가족치료의 이해 - 3판",
+    "related_book_ids": [
+      488,
+      340,
+      749
+    ]
+  },
+  {
+    "book_id": 860,
+    "book_title": "시간을 파는 상점 - 제1회 자음과모음 청소년문학상 수상작",
+    "related_book_ids": [
+      865,
+      250,
+      731
+    ]
+  },
+  {
+    "book_id": 861,
+    "book_title": "Preparation Book for the TOEFL Junior Test RC Basic - Focus on Question Types",
+    "related_book_ids": [
+      200,
+      225,
+      539
+    ]
+  },
+  {
+    "book_id": 868,
+    "book_title": "백만장자 시크릿 - 부를 끌어당기는 17가지 매뉴얼, 개정판",
+    "related_book_ids": [
+      400,
+      532,
+      902
+    ]
+  },
+  {
+    "book_id": 862,
+    "book_title": "심플하게 산다",
+    "related_book_ids": [
+      894,
+      179,
+      366
+    ]
+  },
+  {
+    "book_id": 863,
+    "book_title": "랩 걸 - 나무, 과학 그리고 사랑",
+    "related_book_ids": [
+      89,
+      643,
+      303
+    ]
+  },
+  {
+    "book_id": 864,
+    "book_title": "던전밥 6 - S코믹스",
+    "related_book_ids": [
+      777,
+      866,
+      183
+    ]
+  },
+  {
+    "book_id": 865,
+    "book_title": "고전의 숲 - 아주 오래된 서가에서 찾아낸 58가지 지혜의 씨앗",
+    "related_book_ids": [
+      549,
+      413,
+      731
+    ]
+  },
+  {
+    "book_id": 866,
+    "book_title": "던전밥 5 - S코믹스",
+    "related_book_ids": [
+      841,
+      662,
+      326
+    ]
+  },
+  {
+    "book_id": 881,
+    "book_title": "지리의 힘 1~2 리커버 세트 - 전2권 - 블랙 & 화이트 스페셜 한정판",
+    "related_book_ids": [
+      312,
+      194,
+      797
+    ]
+  },
+  {
+    "book_id": 870,
+    "book_title": "도리언 그레이의 초상 1890",
+    "related_book_ids": [
+      712,
+      604,
+      812
+    ]
+  },
+  {
+    "book_id": 871,
+    "book_title": "엄마랑 뽀뽀",
+    "related_book_ids": [
+      457,
+      379,
+      516
+    ]
+  },
+  {
+    "book_id": 872,
+    "book_title": "여자 마흔다섯 마흔아홉 - 이대로 괜찮은지 돌아봐야 할 나이",
+    "related_book_ids": [
+      480,
+      785,
+      359
+    ]
+  },
+  {
+    "book_id": 873,
+    "book_title": "시소 인생 - 현실과 이상, 현재와 미래, 타인과 나 그 사이, 어딘가",
+    "related_book_ids": [
+      814,
+      690,
+      494
+    ]
+  },
+  {
+    "book_id": 874,
+    "book_title": "받침구조대",
+    "related_book_ids": [
+      408,
+      731,
+      549
+    ]
+  },
+  {
+    "book_id": 875,
+    "book_title": "스타트 위드 와이 (블랙 에디션) - 나는 왜 이 일을 하는가",
+    "related_book_ids": [
+      515,
+      157,
+      415
+    ]
+  },
+  {
+    "book_id": 876,
+    "book_title": "4~7세보다 중요한 시기는 없습니다 (15만 부 기념 에디션) - 아이의 정서와 인지 발달을 키우는 결정적 시기",
+    "related_book_ids": [
+      593,
+      123,
+      773
+    ]
+  },
+  {
+    "book_id": 877,
+    "book_title": "전쟁은 여자의 얼굴을 하지 않았다",
+    "related_book_ids": [
+      872,
+      83,
+      812
+    ]
+  },
+  {
+    "book_id": 878,
+    "book_title": "새는 날아가면서 뒤돌아보지 않는다",
+    "related_book_ids": [
+      851,
+      690,
+      563
+    ]
+  },
+  {
+    "book_id": 879,
+    "book_title": "모국어는 차라리 침묵",
+    "related_book_ids": [
+      424,
+      258,
+      604
+    ]
+  },
+  {
+    "book_id": 880,
+    "book_title": "주술회전 2",
+    "related_book_ids": [
+      244,
+      780,
+      910
+    ]
+  },
+  {
+    "book_id": 882,
+    "book_title": "나에겐 상처받을 이유가 없다 - 자기밖에 모르는 사람들에게 휘둘리지 않고 나를 존중하는 삶의 시작",
+    "related_book_ids": [
+      488,
+      353,
+      738
+    ]
+  },
+  {
+    "book_id": 883,
+    "book_title": "죽은 시인의 사회",
+    "related_book_ids": [
+      138,
+      452,
+      726
+    ]
+  },
+  {
+    "book_id": 884,
+    "book_title": "생각의 지도 - 동양과 서양, 세상을 바라보는 서로 다른 시선",
+    "related_book_ids": [
+      738,
+      468,
+      846
+    ]
+  },
+  {
+    "book_id": 885,
+    "book_title": "여름",
+    "related_book_ids": [
+      489,
+      435,
+      5
+    ]
+  },
+  {
+    "book_id": 886,
+    "book_title": "종이접기 매니아를 위한 Origami PRO : 아마존 종이접기편",
+    "related_book_ids": [
+      280,
+      584,
+      901
+    ]
+  },
+  {
+    "book_id": 887,
+    "book_title": "가라오케 가자!",
+    "related_book_ids": [
+      320,
+      163,
+      837
+    ]
+  },
+  {
+    "book_id": 888,
+    "book_title": "뭐가 다를까? 다른그림찾기 1000",
+    "related_book_ids": [
+      442,
+      402,
+      848
+    ]
+  },
+  {
+    "book_id": 889,
+    "book_title": "밥 프록터 부의 확신 - 세계 단 1%만이 알고 있는 부와 성공의 비밀",
+    "related_book_ids": [
+      580,
+      422,
+      798
+    ]
+  },
+  {
+    "book_id": 890,
+    "book_title": "천년의 사랑 - 개정판",
+    "related_book_ids": [
+      9,
+      420,
+      343
+    ]
+  },
+  {
+    "book_id": 891,
+    "book_title": "종이 동물원",
+    "related_book_ids": [
+      688,
+      808,
+      503
+    ]
+  },
+  {
+    "book_id": 892,
+    "book_title": "2주 만에 끝내는 해커스 지텔프 문법 (G-TELP) Level. 2 - 최신개정판|G-TELP KOREA(지텔프코리아) 공식 지정|5/7급 공무원·회계사·노무사·감정평가사·세무사 대비 영어시험|G-TELP 문법 암기 노트",
+    "related_book_ids": [
+      760,
+      725,
+      671
+    ]
+  },
+  {
+    "book_id": 893,
+    "book_title": "교사의 말 연습 - 상처 주지 않으면서 할 말은 다 하는",
+    "related_book_ids": [
+      505,
+      693,
+      495
+    ]
+  },
+  {
+    "book_id": 894,
+    "book_title": "아우라",
+    "related_book_ids": [
+      465,
+      282,
+      746
+    ]
+  },
+  {
+    "book_id": 895,
+    "book_title": "오리엔트 특급 살인 - 영화 오리엔트 특급 살인 원작 소설, 공식 출판작, 애거서 크리스티 재단 공식 완역본",
+    "related_book_ids": [
+      450,
+      5,
+      343
+    ]
+  },
+  {
+    "book_id": 896,
+    "book_title": "감각적인 니터를 위한 손뜨개 모티브 & 에징 300",
+    "related_book_ids": [
+      560,
+      739,
+      319
+    ]
+  },
+  {
+    "book_id": 897,
+    "book_title": "헤어질 결심 각본",
+    "related_book_ids": [
+      754,
+      53,
+      686
+    ]
+  },
+  {
+    "book_id": 898,
+    "book_title": "THE FLOW(더 플로) - 시대의 운명을 내다본 사람이 부를 거머쥔다",
+    "related_book_ids": [
+      824,
+      17,
+      262
+    ]
+  },
+  {
+    "book_id": 899,
+    "book_title": "ETS 토익 정기시험 기출문제집 1000 Vol. 2 Reading (리딩) - All New 최신 기출 10회 기출문제 한국 독점 출간",
+    "related_book_ids": [
+      128,
+      501,
+      653
+    ]
+  },
+  {
+    "book_id": 900,
+    "book_title": "나 혼자만 레벨업 8 - 만화",
+    "related_book_ids": [
+      326,
+      190,
+      777
+    ]
+  },
+  {
+    "book_id": 901,
+    "book_title": "나도 손글씨 바르게 쓰면 소원이 없겠네 : 핸디 워크북 (스프링) - 악필 교정부터 어른스러운 펜글씨까지 4주 완성 한글 정자체 연습법",
+    "related_book_ids": [
+      280,
+      584,
+      477
+    ]
+  },
+  {
+    "book_id": 907,
+    "book_title": "낙엽 스낵",
+    "related_book_ids": [
+      472,
+      731,
+      605
+    ]
+  },
+  {
+    "book_id": 902,
+    "book_title": "당신도 부자가 될 수 있다 - 1% 부자들의 12가지 부의 법칙",
+    "related_book_ids": [
+      400,
+      868,
+      532
+    ]
+  },
+  {
+    "book_id": 903,
+    "book_title": "더 브레인 - 삶에서 뇌는 얼마나 중요한가?",
+    "related_book_ids": [
+      139,
+      356,
+      157
+    ]
+  },
+  {
+    "book_id": 904,
+    "book_title": "명랑한 은둔자",
+    "related_book_ids": [
+      64,
+      5,
+      838
+    ]
+  },
+  {
+    "book_id": 905,
+    "book_title": "코너스톤 셜록 홈즈 전집 세트 - 전9권 - 개정판",
+    "related_book_ids": [
+      232,
+      25,
+      436
+    ]
+  },
+  {
+    "book_id": 906,
+    "book_title": "직업으로서의 소설가",
+    "related_book_ids": [
+      64,
+      232,
+      797
+    ]
+  },
+  {
+    "book_id": 908,
+    "book_title": "New 일본어 상용한자 2136 한권으로 끝내기",
+    "related_book_ids": [
+      210,
+      84,
+      518
+    ]
+  },
+  {
+    "book_id": 909,
+    "book_title": "ETS 토익 정기시험 기출종합서 LC 리스닝 - TOEIC 기출문제 한국 독점출간 / 본책 + 해설집 + ETS 성우 음원 MP3 파일 + 무료 동영상 강의(QR코드)+ 온라인 모의고사 + 단어 테스트지 + APP 모바일 학습 / 2022 대비 최신판",
+    "related_book_ids": [
+      200,
+      225,
+      924
+    ]
+  },
+  {
+    "book_id": 910,
+    "book_title": "주술회전 18 - 열기",
+    "related_book_ids": [
+      880,
+      946,
+      781
+    ]
+  },
+  {
+    "book_id": 911,
+    "book_title": "다른 방식으로 보기",
+    "related_book_ids": [
+      216,
+      499,
+      103
+    ]
+  },
+  {
+    "book_id": 912,
+    "book_title": "터틀 트레이딩 - 월스트리트를 뒤흔든 14인간의 투자 수업",
+    "related_book_ids": [
+      17,
+      692,
+      262
+    ]
+  },
+  {
+    "book_id": 913,
+    "book_title": "똥볶이 할멈 3 - 나쁜 어린이는 없다",
+    "related_book_ids": [
+      376,
+      82,
+      934
+    ]
+  },
+  {
+    "book_id": 914,
+    "book_title": "쉽게 풀어쓴 C언어 Express - 개정4판",
+    "related_book_ids": [
+      458,
+      778,
+      199
+    ]
+  },
+  {
+    "book_id": 915,
+    "book_title": "찰리와 초콜릿 공장 - 개정판",
+    "related_book_ids": [
+      728,
+      651,
+      413
+    ]
+  },
+  {
+    "book_id": 916,
+    "book_title": "빛과 물질에 관한 이론",
+    "related_book_ids": [
+      169,
+      196,
+      421
+    ]
+  },
+  {
+    "book_id": 917,
+    "book_title": "처음 읽는 그리스 로마 신화 4 - 인간의 죄와 벌",
+    "related_book_ids": [
+      835,
+      659,
+      732
+    ]
+  },
+  {
+    "book_id": 918,
+    "book_title": "팔레스타인 100년 전쟁 - 정착민 식민주의와 저항의 역사, 1917",
+    "related_book_ids": [
+      776,
+      66,
+      699
+    ]
+  },
+  {
+    "book_id": 919,
+    "book_title": "어린 자폐 자녀를 위한 ESDM 부모용 지침서",
+    "related_book_ids": [
+      619,
+      123,
+      773
+    ]
+  },
+  {
+    "book_id": 920,
+    "book_title": "주술회전 19 - 도쿄 제1콜로니 -화내는 남자-",
+    "related_book_ids": [
+      837,
+      781,
+      183
+    ]
+  },
+  {
+    "book_id": 921,
+    "book_title": "어느 시인의 죽음 - 자전적 에세이, 단편소설들",
+    "related_book_ids": [
+      185,
+      447,
+      247
+    ]
+  },
+  {
+    "book_id": 922,
+    "book_title": "엔트로피",
+    "related_book_ids": [
+      926,
+      372,
+      342
+    ]
+  },
+  {
+    "book_id": 923,
+    "book_title": "일산오빠의 실용음악 기초이론 1",
+    "related_book_ids": [
+      72,
+      313,
+      588
+    ]
+  },
+  {
+    "book_id": 935,
+    "book_title": "우리는 여전히 삶을 사랑하는가",
+    "related_book_ids": [
+      218,
+      101,
+      527
+    ]
+  },
+  {
+    "book_id": 924,
+    "book_title": "ETS 토익 정기시험 기출종합서 RC 리딩 - TOEIC 기출문제 한국 독점출간 / 본책 + 해설집 + 단어 테스트지 + 온라인 모의고사 + \n무료 동영상 강의(QR코드) + APP 모바일 학습 / 2022 대비 최신판",
+    "related_book_ids": [
+      200,
+      225,
+      909
+    ]
+  },
+  {
+    "book_id": 925,
+    "book_title": "너의 하늘을 보아",
+    "related_book_ids": [
+      296,
+      661,
+      614
+    ]
+  },
+  {
+    "book_id": 926,
+    "book_title": "미적분의 쓸모 - 보통 사람들도 이해하는 새로운 미래의 언어, 증보개정판",
+    "related_book_ids": [
+      441,
+      372,
+      865
+    ]
+  },
+  {
+    "book_id": 927,
+    "book_title": "헌터x헌터 HunterXHunter 신장판 32",
+    "related_book_ids": [
+      586,
+      660,
+      558
+    ]
+  },
+  {
+    "book_id": 928,
+    "book_title": "주술회전 4",
+    "related_book_ids": [
+      851,
+      190,
+      183
+    ]
+  },
+  {
+    "book_id": 929,
+    "book_title": "읽으면서 바로 해 보는 어린이 게임",
+    "related_book_ids": [
+      272,
+      731,
+      733
+    ]
+  },
+  {
+    "book_id": 930,
+    "book_title": "노화의 종말 - 하버드 의대 수명 혁명 프로젝트",
+    "related_book_ids": [
+      705,
+      718,
+      159
+    ]
+  },
+  {
+    "book_id": 931,
+    "book_title": "글래스 호텔",
+    "related_book_ids": [
+      80,
+      484,
+      580
+    ]
+  },
+  {
+    "book_id": 932,
+    "book_title": "한 스푼의 시간 (리커버)",
+    "related_book_ids": [
+      216,
+      499,
+      37
+    ]
+  },
+  {
+    "book_id": 933,
+    "book_title": "백년의 고독 2",
+    "related_book_ids": [
+      282,
+      746,
+      604
+    ]
+  },
+  {
+    "book_id": 934,
+    "book_title": "똥볶이 할멈 2 - 어른들의 들켜야 할 비밀",
+    "related_book_ids": [
+      376,
+      913,
+      651
+    ]
+  },
+  {
+    "book_id": 936,
+    "book_title": "최재천의 공부 - 어떻게 배우며 살 것인가",
+    "related_book_ids": [
+      113,
+      115,
+      191
+    ]
+  },
+  {
+    "book_id": 937,
+    "book_title": "나는 나로 살기로 했다 (골드에디션)",
+    "related_book_ids": [
+      676,
+      181,
+      231
+    ]
+  },
+  {
+    "book_id": 938,
+    "book_title": "홍길동전 : 춤추는 소매 바람을 따라 휘날리니",
+    "related_book_ids": [
+      33,
+      842,
+      620
+    ]
+  },
+  {
+    "book_id": 939,
+    "book_title": "당신의 이름을 지어다가 며칠은 먹었다",
+    "related_book_ids": [
+      592,
+      514,
+      163
+    ]
+  },
+  {
+    "book_id": 940,
+    "book_title": "동아 연세 초등국어사전 - 반달색인.비닐커버",
+    "related_book_ids": [
+      408,
+      874,
+      549
+    ]
+  },
+  {
+    "book_id": 941,
+    "book_title": "나는 마음이 아픈 의사입니다 - 견디는 힘에 관하여 정신과 의사가 깨달은 것들",
+    "related_book_ids": [
+      121,
+      882,
+      279
+    ]
+  },
+  {
+    "book_id": 943,
+    "book_title": "행동경제학 - 마음과 행동을 바꾸는 선택 설계의 힘",
+    "related_book_ids": [
+      96,
+      124,
+      532
+    ]
+  },
+  {
+    "book_id": 944,
+    "book_title": "개구리",
+    "related_book_ids": [
+      50,
+      517,
+      343
+    ]
+  },
+  {
+    "book_id": 945,
+    "book_title": "워런 버핏의 주주 서한 (양장) - 버핏이 인정한 유일한 버핏 책, 제6판 개정증보판",
+    "related_book_ids": [
+      235,
+      262,
+      215
+    ]
+  },
+  {
+    "book_id": 946,
+    "book_title": "주술회전 3",
+    "related_book_ids": [
+      320,
+      370,
+      910
+    ]
+  },
+  {
+    "book_id": 947,
+    "book_title": "최선은 그런 것이에요",
+    "related_book_ids": [
+      132,
+      421,
+      838
+    ]
+  }
+]
