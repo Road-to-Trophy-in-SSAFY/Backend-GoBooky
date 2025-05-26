@@ -54,3 +54,53 @@ class Thread(models.Model):
         if self.cover_img and hasattr(self.cover_img, "url"):
             return self.cover_img.url
         return "/media/default_images/default_thread_image.jpg"
+
+
+class Comment(models.Model):
+    """댓글 모델"""
+
+    thread = models.ForeignKey(
+        "Thread", on_delete=models.CASCADE, related_name="comments"
+    )
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="comments"
+    )
+    content = models.TextField(max_length=1000)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    is_deleted = models.BooleanField(default=False)  # 소프트 삭제
+
+    class Meta:
+        ordering = ["-created_at"]
+        indexes = [
+            models.Index(fields=["thread", "-created_at"]),
+            models.Index(fields=["user", "-created_at"]),
+        ]
+
+    def __str__(self):
+        return f"Comment by {self.user.email} on {self.thread.title}"
+
+
+class Reply(models.Model):
+    """대댓글 모델"""
+
+    comment = models.ForeignKey(
+        "Comment", on_delete=models.CASCADE, related_name="replies"
+    )
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="replies"
+    )
+    content = models.TextField(max_length=500)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    is_deleted = models.BooleanField(default=False)  # 소프트 삭제
+
+    class Meta:
+        ordering = ["created_at"]  # 대댓글은 시간순 정렬
+        indexes = [
+            models.Index(fields=["comment", "created_at"]),
+            models.Index(fields=["user", "-created_at"]),
+        ]
+
+    def __str__(self):
+        return f"Reply by {self.user.email} to comment {self.comment.id}"
