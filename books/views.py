@@ -57,7 +57,10 @@ class BookViewSet(viewsets.ReadOnlyModelViewSet):
     def list(self, request, *args, **kwargs):
         """캐시된 도서 목록 반환"""
         category_pk = request.GET.get("category")
-        cache_key = f"{settings.CACHE_KEY_PREFIX}:book_list:{category_pk or 'all'}"
+        page = request.GET.get("page", "1")
+        cache_key = (
+            f"{settings.CACHE_KEY_PREFIX}:book_list:{category_pk or 'all'}:page_{page}"
+        )
 
         cached = cache.get(cache_key)
         if cached:
