@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Book, Category, Thread, BookEmbedding
+from .models import Book, Category, Thread, Comment, Reply, BookEmbedding
 
 
 class BookListSerializer(serializers.ModelSerializer):
@@ -211,3 +211,134 @@ class ThreadDetailSerializer(serializers.ModelSerializer):
                 return request.build_absolute_uri(obj.cover_img.url)
             return obj.cover_img.url
         return None
+
+
+# === 댓글/대댓글 시리얼라이저 ===
+
+
+class UserProfileSerializer(serializers.Serializer):
+    """사용자 프로필 정보 시리얼라이저"""
+
+    id = serializers.IntegerField(read_only=True)
+    email = serializers.EmailField(read_only=True)
+    username = serializers.CharField(read_only=True)
+
+
+class ReplySerializer(serializers.ModelSerializer):
+    """대댓글 시리얼라이저"""
+
+    user = UserProfileSerializer(read_only=True)
+    is_author = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Reply
+        fields = ["id", "content", "created_at", "updated_at", "user", "is_author"]
+        read_only_fields = ["id", "created_at", "updated_at", "user"]
+
+    def get_is_author(self, obj):
+        request = self.context.get("request")
+        if request and request.user.is_authenticated:
+            return obj.user == request.user
+        return False
+
+
+class CommentSerializer(serializers.ModelSerializer):
+    """댓글 시리얼라이저"""
+
+    user = UserProfileSerializer(read_only=True)
+    replies = ReplySerializer(many=True, read_only=True)
+    replies_count = serializers.SerializerMethodField()
+    is_author = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Comment
+        fields = [
+            "id",
+            "content",
+            "created_at",
+            "updated_at",
+            "user",
+            "replies",
+            "replies_count",
+            "is_author",
+        ]
+        read_only_fields = ["id", "created_at", "updated_at", "user"]
+
+    def get_replies_count(self, obj):
+        return obj.replies.filter(is_deleted=False).count()
+
+    def get_is_author(self, obj):
+        request = self.context.get("request")
+        if request and request.user.is_authenticated:
+            return obj.user == request.user
+        return False
+
+
+class CommentCreateSerializer(serializers.ModelSerializer):
+    """댓글 생성 시리얼라이저"""
+
+    class Meta:
+        model = Comment
+        fields = ["content"]
+
+    def validate_content(self, value):
+        if not value or len(value.strip()) < 1:
+            raise serializers.ValidationError(
+                {"content": "댓글 내용을 입력해주세요.", "code": "required"}
+            )
+
+        if len(value) > 1000:
+            raise serializers.ValidationError(
+                {
+                    "content": f"댓글은 1000자 이내로 작성해주세요. (현재: {len(value)}자)",
+                    "code": "max_length",
+                    "current_length": len(value),
+                    "max_length": 1000,
+                }
+            )
+
+        # 연속된 공백 체크
+        if len(value.strip()) < 3:
+            raise serializers.ValidationError(
+                {"content": "댓글은 최소 3자 이상 입력해주세요.", "code": "min_length"}
+            )
+
+        # 스팸 방지: 동일 문자 반복 체크
+        if len(set(value.strip())) < 2:
+            raise serializers.ValidationError(
+                {"content": "의미 있는 댓글을 작성해주세요.", "code": "invalid_content"}
+            )
+
+        return value.strip()
+
+
+class ReplyCreateSerializer(serializers.ModelSerializer):
+    """대댓글 생성 시리얼라이저"""
+
+    class Meta:
+        model = Reply
+        fields = ["content"]
+
+    def validate_content(self, value):
+        if not value or len(value.strip()) < 1:
+            raise serializers.ValidationError(
+                {"content": "답글 내용을 입력해주세요.", "code": "required"}
+            )
+
+        if len(value) > 500:
+            raise serializers.ValidationError(
+                {
+                    "content": f"답글은 500자 이내로 작성해주세요. (현재: {len(value)}자)",
+                    "code": "max_length",
+                    "current_length": len(value),
+                    "max_length": 500,
+                }
+            )
+
+        # 연속된 공백 체크
+        if len(value.strip()) < 2:
+            raise serializers.ValidationError(
+                {"content": "답글은 최소 2자 이상 입력해주세요.", "code": "min_length"}
+            )
+
+        return value.strip()

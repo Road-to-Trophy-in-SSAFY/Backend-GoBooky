@@ -1,0 +1,602 @@
+[
+  {
+    "model": "books.reply",
+    "pk": 1,
+    "fields": {
+      "comment": 1,
+      "user": 2,
+      "content": "정말 그래요! 저도 호그와트에 입학하고 싶었어요 ㅎㅎ",
+      "created_at": "2023-05-21T10:30:00Z",
+      "updated_at": "2023-05-21T10:30:00Z",
+      "is_deleted": false
+    }
+  },
+  {
+    "model": "books.reply",
+    "pk": 2,
+    "fields": {
+      "comment": 2,
+      "user": 4,
+      "content": "J.K. 롤링의 상상력은 정말 대단한 것 같아요. 세계관이 너무 탄탄해요.",
+      "created_at": "2023-05-22T15:45:00Z",
+      "updated_at": "2023-05-22T15:45:00Z",
+      "is_deleted": false
+    }
+  },
+  {
+    "model": "books.reply",
+    "pk": 3,
+    "fields": {
+      "comment": 3,
+      "user": 22,
+      "content": "맞아요! 어른이 되어서 읽으니 완전히 다른 책 같아요.",
+      "created_at": "2023-06-16T12:20:00Z",
+      "updated_at": "2023-06-16T12:20:00Z",
+      "is_deleted": false
+    }
+  },
+  {
+    "model": "books.reply",
+    "pk": 4,
+    "fields": {
+      "comment": 4,
+      "user": 8,
+      "content": "그 문장이 정말 명언이죠. 현대인들이 꼭 기억해야 할 말인 것 같아요.",
+      "created_at": "2023-06-17T17:10:00Z",
+      "updated_at": "2023-06-17T17:10:00Z",
+      "is_deleted": false
+    }
+  },
+  {
+    "model": "books.reply",
+    "pk": 5,
+    "fields": {
+      "comment": 5,
+      "user": 46,
+      "content": "헤르만 헤세의 작품들은 정말 철학적 깊이가 있어서 좋아요.",
+      "created_at": "2023-07-11T14:25:00Z",
+      "updated_at": "2023-07-11T14:25:00Z",
+      "is_deleted": false
+    }
+  },
+  {
+    "model": "books.reply",
+    "pk": 6,
+    "fields": {
+      "comment": 6,
+      "user": 10,
+      "content": "성장소설의 고전이라는 말에 완전 동감해요!",
+      "created_at": "2023-07-12T11:50:00Z",
+      "updated_at": "2023-07-12T11:50:00Z",
+      "is_deleted": false
+    }
+  },
+  {
+    "model": "books.reply",
+    "pk": 7,
+    "fields": {
+      "comment": 7,
+      "user": 4,
+      "content": "톰 리들의 일기장 설정이 정말 창의적이었어요. 소름돋았습니다.",
+      "created_at": "2023-08-26T16:15:00Z",
+      "updated_at": "2023-08-26T16:15:00Z",
+      "is_deleted": false
+    }
+  },
+  {
+    "model": "books.reply",
+    "pk": 8,
+    "fields": {
+      "comment": 8,
+      "user": 15,
+      "content": "해리의 성장 과정이 정말 잘 그려져 있죠. 캐릭터 발전이 인상적이에요.",
+      "created_at": "2023-08-27T13:40:00Z",
+      "updated_at": "2023-08-27T13:40:00Z",
+      "is_deleted": false
+    }
+  },
+  {
+    "model": "books.reply",
+    "pk": 9,
+    "fields": {
+      "comment": 9,
+      "user": 17,
+      "content": "유발 하라리의 통찰력이 정말 대단해요. 인류사를 이렇게 바라볼 수 있다니!",
+      "created_at": "2023-09-11T18:30:00Z",
+      "updated_at": "2023-09-11T18:30:00Z",
+      "is_deleted": false
+    }
+  },
+  {
+    "model": "books.reply",
+    "pk": 10,
+    "fields": {
+      "comment": 10,
+      "user": 6,
+      "content": "현대 사회를 이해하는 데 정말 많은 도움이 되는 책이에요.",
+      "created_at": "2023-09-12T15:25:00Z",
+      "updated_at": "2023-09-12T15:25:00Z",
+      "is_deleted": false
+    }
+  },
+  {
+    "model": "books.reply",
+    "pk": 11,
+    "fields": {
+      "comment": 11,
+      "user": 5,
+      "content": "경제학이 이렇게 재미있을 줄 몰랐어요. 정말 유익한 책이네요!",
+      "created_at": "2023-10-03T12:45:00Z",
+      "updated_at": "2023-10-03T12:45:00Z",
+      "is_deleted": false
+    }
+  },
+  {
+    "model": "books.reply",
+    "pk": 12,
+    "fields": {
+      "comment": 12,
+      "user": 43,
+      "content": "일상생활 예시로 설명해주니까 정말 이해하기 쉬웠어요.",
+      "created_at": "2023-10-04T17:20:00Z",
+      "updated_at": "2023-10-04T17:20:00Z",
+      "is_deleted": false
+    }
+  },
+  {
+    "model": "books.reply",
+    "pk": 13,
+    "fields": {
+      "comment": 13,
+      "user": 13,
+      "content": "실천이 정말 중요하죠! 저도 도전해보고 있어요.",
+      "created_at": "2023-10-07T10:35:00Z",
+      "updated_at": "2023-10-07T10:35:00Z",
+      "is_deleted": false
+    }
+  },
+  {
+    "model": "books.reply",
+    "pk": 14,
+    "fields": {
+      "comment": 14,
+      "user": 42,
+      "content": "습관 만들기는 정말 어려운데 효과가 있다니 대단해요!",
+      "created_at": "2023-10-08T14:30:00Z",
+      "updated_at": "2023-10-08T14:30:00Z",
+      "is_deleted": false
+    }
+  },
+  {
+    "model": "books.reply",
+    "pk": 15,
+    "fields": {
+      "comment": 15,
+      "user": 15,
+      "content": "저도 해리포터 다시 읽어보고 싶어졌어요! 완독 축하드려요.",
+      "created_at": "2024-01-21T11:30:00Z",
+      "updated_at": "2024-01-21T11:30:00Z",
+      "is_deleted": false
+    }
+  },
+  {
+    "model": "books.reply",
+    "pk": 16,
+    "fields": {
+      "comment": 16,
+      "user": 9,
+      "content": "성인이 되어서 읽는 해리포터는 정말 다른 재미가 있을 것 같아요.",
+      "created_at": "2024-01-22T15:55:00Z",
+      "updated_at": "2024-01-22T15:55:00Z",
+      "is_deleted": false
+    }
+  },
+  {
+    "model": "books.reply",
+    "pk": 17,
+    "fields": {
+      "comment": 17,
+      "user": 22,
+      "content": "현대 사회에 대한 비판적 시각이 정말 필요한 시점인 것 같아요.",
+      "created_at": "2024-01-26T13:35:00Z",
+      "updated_at": "2024-01-26T13:35:00Z",
+      "is_deleted": false
+    }
+  },
+  {
+    "model": "books.reply",
+    "pk": 18,
+    "fields": {
+      "comment": 18,
+      "user": 32,
+      "content": "순수함의 가치를 잃지 않는 것이 정말 중요한 것 같아요.",
+      "created_at": "2024-01-27T17:50:00Z",
+      "updated_at": "2024-01-27T17:50:00Z",
+      "is_deleted": false
+    }
+  },
+  {
+    "model": "books.reply",
+    "pk": 19,
+    "fields": {
+      "comment": 19,
+      "user": 25,
+      "content": "자아 성찰의 중요성에 대해 정말 많이 생각해보게 되네요.",
+      "created_at": "2024-02-06T12:25:00Z",
+      "updated_at": "2024-02-06T12:25:00Z",
+      "is_deleted": false
+    }
+  },
+  {
+    "model": "books.reply",
+    "pk": 20,
+    "fields": {
+      "comment": 20,
+      "user": 46,
+      "content": "변화와 성장에 대한 깊은 의미가 정말 인상적이에요.",
+      "created_at": "2024-02-07T16:40:00Z",
+      "updated_at": "2024-02-07T16:40:00Z",
+      "is_deleted": false
+    }
+  },
+  {
+    "model": "books.reply",
+    "pk": 21,
+    "fields": {
+      "comment": 21,
+      "user": 47,
+      "content": "AI와 생명공학에 대한 부분이 정말 생각할 거리를 많이 제공해주네요.",
+      "created_at": "2024-02-13T14:20:00Z",
+      "updated_at": "2024-02-13T14:20:00Z",
+      "is_deleted": false
+    }
+  },
+  {
+    "model": "books.reply",
+    "pk": 22,
+    "fields": {
+      "comment": 22,
+      "user": 11,
+      "content": "기술 발전에 대해 정말 깊이 생각해보게 되는 책이에요.",
+      "created_at": "2024-02-14T18:35:00Z",
+      "updated_at": "2024-02-14T18:35:00Z",
+      "is_deleted": false
+    }
+  },
+  {
+    "model": "books.reply",
+    "pk": 23,
+    "fields": {
+      "comment": 23,
+      "user": 19,
+      "content": "기회비용 개념을 일상에서 활용하는 방법 정말 궁금해요!",
+      "created_at": "2024-02-19T11:45:00Z",
+      "updated_at": "2024-02-19T11:45:00Z",
+      "is_deleted": false
+    }
+  },
+  {
+    "model": "books.reply",
+    "pk": 24,
+    "fields": {
+      "comment": 24,
+      "user": 31,
+      "content": "경제학적 사고의 힘을 정말 느낄 수 있는 책이네요.",
+      "created_at": "2024-02-20T15:30:00Z",
+      "updated_at": "2024-02-20T15:30:00Z",
+      "is_deleted": false
+    }
+  },
+  {
+    "model": "books.reply",
+    "pk": 25,
+    "fields": {
+      "comment": 25,
+      "user": 16,
+      "content": "아침형 인간 되기 정말 어려운데 성공하신 것 같아서 부러워요!",
+      "created_at": "2024-02-23T10:25:00Z",
+      "updated_at": "2024-02-23T10:25:00Z",
+      "is_deleted": false
+    }
+  },
+  {
+    "model": "books.reply",
+    "pk": 26,
+    "fields": {
+      "comment": 26,
+      "user": 39,
+      "content": "생활 패턴 바꾸는 팁 정말 궁금해요. 공유해주세요!",
+      "created_at": "2024-02-24T17:45:00Z",
+      "updated_at": "2024-02-24T17:45:00Z",
+      "is_deleted": false
+    }
+  },
+  {
+    "model": "books.reply",
+    "pk": 27,
+    "fields": {
+      "comment": 27,
+      "user": 35,
+      "content": "현실에서 벗어나는 경험이 정말 소중한 것 같아요.",
+      "created_at": "2024-03-01T12:55:00Z",
+      "updated_at": "2024-03-01T12:55:00Z",
+      "is_deleted": false
+    }
+  },
+  {
+    "model": "books.reply",
+    "pk": 28,
+    "fields": {
+      "comment": 28,
+      "user": 41,
+      "content": "해리포터는 정말 판타지 소설의 최고봉인 것 같아요!",
+      "created_at": "2024-03-02T16:35:00Z",
+      "updated_at": "2024-03-02T16:35:00Z",
+      "is_deleted": false
+    }
+  },
+  {
+    "model": "books.reply",
+    "pk": 29,
+    "fields": {
+      "comment": 29,
+      "user": 38,
+      "content": "기술 발전과 인간다움의 균형이 정말 중요한 시점이에요.",
+      "created_at": "2024-03-06T14:30:00Z",
+      "updated_at": "2024-03-06T14:30:00Z",
+      "is_deleted": false
+    }
+  },
+  {
+    "model": "books.reply",
+    "pk": 30,
+    "fields": {
+      "comment": 30,
+      "user": 17,
+      "content": "인문학의 깊이를 느낄 수 있는 좋은 조합이었을 것 같아요.",
+      "created_at": "2024-03-07T18:25:00Z",
+      "updated_at": "2024-03-07T18:25:00Z",
+      "is_deleted": false
+    }
+  },
+  {
+    "model": "books.reply",
+    "pk": 31,
+    "fields": {
+      "comment": 31,
+      "user": 14,
+      "content": "독서의 또 다른 즐거움을 발견하신 것 같아서 좋네요!",
+      "created_at": "2024-03-11T13:40:00Z",
+      "updated_at": "2024-03-11T13:40:00Z",
+      "is_deleted": false
+    }
+  },
+  {
+    "model": "books.reply",
+    "pk": 32,
+    "fields": {
+      "comment": 32,
+      "user": 44,
+      "content": "어린왕자는 정말 해석의 여지가 많은 작품이죠.",
+      "created_at": "2024-03-12T17:55:00Z",
+      "updated_at": "2024-03-12T17:55:00Z",
+      "is_deleted": false
+    }
+  },
+  {
+    "model": "books.reply",
+    "pk": 33,
+    "fields": {
+      "comment": 33,
+      "user": 24,
+      "content": "각각의 장점을 잘 파악하신 것 같아요. 균형이 중요하죠!",
+      "created_at": "2024-03-16T15:30:00Z",
+      "updated_at": "2024-03-16T15:30:00Z",
+      "is_deleted": false
+    }
+  },
+  {
+    "model": "books.reply",
+    "pk": 34,
+    "fields": {
+      "comment": 34,
+      "user": 39,
+      "content": "균형 있는 독서가 정말 좋은 습관인 것 같아요.",
+      "created_at": "2024-03-17T12:25:00Z",
+      "updated_at": "2024-03-17T12:25:00Z",
+      "is_deleted": false
+    }
+  },
+  {
+    "model": "books.reply",
+    "pk": 35,
+    "fields": {
+      "comment": 35,
+      "user": 29,
+      "content": "저도 경제학에 관심이 생겼어요. 함께 공부해요!",
+      "created_at": "2024-03-21T11:50:00Z",
+      "updated_at": "2024-03-21T11:50:00Z",
+      "is_deleted": false
+    }
+  },
+  {
+    "model": "books.reply",
+    "pk": 36,
+    "fields": {
+      "comment": 36,
+      "user": 19,
+      "content": "다음 단계 책 추천해드릴게요! 같이 읽어봐요.",
+      "created_at": "2024-03-22T16:35:00Z",
+      "updated_at": "2024-03-22T16:35:00Z",
+      "is_deleted": false
+    }
+  },
+  {
+    "model": "books.reply",
+    "pk": 37,
+    "fields": {
+      "comment": 37,
+      "user": 36,
+      "content": "주인공과 함께 성장하는 경험이 정말 특별하죠!",
+      "created_at": "2024-03-26T14:20:00Z",
+      "updated_at": "2024-03-26T14:20:00Z",
+      "is_deleted": false
+    }
+  },
+  {
+    "model": "books.reply",
+    "pk": 38,
+    "fields": {
+      "comment": 38,
+      "user": 25,
+      "content": "성장소설의 명작들이 주는 위로가 정말 크죠.",
+      "created_at": "2024-03-27T18:45:00Z",
+      "updated_at": "2024-03-27T18:45:00Z",
+      "is_deleted": false
+    }
+  },
+  {
+    "model": "books.reply",
+    "pk": 39,
+    "fields": {
+      "comment": 39,
+      "user": 40,
+      "content": "어린왕자로 시작하신 것이 정말 완벽한 선택이었네요!",
+      "created_at": "2024-03-31T13:30:00Z",
+      "updated_at": "2024-03-31T13:30:00Z",
+      "is_deleted": false
+    }
+  },
+  {
+    "model": "books.reply",
+    "pk": 40,
+    "fields": {
+      "comment": 40,
+      "user": 8,
+      "content": "앞으로 어떤 책들을 만나게 될지 정말 기대되네요!",
+      "created_at": "2024-04-01T17:25:00Z",
+      "updated_at": "2024-04-01T17:25:00Z",
+      "is_deleted": false
+    }
+  },
+  {
+    "model": "books.reply",
+    "pk": 41,
+    "fields": {
+      "comment": 41,
+      "user": 15,
+      "content": "마법 세계의 설정이 정말 탄탄하다는 말에 완전 동감해요!",
+      "created_at": "2023-05-23T19:35:00Z",
+      "updated_at": "2023-05-23T19:35:00Z",
+      "is_deleted": false
+    }
+  },
+  {
+    "model": "books.reply",
+    "pk": 42,
+    "fields": {
+      "comment": 42,
+      "user": 22,
+      "content": "시대를 초월하는 메시지가 정말 감동적이에요.",
+      "created_at": "2023-06-18T21:25:00Z",
+      "updated_at": "2023-06-18T21:25:00Z",
+      "is_deleted": false
+    }
+  },
+  {
+    "model": "books.reply",
+    "pk": 43,
+    "fields": {
+      "comment": 43,
+      "user": 25,
+      "content": "독서 모임에서 데미안 토론하면 정말 깊이 있을 것 같아요!",
+      "created_at": "2023-07-13T16:10:00Z",
+      "updated_at": "2023-07-13T16:10:00Z",
+      "is_deleted": false
+    }
+  },
+  {
+    "model": "books.reply",
+    "pk": 44,
+    "fields": {
+      "comment": 44,
+      "user": 12,
+      "content": "추리소설 같은 재미도 있다는 말이 정말 공감돼요!",
+      "created_at": "2023-08-28T12:45:00Z",
+      "updated_at": "2023-08-28T12:45:00Z",
+      "is_deleted": false
+    }
+  },
+  {
+    "model": "books.reply",
+    "pk": 45,
+    "fields": {
+      "comment": 45,
+      "user": 33,
+      "content": "인류사에 대한 새로운 관점을 제공해주는 정말 좋은 책이에요.",
+      "created_at": "2023-09-13T20:40:00Z",
+      "updated_at": "2023-09-13T20:40:00Z",
+      "is_deleted": false
+    }
+  },
+  {
+    "model": "books.reply",
+    "pk": 46,
+    "fields": {
+      "comment": 46,
+      "user": 31,
+      "content": "경제학을 이렇게 쉽게 설명한 책은 정말 처음이에요!",
+      "created_at": "2023-10-05T14:55:00Z",
+      "updated_at": "2023-10-05T14:55:00Z",
+      "is_deleted": false
+    }
+  },
+  {
+    "model": "books.reply",
+    "pk": 47,
+    "fields": {
+      "comment": 47,
+      "user": 21,
+      "content": "실천하는 것이 더 중요하다는 말에 완전 동감해요!",
+      "created_at": "2023-10-09T18:30:00Z",
+      "updated_at": "2023-10-09T18:30:00Z",
+      "is_deleted": false
+    }
+  },
+  {
+    "model": "books.reply",
+    "pk": 48,
+    "fields": {
+      "comment": 48,
+      "user": 18,
+      "content": "어른이 되어서 읽는 해리포터는 정말 새로운 발견이 많을 것 같아요!",
+      "created_at": "2024-01-23T13:20:00Z",
+      "updated_at": "2024-01-23T13:20:00Z",
+      "is_deleted": false
+    }
+  },
+  {
+    "model": "books.reply",
+    "pk": 49,
+    "fields": {
+      "comment": 49,
+      "user": 10,
+      "content": "현대 사회에 던지는 메시지가 정말 강력하다는 말에 동감해요.",
+      "created_at": "2024-01-28T16:45:00Z",
+      "updated_at": "2024-01-28T16:45:00Z",
+      "is_deleted": false
+    }
+  },
+  {
+    "model": "books.reply",
+    "pk": 50,
+    "fields": {
+      "comment": 50,
+      "user": 17,
+      "content": "현대인들에게 꼭 필요한 자아 성찰의 여정이라는 말이 와닿아요.",
+      "created_at": "2024-02-08T19:55:00Z",
+      "updated_at": "2024-02-08T19:55:00Z",
+      "is_deleted": false
+    }
+  }
+]

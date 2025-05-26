@@ -1,11 +1,15 @@
 from rest_framework import viewsets, status, permissions
-from rest_framework.decorators import action
+from rest_framework.decorators import action, api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from django.shortcuts import get_object_or_404
 from django.core.cache import cache
+from django.core.paginator import Paginator
+import logging
+
+logger = logging.getLogger(__name__)
 from django.conf import settings
-from .models import Book, Thread, Category, BookEmbedding
+from .models import Book, Thread, Category, Comment, Reply, BookEmbedding
 from .serializers import (
     BookListSerializer,
     BookDetailSerializer,
@@ -13,6 +17,10 @@ from .serializers import (
     ThreadCreateSerializer,
     ThreadUpdateSerializer,
     ThreadDetailSerializer,
+    CommentSerializer,
+    CommentCreateSerializer,
+    ReplySerializer,
+    ReplyCreateSerializer,
 )
 from .utils import create_thread_image
 from accounts.permissions import IsAuthorOrReadOnly
@@ -49,7 +57,10 @@ class BookViewSet(viewsets.ReadOnlyModelViewSet):
     def list(self, request, *args, **kwargs):
         """캐시된 도서 목록 반환"""
         category_pk = request.GET.get("category")
-        cache_key = f"{settings.CACHE_KEY_PREFIX}:book_list:{category_pk or 'all'}"
+        page = request.GET.get("page", "1")
+        cache_key = (
+            f"{settings.CACHE_KEY_PREFIX}:book_list:{category_pk or 'all'}:page_{page}"
+        )
 
         cached = cache.get(cache_key)
         if cached:
@@ -462,25 +473,262 @@ def thread_delete(request, thread_id):
 @api_view(["POST"])
 @permission_classes([IsAuthenticated])
 def thread_like(request, thread_id):
+    """
+    쓰레드 좋아요/좋아요 취소
+    """
     thread = get_object_or_404(Thread, id=thread_id)
-    user = request.user
-    if thread.likes.filter(id=user.id).exists():
-        thread.likes.remove(user)
+
+    if thread.likes.filter(id=request.user.id).exists():
+        # 좋아요 취소
+        thread.likes.remove(request.user)
         liked = False
+        message = "좋아요를 취소했습니다."
     else:
-        thread.likes.add(user)
+        # 좋아요 추가
+        thread.likes.add(request.user)
         liked = True
+        message = "좋아요를 추가했습니다."
 
-    # 좋아요 변경 후 관련 캐시 무효화
-    cache_key_thread_list = f"{settings.CACHE_KEY_PREFIX}:thread_list"
-    cache_key_thread_detail = f"{settings.CACHE_KEY_PREFIX}:thread_detail:{thread_id}"
-    cache.delete(cache_key_thread_list)
-    cache.delete(cache_key_thread_detail)
-    cache_key_thread_detail = f"{settings.CACHE_KEY_PREFIX}:thread_detail:{thread_id}"
-    cache.delete(cache_key_thread_list)
-    cache.delete(cache_key_thread_detail)
+    # 관련 캐시 무효화
+    cache_patterns = [
+        f"{settings.CACHE_KEY_PREFIX}:thread_list:*",
+        f"{settings.CACHE_KEY_PREFIX}:thread_detail:{thread_id}:*",
+    ]
 
-    return Response({"liked": liked, "likes_count": thread.likes.count()})
+    for pattern in cache_patterns:
+        cache.delete_many(cache.get_many(pattern))
+
+    return Response(
+        {
+            "message": message,
+            "liked": liked,
+            "likes_count": thread.likes.count(),
+        },
+        status=status.HTTP_200_OK,
+    )
+
+
+# === 댓글/대댓글 ViewSet ===
+
+
+class CommentViewSet(viewsets.ModelViewSet):
+    """
+    댓글 ViewSet
+    - Thread별 댓글 CRUD
+    - 페이지네이션 지원
+    - 캐시 최적화
+    """
+
+    serializer_class = CommentSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        thread_id = self.kwargs.get("thread_pk")
+        return (
+            Comment.objects.filter(thread_id=thread_id, is_deleted=False)
+            .select_related("user")
+            .prefetch_related("replies__user")
+        )
+
+    def get_serializer_class(self):
+        if self.action == "create":
+            return CommentCreateSerializer
+        return CommentSerializer
+
+    def get_permissions(self):
+        if self.action in ["list", "retrieve"]:
+            permission_classes = [AllowAny]
+        elif self.action == "create":
+            permission_classes = [IsAuthenticated]
+        else:  # update, partial_update, destroy
+            permission_classes = [IsAuthenticated, IsAuthorOrReadOnly]
+
+        return [permission() for permission in permission_classes]
+
+    def list(self, request, thread_pk=None):
+        """댓글 목록 조회 (페이지네이션)"""
+        thread = get_object_or_404(Thread, pk=thread_pk)
+
+        # 캐시 키 생성
+        page = request.GET.get("page", 1)
+        cache_key = f"comments:thread:{thread_pk}:page:{page}"
+
+        cached_data = cache.get(cache_key)
+        if cached_data:
+            return Response(cached_data)
+
+        queryset = self.get_queryset()
+
+        # 페이지네이션
+        paginator = Paginator(queryset, 10)  # 페이지당 10개
+        page_obj = paginator.get_page(page)
+
+        serializer = self.get_serializer(page_obj, many=True)
+
+        response_data = {
+            "results": serializer.data,
+            "pagination": {
+                "page": page_obj.number,
+                "total_pages": paginator.num_pages,
+                "total_count": paginator.count,
+                "has_next": page_obj.has_next(),
+                "has_previous": page_obj.has_previous(),
+            },
+        }
+
+        # 캐시 저장 (5분)
+        cache.set(cache_key, response_data, 300)
+
+        return Response(response_data)
+
+    def create(self, request, thread_pk=None):
+        """댓글 생성"""
+        thread = get_object_or_404(Thread, pk=thread_pk)
+
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        comment = serializer.save(user=request.user, thread=thread)
+
+        # 캐시 무효화
+        self._invalidate_comment_cache(thread_pk)
+
+        # 응답용 시리얼라이저
+        response_serializer = CommentSerializer(comment, context={"request": request})
+
+        return Response(response_serializer.data, status=status.HTTP_201_CREATED)
+
+    def update(self, request, pk=None, thread_pk=None):
+        """댓글 수정"""
+        comment = self.get_object()
+
+        serializer = CommentCreateSerializer(comment, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+
+        # 캐시 무효화
+        self._invalidate_comment_cache(thread_pk)
+
+        # 응답용 시리얼라이저
+        response_serializer = CommentSerializer(comment, context={"request": request})
+
+        return Response(response_serializer.data)
+
+    def destroy(self, request, pk=None, thread_pk=None):
+        """댓글 소프트 삭제"""
+        comment = self.get_object()
+        comment.is_deleted = True
+        comment.save()
+
+        # 캐시 무효화
+        self._invalidate_comment_cache(thread_pk)
+
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+    @action(detail=True, methods=["post"], permission_classes=[IsAuthenticated])
+    def reply(self, request, pk=None, thread_pk=None):
+        """대댓글 생성"""
+        comment = self.get_object()
+
+        serializer = ReplyCreateSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        reply = serializer.save(user=request.user, comment=comment)
+
+        # 캐시 무효화
+        self._invalidate_comment_cache(thread_pk)
+
+        # 응답용 시리얼라이저
+        response_serializer = ReplySerializer(reply, context={"request": request})
+
+        return Response(response_serializer.data, status=status.HTTP_201_CREATED)
+
+    def _invalidate_comment_cache(self, thread_pk):
+        """댓글 관련 캐시 무효화"""
+        try:
+            # Redis pattern 매칭을 활용한 효율적인 캐시 무효화
+            from django_redis import get_redis_connection
+
+            redis_conn = get_redis_connection("default")
+            pattern = f"*comments:thread:{thread_pk}:page:*"
+            keys = redis_conn.keys(pattern)
+            if keys:
+                redis_conn.delete(*keys)
+                logger.info(f"🗑️ 댓글 캐시 무효화 완료: {len(keys)}개 키 삭제")
+        except Exception as e:
+            # Redis 연결 실패 시 fallback
+            logger.warning(f"⚠️ Redis pattern 삭제 실패, fallback 사용: {e}")
+            for page in range(1, 20):  # 축소된 범위
+                cache_key = f"comments:thread:{thread_pk}:page:{page}"
+                cache.delete(cache_key)
+
+
+class ReplyViewSet(viewsets.ModelViewSet):
+    """
+    대댓글 ViewSet
+    - 댓글별 대댓글 CRUD
+    """
+
+    serializer_class = ReplySerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        comment_id = self.kwargs.get("comment_pk")
+        return Reply.objects.filter(comment_id=comment_id).select_related(
+            "user", "comment", "comment__thread"
+        )
+
+    def get_serializer_class(self):
+        if self.action in ["create", "update", "partial_update"]:
+            return ReplyCreateSerializer
+        return ReplySerializer
+
+    def get_permissions(self):
+        if self.action in ["list", "retrieve"]:
+            permission_classes = [AllowAny]
+        elif self.action == "create":
+            permission_classes = [IsAuthenticated]
+        else:  # update, partial_update, destroy
+            permission_classes = [IsAuthenticated, IsAuthorOrReadOnly]
+
+        return [permission() for permission in permission_classes]
+
+    def perform_update(self, serializer):
+        """대댓글 수정 수행"""
+        reply = serializer.save()
+
+        # 댓글 캐시 무효화
+        thread_pk = reply.comment.thread.pk
+        self._invalidate_comment_cache(thread_pk)
+
+    def perform_destroy(self, instance):
+        """대댓글 소프트 삭제 수행"""
+        thread_pk = instance.comment.thread.pk
+
+        instance.is_deleted = True
+        instance.save()
+
+        # 댓글 캐시 무효화
+        self._invalidate_comment_cache(thread_pk)
+
+    def _invalidate_comment_cache(self, thread_pk):
+        """댓글 관련 캐시 무효화"""
+        try:
+            # Redis pattern 매칭을 활용한 효율적인 캐시 무효화
+            from django_redis import get_redis_connection
+
+            redis_conn = get_redis_connection("default")
+            pattern = f"*comments:thread:{thread_pk}:page:*"
+            keys = redis_conn.keys(pattern)
+            if keys:
+                redis_conn.delete(*keys)
+                logger.info(f"🗑️ 대댓글 캐시 무효화 완료: {len(keys)}개 키 삭제")
+        except Exception as e:
+            # Redis 연결 실패 시 fallback
+            logger.warning(f"⚠️ Redis pattern 삭제 실패, fallback 사용: {e}")
+            for page in range(1, 20):  # 축소된 범위
+                cache_key = f"comments:thread:{thread_pk}:page:{page}"
+                cache.delete(cache_key)
 
 
 @api_view(["GET"])

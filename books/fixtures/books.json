@@ -17044,5 +17044,419 @@
       "subTitle": "",
       "category": 1
     }
+  },
+  {
+    "model": "books.book",
+    "pk": 8,
+    "fields": {
+      "category": 1,
+      "title": "1984",
+      "description": "조지 오웰의 디스토피아 소설로, 전체주의 사회의 공포를 그린 작품입니다. 빅 브라더의 감시 사회가 현대에도 시사하는 바가 큽니다.",
+      "isbn": "9788937460777",
+      "cover": "https://image.aladin.co.kr/product/1/2/cover500/8937460777_1.jpg",
+      "publisher": "민음사",
+      "pub_date": "2019-02-25",
+      "author": "조지 오웰",
+      "author_info": "영국의 소설가이자 언론인으로, 디스토피아 소설의 대가입니다.",
+      "author_photo": "https://image.aladin.co.kr/author/photo/49154/49154_2.jpg",
+      "customer_review_rank": 9.5,
+      "subTitle": "디스토피아의 고전"
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 9,
+    "fields": {
+      "category": 1,
+      "title": "백년동안의 고독",
+      "description": "가브리엘 가르시아 마르케스의 대표작으로, 마술적 리얼리즘의 걸작입니다. 부엔디아 가문의 7대에 걸친 이야기가 환상적으로 펼쳐집니다.",
+      "isbn": "9788937462788",
+      "cover": "https://image.aladin.co.kr/product/1/3/cover500/8937462788_1.jpg",
+      "publisher": "민음사",
+      "pub_date": "2017-06-30",
+      "author": "가브리엘 가르시아 마르케스",
+      "author_info": "콜롬비아의 소설가로, 노벨문학상을 수상한 마술적 리얼리즘의 대가입니다.",
+      "author_photo": "https://image.aladin.co.kr/author/photo/49154/49154_2.jpg",
+      "customer_review_rank": 8.5,
+      "subTitle": "마술적 리얼리즘의 걸작"
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 10,
+    "fields": {
+      "category": 1,
+      "title": "노르웨이의 숲",
+      "description": "무라카미 하루키의 대표작으로, 청춘의 아픔과 사랑을 섬세하게 그린 소설입니다. 와타나베와 나오코, 미도리의 삼각관계가 인상적입니다.",
+      "isbn": "9788932917245",
+      "cover": "https://image.aladin.co.kr/product/1/4/cover500/8932917245_1.jpg",
+      "publisher": "문학사상",
+      "pub_date": "2020-03-15",
+      "author": "무라카미 하루키",
+      "author_info": "일본의 소설가로, 현대 일본 문학을 대표하는 작가입니다.",
+      "author_photo": "https://image.aladin.co.kr/author/photo/49154/49154_2.jpg",
+      "customer_review_rank": 8.8,
+      "subTitle": "청춘의 아픔과 사랑"
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 11,
+    "fields": {
+      "category": 2,
+      "title": "부의 추월차선",
+      "description": "전통적인 부의 축적 방식에 도전하는 책입니다. 느린 차선과 빠른 차선의 차이를 명확히 제시하며, 진정한 부를 만드는 방법을 알려줍니다.",
+      "isbn": "9791162540832",
+      "cover": "https://image.aladin.co.kr/product/1/5/cover500/k162540832_1.jpg",
+      "publisher": "토네이도",
+      "pub_date": "2018-07-20",
+      "author": "엠제이 드마코",
+      "author_info": "미국의 기업가이자 투자자로, 젊은 나이에 경제적 자유를 달성한 경험을 바탕으로 글을 씁니다.",
+      "author_photo": "https://image.aladin.co.kr/author/photo/49154/49154_2.jpg",
+      "customer_review_rank": 8.2,
+      "subTitle": "부자들이 말하지 않는 진실"
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 12,
+    "fields": {
+      "category": 2,
+      "title": "주식투자 무작정 따라하기",
+      "description": "주식투자 초보자를 위한 실전 가이드북입니다. 기본적인 투자 원칙부터 실제 종목 분석까지 체계적으로 설명되어 있습니다.",
+      "isbn": "9791164136421",
+      "cover": "https://image.aladin.co.kr/product/1/6/cover500/k164136421_1.jpg",
+      "publisher": "길벗",
+      "pub_date": "2022-01-10",
+      "author": "윤재수",
+      "author_info": "20년 경력의 증권 애널리스트로, 다수의 투자서를 집필했습니다.",
+      "author_photo": "https://image.aladin.co.kr/author/photo/49154/49154_2.jpg",
+      "customer_review_rank": 7.8,
+      "subTitle": "초보자를 위한 주식투자 가이드"
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 13,
+    "fields": {
+      "category": 3,
+      "title": "원씽",
+      "description": "성공을 위해서는 한 가지에 집중해야 한다는 메시지를 전하는 자기계발서입니다. 집중의 힘과 우선순위 설정의 중요성을 강조합니다.",
+      "isbn": "9788901142319",
+      "cover": "https://image.aladin.co.kr/product/1/7/cover500/8901142319_1.jpg",
+      "publisher": "비즈니스북스",
+      "pub_date": "2013-09-25",
+      "author": "게리 켈러",
+      "author_info": "미국의 부동산 기업가이자 베스트셀러 작가입니다.",
+      "author_photo": "https://image.aladin.co.kr/author/photo/49154/49154_2.jpg",
+      "customer_review_rank": 8.4,
+      "subTitle": "집중의 힘"
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 14,
+    "fields": {
+      "category": 3,
+      "title": "아토믹 해빗",
+      "description": "작은 습관의 놀라운 힘에 대해 다룬 책입니다. 1%의 개선이 어떻게 큰 변화를 만들어내는지 과학적 근거와 함께 설명합니다.",
+      "isbn": "9791164050208",
+      "cover": "https://image.aladin.co.kr/product/1/8/cover500/k164050208_1.jpg",
+      "publisher": "비즈니스북스",
+      "pub_date": "2019-06-10",
+      "author": "제임스 클리어",
+      "author_info": "습관과 의사결정 개선 전문가로, 수백만 명이 읽는 뉴스레터를 발행합니다.",
+      "author_photo": "https://image.aladin.co.kr/author/photo/49154/49154_2.jpg",
+      "customer_review_rank": 9.2,
+      "subTitle": "작은 습관의 놀라운 힘"
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 15,
+    "fields": {
+      "category": 4,
+      "title": "총, 균, 쇠",
+      "description": "인류 문명의 발전 과정을 지리학적 관점에서 분석한 책입니다. 왜 어떤 민족은 발전하고 어떤 민족은 그렇지 못했는지를 설명합니다.",
+      "isbn": "9788934942467",
+      "cover": "https://image.aladin.co.kr/product/1/9/cover500/8934942467_1.jpg",
+      "publisher": "문학사상",
+      "pub_date": "2005-12-15",
+      "author": "재레드 다이아몬드",
+      "author_info": "미국의 지리학자이자 생물학자로, 퓰리처상을 수상한 학자입니다.",
+      "author_photo": "https://image.aladin.co.kr/author/photo/49154/49154_2.jpg",
+      "customer_review_rank": 9.1,
+      "subTitle": "인류 문명의 수수께끼"
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 16,
+    "fields": {
+      "category": 4,
+      "title": "코스모스",
+      "description": "칼 세이건의 대표작으로, 우주의 신비와 과학의 아름다움을 일반인도 이해할 수 있게 설명한 책입니다. 과학적 사고의 중요성을 강조합니다.",
+      "isbn": "9788983711892",
+      "cover": "https://image.aladin.co.kr/product/2/0/cover500/8983711892_1.jpg",
+      "publisher": "사이언스북스",
+      "pub_date": "2006-12-20",
+      "author": "칼 세이건",
+      "author_info": "미국의 천문학자이자 과학 저술가로, 과학 대중화에 큰 기여를 했습니다.",
+      "author_photo": "https://image.aladin.co.kr/author/photo/49154/49154_2.jpg",
+      "customer_review_rank": 9.3,
+      "subTitle": "우주의 신비"
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 17,
+    "fields": {
+      "category": 5,
+      "title": "여행의 이유",
+      "description": "김영하 작가가 여행의 의미와 가치에 대해 성찰한 에세이입니다. 여행이 우리에게 주는 깨달음과 변화에 대해 깊이 있게 다룹니다.",
+      "isbn": "9788954655798",
+      "cover": "https://image.aladin.co.kr/product/2/1/cover500/8954655798_1.jpg",
+      "publisher": "문학동네",
+      "pub_date": "2019-04-22",
+      "author": "김영하",
+      "author_info": "한국의 대표적인 소설가이자 에세이스트입니다.",
+      "author_photo": "https://image.aladin.co.kr/author/photo/49154/49154_2.jpg",
+      "customer_review_rank": 8.6,
+      "subTitle": "여행에 대한 성찰"
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 18,
+    "fields": {
+      "category": 5,
+      "title": "미니멀 라이프",
+      "description": "불필요한 것들을 버리고 진정 중요한 것에 집중하는 삶의 방식을 제안하는 책입니다. 소유보다는 경험의 가치를 강조합니다.",
+      "isbn": "9791188850123",
+      "cover": "https://image.aladin.co.kr/product/2/2/cover500/k188850123_1.jpg",
+      "publisher": "더난출판사",
+      "pub_date": "2020-08-15",
+      "author": "조슈아 필즈 밀번",
+      "author_info": "미니멀리즘 라이프스타일을 실천하고 전파하는 작가입니다.",
+      "author_photo": "https://image.aladin.co.kr/author/photo/49154/49154_2.jpg",
+      "customer_review_rank": 7.9,
+      "subTitle": "진정 중요한 것에 집중하기"
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 19,
+    "fields": {
+      "category": 6,
+      "title": "그림으로 보는 그리스 로마 신화",
+      "description": "그리스 로마 신화를 아름다운 일러스트와 함께 쉽게 풀어낸 책입니다. 신화 속 인물들의 이야기가 생생하게 그려져 있습니다.",
+      "isbn": "9788934985471",
+      "cover": "https://image.aladin.co.kr/product/2/3/cover500/8934985471_1.jpg",
+      "publisher": "계림북스",
+      "pub_date": "2021-03-10",
+      "author": "토마스 불핀치",
+      "author_info": "미국의 작가로, 신화와 전설을 대중에게 알리는 데 기여했습니다.",
+      "author_photo": "https://image.aladin.co.kr/author/photo/49154/49154_2.jpg",
+      "customer_review_rank": 8.1,
+      "subTitle": "신화의 세계로의 여행"
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 20,
+    "fields": {
+      "category": 6,
+      "title": "세계사를 바꾼 10가지 약",
+      "description": "인류 역사에 큰 영향을 미친 약물들의 이야기를 흥미롭게 풀어낸 책입니다. 의학의 발전과 함께 변화한 인류 문명을 조명합니다.",
+      "isbn": "9788934986188",
+      "cover": "https://image.aladin.co.kr/product/2/4/cover500/8934986188_1.jpg",
+      "publisher": "사이언스북스",
+      "pub_date": "2022-05-18",
+      "author": "사토 겐타로",
+      "author_info": "일본의 약학자이자 과학 저술가입니다.",
+      "author_photo": "https://image.aladin.co.kr/author/photo/49154/49154_2.jpg",
+      "customer_review_rank": 8.3,
+      "subTitle": "약이 바꾼 인류사"
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 21,
+    "fields": {
+      "category": 7,
+      "title": "클린 코드",
+      "description": "좋은 코드를 작성하는 방법에 대한 프로그래밍 지침서입니다. 읽기 쉽고 유지보수가 용이한 코드 작성의 원칙을 제시합니다.",
+      "isbn": "9788966260959",
+      "cover": "https://image.aladin.co.kr/product/2/5/cover500/8966260959_1.jpg",
+      "publisher": "인사이트",
+      "pub_date": "2013-12-24",
+      "author": "로버트 C. 마틴",
+      "author_info": "소프트웨어 개발 방법론의 권위자로, 애자일 선언문 작성에 참여했습니다.",
+      "author_photo": "https://image.aladin.co.kr/author/photo/49154/49154_2.jpg",
+      "customer_review_rank": 9.0,
+      "subTitle": "애자일 소프트웨어 장인 정신"
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 22,
+    "fields": {
+      "category": 7,
+      "title": "인공지능을 위한 수학",
+      "description": "AI와 머신러닝을 이해하기 위해 필요한 수학적 기초를 체계적으로 설명한 책입니다. 선형대수, 확률론, 미적분학을 다룹니다.",
+      "isbn": "9791162242384",
+      "cover": "https://image.aladin.co.kr/product/2/6/cover500/k162242384_1.jpg",
+      "publisher": "한빛미디어",
+      "pub_date": "2021-09-01",
+      "author": "마크 피터 다이젠로스",
+      "author_info": "독일의 수학자이자 머신러닝 연구자입니다.",
+      "author_photo": "https://image.aladin.co.kr/author/photo/49154/49154_2.jpg",
+      "customer_review_rank": 8.7,
+      "subTitle": "머신러닝을 위한 수학 기초"
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 23,
+    "fields": {
+      "category": 1,
+      "title": "82년생 김지영",
+      "description": "한국 여성의 현실을 생생하게 그린 소설로, 사회적 이슈를 제기한 화제작입니다. 평범한 여성의 일상을 통해 성차별 문제를 조명합니다.",
+      "isbn": "9788937473142",
+      "cover": "https://image.aladin.co.kr/product/2/7/cover500/8937473142_1.jpg",
+      "publisher": "민음사",
+      "pub_date": "2016-10-14",
+      "author": "조남주",
+      "author_info": "한국의 소설가로, 여성 문제를 다룬 작품으로 주목받고 있습니다.",
+      "author_photo": "https://image.aladin.co.kr/author/photo/49154/49154_2.jpg",
+      "customer_review_rank": 8.9,
+      "subTitle": "평범한 여성의 특별하지 않은 이야기"
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 24,
+    "fields": {
+      "category": 1,
+      "title": "살인자의 기억법",
+      "description": "김영하 작가의 스릴러 소설로, 치매에 걸린 연쇄살인범의 이야기를 그린 작품입니다. 기억과 망각에 대한 철학적 성찰이 담겨 있습니다.",
+      "isbn": "9788954655804",
+      "cover": "https://image.aladin.co.kr/product/2/8/cover500/8954655804_1.jpg",
+      "publisher": "문학동네",
+      "pub_date": "2013-07-29",
+      "author": "김영하",
+      "author_info": "한국의 대표적인 소설가이자 에세이스트입니다.",
+      "author_photo": "https://image.aladin.co.kr/author/photo/49154/49154_2.jpg",
+      "customer_review_rank": 8.4,
+      "subTitle": "기억과 망각의 스릴러"
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 25,
+    "fields": {
+      "category": 2,
+      "title": "돈의 속성",
+      "description": "부자가 되기 위한 돈의 원리와 법칙을 설명한 재정관리서입니다. 돈에 대한 올바른 인식과 투자 철학을 제시합니다.",
+      "isbn": "9791164136438",
+      "cover": "https://image.aladin.co.kr/product/2/9/cover500/k164136438_1.jpg",
+      "publisher": "스노우폭스북스",
+      "pub_date": "2020-06-15",
+      "author": "김승호",
+      "author_info": "투자 전문가이자 재정 컨설턴트로, 다수의 재테크 강의를 진행했습니다.",
+      "author_photo": "https://image.aladin.co.kr/author/photo/49154/49154_2.jpg",
+      "customer_review_rank": 8.5,
+      "subTitle": "부자들만 아는 돈의 법칙"
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 26,
+    "fields": {
+      "category": 3,
+      "title": "미라클 모닝",
+      "description": "아침 시간을 활용한 자기계발 방법을 제시하는 책입니다. 6가지 아침 루틴을 통해 인생을 변화시키는 방법을 알려줍니다.",
+      "isbn": "9791162540849",
+      "cover": "https://image.aladin.co.kr/product/3/0/cover500/k162540849_1.jpg",
+      "publisher": "한빛비즈",
+      "pub_date": "2016-05-30",
+      "author": "할 엘로드",
+      "author_info": "미국의 자기계발 작가이자 강연가입니다.",
+      "author_photo": "https://image.aladin.co.kr/author/photo/151719/151719_2.jpg",
+      "customer_review_rank": 8.0,
+      "subTitle": "당신의 잠재력을 깨우는 아침 습관"
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 27,
+    "fields": {
+      "category": 4,
+      "title": "정의란 무엇인가",
+      "description": "마이클 샌델 교수의 정치철학 강의를 책으로 엮은 작품입니다. 정의에 대한 다양한 관점을 제시하며 윤리적 사고를 기릅니다.",
+      "isbn": "9788934942474",
+      "cover": "https://image.aladin.co.kr/product/3/1/cover500/8934942474_1.jpg",
+      "publisher": "김영사",
+      "pub_date": "2010-05-25",
+      "author": "마이클 샌델",
+      "author_info": "하버드대학교 정치철학 교수로, 공동체주의 철학자입니다.",
+      "author_photo": "https://image.aladin.co.kr/author/photo/49154/49154_2.jpg",
+      "customer_review_rank": 9.0,
+      "subTitle": "지금 우리에게 필요한 정의 이야기"
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 28,
+    "fields": {
+      "category": 5,
+      "title": "나는 나로 살기로 했다",
+      "description": "자신답게 살아가는 방법에 대한 에세이입니다. 타인의 시선에 얽매이지 않고 자신만의 길을 걸어가는 용기에 대해 이야기합니다.",
+      "isbn": "9791188850130",
+      "cover": "https://image.aladin.co.kr/product/3/2/cover500/k188850130_1.jpg",
+      "publisher": "마음의숲",
+      "pub_date": "2018-03-12",
+      "author": "김수현",
+      "author_info": "심리상담사이자 에세이스트로, 자기계발과 심리학 분야의 글을 씁니다.",
+      "author_photo": "https://image.aladin.co.kr/author/photo/49154/49154_2.jpg",
+      "customer_review_rank": 8.2,
+      "subTitle": "나답게 살아가는 용기"
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 29,
+    "fields": {
+      "category": 6,
+      "title": "세계사를 바꾼 37가지 물고기 이야기",
+      "description": "물고기와 인류 문명의 관계를 흥미롭게 풀어낸 책입니다. 물고기가 어떻게 인류 역사에 영향을 미쳤는지를 다양한 사례로 설명합니다.",
+      "isbn": "9788934986195",
+      "cover": "https://image.aladin.co.kr/product/3/3/cover500/8934986195_1.jpg",
+      "publisher": "지식갤러리",
+      "pub_date": "2021-11-22",
+      "author": "마크 쿨란스키",
+      "author_info": "미국의 저널리스트이자 역사학자로, 음식과 역사에 관한 책을 많이 썼습니다.",
+      "author_photo": "https://image.aladin.co.kr/author/photo/49154/49154_2.jpg",
+      "customer_review_rank": 7.8,
+      "subTitle": "물고기가 만든 인류사"
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 30,
+    "fields": {
+      "category": 7,
+      "title": "파이썬 머신러닝 완벽 가이드",
+      "description": "파이썬을 이용한 머신러닝 구현 방법을 체계적으로 설명한 실무서입니다. 기초부터 고급 기법까지 단계별로 학습할 수 있습니다.",
+      "isbn": "9791162242391",
+      "cover": "https://image.aladin.co.kr/product/3/4/cover500/k162242391_1.jpg",
+      "publisher": "위키북스",
+      "pub_date": "2020-12-28",
+      "author": "권철민",
+      "author_info": "데이터 사이언티스트이자 머신러닝 전문가로, 다수의 기업에서 AI 프로젝트를 수행했습니다.",
+      "author_photo": "https://image.aladin.co.kr/author/photo/49154/49154_2.jpg",
+      "customer_review_rank": 8.8,
+      "subTitle": "이론부터 실전까지 한 번에"
+    }
   }
 ]
