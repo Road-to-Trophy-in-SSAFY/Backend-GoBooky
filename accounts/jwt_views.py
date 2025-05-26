@@ -85,20 +85,28 @@ class CustomTokenObtainPairView(TokenObtainPairView):
                 # Refresh token을 HttpOnly 쿠키로 설정
                 refresh_token = data.get("refresh")
                 if refresh_token:
-                    response.set_cookie(
-                        settings.SIMPLE_JWT["AUTH_COOKIE_REFRESH"],
-                        refresh_token,
-                        max_age=settings.SIMPLE_JWT[
+                    cookie_name = settings.SIMPLE_JWT["AUTH_COOKIE_REFRESH"]
+                    cookie_settings = {
+                        "max_age": settings.SIMPLE_JWT[
                             "REFRESH_TOKEN_LIFETIME"
                         ].total_seconds(),
-                        httponly=settings.SIMPLE_JWT["AUTH_COOKIE_HTTP_ONLY"],
-                        secure=settings.SIMPLE_JWT["AUTH_COOKIE_SECURE"],
-                        samesite=settings.SIMPLE_JWT["AUTH_COOKIE_SAMESITE"],
-                        path=settings.SIMPLE_JWT["AUTH_COOKIE_PATH"],
-                    )
+                        "httponly": settings.SIMPLE_JWT["AUTH_COOKIE_HTTP_ONLY"],
+                        "secure": settings.SIMPLE_JWT["AUTH_COOKIE_SECURE"],
+                        "samesite": settings.SIMPLE_JWT["AUTH_COOKIE_SAMESITE"],
+                        "path": settings.SIMPLE_JWT["AUTH_COOKIE_PATH"],
+                    }
+
+                    logger.info(f"🍪 [DEBUG] 쿠키 설정 시도: {cookie_name}")
+                    logger.info(f"🍪 [DEBUG] 쿠키 설정값: {cookie_settings}")
+                    logger.info(f"🍪 [DEBUG] Refresh token 길이: {len(refresh_token)}")
+
+                    response.set_cookie(cookie_name, refresh_token, **cookie_settings)
+
+                    logger.info(f"✅ [DEBUG] 쿠키 설정 완료: {cookie_name}")
 
                     # 응답에서 refresh token 제거 (쿠키로만 전송)
                     del data["refresh"]
+                    logger.info(f"🔒 [DEBUG] 응답에서 refresh token 제거 완료")
 
                 # 성공 로그인 기록
                 user_data = data.get("user")
@@ -172,21 +180,9 @@ class CustomTokenRefreshView(TokenRefreshView):
             # 응답 생성
             response = Response(validated_data, status=status.HTTP_200_OK)
 
-            # ROTATE_REFRESH_TOKENS=True인 경우 새로운 refresh token을 쿠키에 설정
-            if settings.SIMPLE_JWT.get("ROTATE_REFRESH_TOKENS", False):
-                new_refresh_token = validated_data.get("refresh")
-                if new_refresh_token:
-                    response.set_cookie(
-                        settings.SIMPLE_JWT["AUTH_COOKIE_REFRESH"],
-                        new_refresh_token,
-                        max_age=settings.SIMPLE_JWT[
-                            "REFRESH_TOKEN_LIFETIME"
-                        ].total_seconds(),
-                        httponly=settings.SIMPLE_JWT["AUTH_COOKIE_HTTP_ONLY"],
-                        secure=settings.SIMPLE_JWT["AUTH_COOKIE_SECURE"],
-                        samesite=settings.SIMPLE_JWT["AUTH_COOKIE_SAMESITE"],
-                        path=settings.SIMPLE_JWT["AUTH_COOKIE_PATH"],
-                    )
+            # ROTATE_REFRESH_TOKENS=False이므로 기존 refresh token 유지
+            # 새로운 access token만 발급하고 refresh token은 그대로 사용
+            logger.info("ℹ️ [DEBUG] Access token만 갱신, Refresh token 유지")
 
             # 응답에서 refresh token 제거 (쿠키로만 관리)
             if "refresh" in validated_data:
@@ -244,10 +240,9 @@ class CustomTokenBlacklistView(TokenRefreshView):
                 token = RefreshToken(refresh_token)
                 user = User.objects.get(id=token["user_id"])
 
-                # 토큰 블랙리스트 처리 (BLACKLIST_AFTER_ROTATION=True인 경우)
-                if settings.SIMPLE_JWT.get("BLACKLIST_AFTER_ROTATION", False):
-                    token.blacklist()
-                    logger.info(f"🚫 JWT 토큰 블랙리스트 추가: {user.email}")
+                # 로그아웃 시 토큰을 수동으로 블랙리스트에 추가
+                token.blacklist()
+                logger.info(f"🚫 JWT 토큰 블랙리스트 추가: {user.email}")
 
                 logger.info(f"✅ JWT 로그아웃 처리: {user.email}")
 

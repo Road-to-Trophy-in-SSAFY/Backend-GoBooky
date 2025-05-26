@@ -142,8 +142,9 @@ CORS_ALLOW_HEADERS = [
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=15),  # 15분
     "REFRESH_TOKEN_LIFETIME": timedelta(days=7),  # 7일
-    "ROTATE_REFRESH_TOKENS": True,  # 토큰 로테이션 활성화 (보안 강화)
-    "BLACKLIST_AFTER_ROTATION": True,  # 블랙리스트 활성화 (사용된 토큰 무효화)
+    "ROTATE_REFRESH_TOKENS": False,  # 토큰 로테이션 비활성화 (새로고침 지원)
+    "BLACKLIST_AFTER_ROTATION": False,  # 로테이션 시 블랙리스트 비활성화
+    # 수동 블랙리스트는 여전히 가능 (token.blacklist() 직접 호출)
     "UPDATE_LAST_LOGIN": True,
     "ALGORITHM": "HS256",
     "SIGNING_KEY": SECRET_KEY,
@@ -197,21 +198,21 @@ ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_ADAPTER = "accounts.adapters.CustomAccountAdapter"
 SOCIALACCOUNT_ADAPTER = "accounts.adapters.CustomSocialAccountAdapter"
 
-# dj-rest-auth 설정
-REST_AUTH = {
-    "REGISTER_SERIALIZER": "accounts.serializers.CustomRegisterSerializer",
-    "USER_DETAILS_SERIALIZER": "accounts.serializers.CustomUserDetailsSerializer",
-    "SIGNUP_FIELDS": {},
-    "USE_JWT": True,
-    "JWT_AUTH_COOKIE": "gobooky-auth",
-    "JWT_AUTH_REFRESH_COOKIE": "gobooky-refresh",
-    "JWT_AUTH_SECURE": False,  # 개발 환경에서는 False
-    "JWT_AUTH_HTTPONLY": True,  # XSS 방지
-    "JWT_AUTH_SAMESITE": "Lax",  # CSRF 방지
-    "SESSION_LOGIN": False,
-    "JWT_AUTH_RETURN_EXPIRATION": True,
-    "TOKEN_MODEL": None,
-}
+# dj-rest-auth 설정 (현재 사용하지 않음 - SimpleJWT 직접 사용)
+# REST_AUTH = {
+#     "REGISTER_SERIALIZER": "accounts.serializers.CustomRegisterSerializer",
+#     "USER_DETAILS_SERIALIZER": "accounts.serializers.CustomUserDetailsSerializer",
+#     "SIGNUP_FIELDS": {},
+#     "USE_JWT": True,
+#     "JWT_AUTH_COOKIE": "gobooky-auth",
+#     "JWT_AUTH_REFRESH_COOKIE": "gobooky-refresh",
+#     "JWT_AUTH_SECURE": False,  # 개발 환경에서는 False
+#     "JWT_AUTH_HTTPONLY": True,  # XSS 방지
+#     "JWT_AUTH_SAMESITE": "Lax",  # CSRF 방지
+#     "SESSION_LOGIN": False,
+#     "JWT_AUTH_RETURN_EXPIRATION": True,
+#     "TOKEN_MODEL": None,
+# }
 
 # Social Account Providers
 SOCIALACCOUNT_PROVIDERS = {
