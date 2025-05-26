@@ -672,9 +672,9 @@ class ReplyViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         comment_id = self.kwargs.get("comment_pk")
-        return Reply.objects.filter(
-            comment_id=comment_id, is_deleted=False
-        ).select_related("user")
+        return Reply.objects.filter(comment_id=comment_id).select_related(
+            "user", "comment", "comment__thread"
+        )
 
     def get_serializer_class(self):
         if self.action in ["create", "update", "partial_update"]:
@@ -691,34 +691,23 @@ class ReplyViewSet(viewsets.ModelViewSet):
 
         return [permission() for permission in permission_classes]
 
-    def update(self, request, pk=None, comment_pk=None):
-        """대댓글 수정"""
-        reply = self.get_object()
-
-        serializer = self.get_serializer(reply, data=request.data, partial=True)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
+    def perform_update(self, serializer):
+        """대댓글 수정 수행"""
+        reply = serializer.save()
 
         # 댓글 캐시 무효화
         thread_pk = reply.comment.thread.pk
         self._invalidate_comment_cache(thread_pk)
 
-        # 응답용 시리얼라이저
-        response_serializer = ReplySerializer(reply, context={"request": request})
+    def perform_destroy(self, instance):
+        """대댓글 소프트 삭제 수행"""
+        thread_pk = instance.comment.thread.pk
 
-        return Response(response_serializer.data)
-
-    def destroy(self, request, pk=None, comment_pk=None):
-        """대댓글 소프트 삭제"""
-        reply = self.get_object()
-        reply.is_deleted = True
-        reply.save()
+        instance.is_deleted = True
+        instance.save()
 
         # 댓글 캐시 무효화
-        thread_pk = reply.comment.thread.pk
         self._invalidate_comment_cache(thread_pk)
-
-        return Response(status=status.HTTP_204_NO_CONTENT)
 
     def _invalidate_comment_cache(self, thread_pk):
         """댓글 관련 캐시 무효화"""
