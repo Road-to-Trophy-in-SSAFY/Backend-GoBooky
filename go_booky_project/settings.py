@@ -19,7 +19,7 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv()
-OPENAI_API_KEY = os.getenv("OEPNAI_API_KEY")
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -68,7 +68,7 @@ INSTALLED_APPS = [
     "allauth.socialaccount.providers.kakao",
     # jwt
     "rest_framework_simplejwt",
-    # "rest_framework_simplejwt.token_blacklist",  # Redis JTI 블랙리스트와 충돌 방지
+    "rest_framework_simplejwt.token_blacklist",  # 블랙리스트 앱 활성화
 ]
 
 MIDDLEWARE = [
@@ -142,8 +142,8 @@ CORS_ALLOW_HEADERS = [
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=15),  # 15분
     "REFRESH_TOKEN_LIFETIME": timedelta(days=7),  # 7일
-    "ROTATE_REFRESH_TOKENS": False,  # 간단한 해결책: 토큰 로테이션 비활성화
-    "BLACKLIST_AFTER_ROTATION": False,  # 간단한 해결책: 블랙리스트 비활성화
+    "ROTATE_REFRESH_TOKENS": True,  # 토큰 로테이션 활성화 (보안 강화)
+    "BLACKLIST_AFTER_ROTATION": True,  # 블랙리스트 활성화 (사용된 토큰 무효화)
     "UPDATE_LAST_LOGIN": True,
     "ALGORITHM": "HS256",
     "SIGNING_KEY": SECRET_KEY,

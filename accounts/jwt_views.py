@@ -142,7 +142,7 @@ class CustomTokenRefreshView(TokenRefreshView):
     """
 
     permission_classes = [AllowAny]
-    serializer_class = TokenRefreshSerializer  # 기본 시리얼라이저로 테스트
+    serializer_class = CustomTokenRefreshSerializer  # 커스텀 시리얼라이저 사용
 
     def post(self, request, *args, **kwargs):
         # 쿠키에서 refresh token 가져오기
@@ -172,8 +172,22 @@ class CustomTokenRefreshView(TokenRefreshView):
             # 응답 생성
             response = Response(validated_data, status=status.HTTP_200_OK)
 
-            # 간단한 해결책: 토큰 로테이션 없이 기존 refresh token 유지
-            # ROTATE_REFRESH_TOKENS=False이므로 새로운 refresh token 설정 불필요
+            # ROTATE_REFRESH_TOKENS=True인 경우 새로운 refresh token을 쿠키에 설정
+            if settings.SIMPLE_JWT.get("ROTATE_REFRESH_TOKENS", False):
+                new_refresh_token = validated_data.get("refresh")
+                if new_refresh_token:
+                    response.set_cookie(
+                        settings.SIMPLE_JWT["AUTH_COOKIE_REFRESH"],
+                        new_refresh_token,
+                        max_age=settings.SIMPLE_JWT[
+                            "REFRESH_TOKEN_LIFETIME"
+                        ].total_seconds(),
+                        httponly=settings.SIMPLE_JWT["AUTH_COOKIE_HTTP_ONLY"],
+                        secure=settings.SIMPLE_JWT["AUTH_COOKIE_SECURE"],
+                        samesite=settings.SIMPLE_JWT["AUTH_COOKIE_SAMESITE"],
+                        path=settings.SIMPLE_JWT["AUTH_COOKIE_PATH"],
+                    )
+
             # 응답에서 refresh token 제거 (쿠키로만 관리)
             if "refresh" in validated_data:
                 del validated_data["refresh"]
@@ -226,9 +240,14 @@ class CustomTokenBlacklistView(TokenRefreshView):
         user = None
         if refresh_token:
             try:
-                # 사용자 정보만 추출 (블랙리스트 처리 없음)
+                # 토큰을 블랙리스트에 추가
                 token = RefreshToken(refresh_token)
                 user = User.objects.get(id=token["user_id"])
+
+                # 토큰 블랙리스트 처리 (BLACKLIST_AFTER_ROTATION=True인 경우)
+                if settings.SIMPLE_JWT.get("BLACKLIST_AFTER_ROTATION", False):
+                    token.blacklist()
+                    logger.info(f"🚫 JWT 토큰 블랙리스트 추가: {user.email}")
 
                 logger.info(f"✅ JWT 로그아웃 처리: {user.email}")
 
