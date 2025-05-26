@@ -109,9 +109,19 @@ class LoginSerializer(serializers.Serializer):
 
 
 class AccountDeleteSerializer(serializers.Serializer):
-    password = serializers.CharField(write_only=True)
+    password = serializers.CharField(
+        write_only=True,
+        required=True,
+        error_messages={
+            "required": "비밀번호를 입력해주세요.",
+            "blank": "비밀번호를 입력해주세요.",
+        },
+    )
 
     def validate_password(self, value):
+        if not value or not value.strip():
+            raise serializers.ValidationError("비밀번호를 입력해주세요.")
+
         user = self.context["request"].user
         if not user.check_password(value):
             raise serializers.ValidationError("비밀번호가 일치하지 않습니다.")

@@ -595,8 +595,32 @@ class AccountDeleteView(APIView):
         )
         serializer.is_valid(raise_exception=True)
         user = request.user
+
+        # 회원탈퇴 시 refresh token 블랙리스트 처리
+        refresh_token = request.COOKIES.get(settings.SIMPLE_JWT["AUTH_COOKIE_REFRESH"])
+        if refresh_token:
+            try:
+                from rest_framework_simplejwt.tokens import RefreshToken
+
+                token = RefreshToken(refresh_token)
+                token.blacklist()
+                logger.info(f"🚫 회원탈퇴 시 JWT 토큰 블랙리스트 추가: {user.email}")
+            except Exception as e:
+                logger.warning(f"⚠️ 회원탈퇴 시 토큰 블랙리스트 실패: {str(e)}")
+
+        # 사용자 삭제
         user.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+
+        # 응답 생성 및 쿠키 삭제
+        response = Response(status=status.HTTP_204_NO_CONTENT)
+        response.delete_cookie(
+            settings.SIMPLE_JWT["AUTH_COOKIE_REFRESH"],
+            path=settings.SIMPLE_JWT["AUTH_COOKIE_PATH"],
+            domain=settings.SIMPLE_JWT.get("AUTH_COOKIE_DOMAIN"),
+            samesite=settings.SIMPLE_JWT["AUTH_COOKIE_SAMESITE"],
+        )
+
+        return response
 
 
 @api_view(["GET"])
