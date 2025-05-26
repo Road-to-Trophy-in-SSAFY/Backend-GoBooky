@@ -8,6 +8,11 @@ from books.models import Category
 User = get_user_model()
 
 
+# 닉네임 중복 확인 시리얼라이저
+class CheckNicknameSerializer(serializers.Serializer):
+    username = serializers.CharField(min_length=2, max_length=20)
+
+
 class RegisterSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(required=True)
     password = serializers.CharField(
@@ -124,6 +129,11 @@ class UserSerializer(serializers.ModelSerializer):
     category_ids = serializers.ListField(
         child=serializers.IntegerField(), write_only=True, required=False
     )
+    profile_picture = serializers.ImageField(read_only=True)
+    profile_picture_url = serializers.SerializerMethodField()
+    followers_count = serializers.SerializerMethodField()
+    following_count = serializers.SerializerMethodField()
+    is_following = serializers.SerializerMethodField()
 
     class Meta:
         model = User
@@ -138,6 +148,11 @@ class UserSerializer(serializers.ModelSerializer):
             "yearly_read_count",
             "categories",
             "category_ids",
+            "profile_picture",
+            "profile_picture_url",
+            "followers_count",
+            "following_count",
+            "is_following",
         ]
         extra_kwargs = {
             "password": {"write_only": True},
@@ -148,9 +163,79 @@ class UserSerializer(serializers.ModelSerializer):
             "gender": {"required": True},
         }
 
+    def get_profile_picture_url(self, obj):
+        return (
+            obj.get_profile_picture_url()
+            if hasattr(obj, "get_profile_picture_url")
+            else None
+        )
+
+    def get_followers_count(self, obj):
+        return obj.followers.count()
+
+    def get_following_count(self, obj):
+        return obj.following.count()
+
+    def get_is_following(self, obj):
+        request = self.context.get("request")
+        if request and request.user.is_authenticated:
+            return obj.followers.filter(id=request.user.id).exists()
+        return False
+
     def create(self, validated_data):
         category_ids = validated_data.pop("category_ids", [])
         user = User.objects.create_user(**validated_data)
         if category_ids:
             user.categories.set(category_ids)
         return user
+
+
+class ProfileUpdateSerializer(UserSerializer):
+    # Override fields that are not directly editable via this serializer
+    email = serializers.EmailField(read_only=True)
+    username = serializers.CharField(read_only=True)
+    first_name = serializers.CharField(read_only=True)
+    last_name = serializers.CharField(read_only=True)
+    # password is not included in fields, so it's not updated by default
+
+    # Make profile_picture writable for updates
+    profile_picture = serializers.ImageField(required=False, allow_null=True)
+
+    class Meta(UserSerializer.Meta):
+        # Inherit fields from UserSerializer, exclude password
+        fields = [f for f in UserSerializer.Meta.fields if f != "password"]
+        # Ensure profile_picture is included and writable status is handled above
+        # Make categories writable via category_ids
+        extra_kwargs = {
+            "weekly_read_time": {"required": False, "allow_null": True},
+            "yearly_read_count": {"required": False, "allow_null": True},
+            "categories": {"read_only": True},  # Exclude categories from direct update
+            "category_ids": {"write_only": True, "required": False},
+            "profile_picture": {"required": False, "allow_null": True},
+        }
+
+    def update(self, instance, validated_data):
+        category_ids = validated_data.pop("category_ids", None)
+        profile_picture = validated_data.pop("profile_picture", None)
+
+        # Update user fields
+        for attr, value in validated_data.items():
+            setattr(instance, attr, value)
+
+        # Update categories if category_ids is provided
+        if category_ids is not None:
+            instance.categories.set(category_ids)
+
+        # Update profile picture
+        if profile_picture is not None:
+            instance.profile_picture = profile_picture
+        elif (
+            profile_picture is None
+            and "profile_picture" in self.initial_data
+            and self.initial_data["profile_picture"] is None
+        ):
+            # Handle case where user explicitly sets profile_picture to null to remove it
+            instance.profile_picture = None
+
+        instance.save()
+        return instance

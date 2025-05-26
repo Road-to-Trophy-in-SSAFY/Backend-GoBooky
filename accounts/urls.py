@@ -4,10 +4,18 @@ from .views import (
     VerifyEmailView,
     ResendEmailView,
     ProfileCompleteView,
-    LoginView,
-    LogoutView,
     AccountDeleteView,
     get_categories,
+    CheckNicknameView,
+    ProfileDetailView,
+    FollowToggleView,
+)
+
+# 새로운 JWT 뷰들 import
+from .jwt_views import (
+    CustomTokenObtainPairView,
+    CustomTokenRefreshView,
+    CustomTokenBlacklistView,
 )
 
 urlpatterns = [
@@ -24,8 +32,21 @@ urlpatterns = [
         ProfileCompleteView.as_view(),
         name="profile-complete",
     ),
-    path("auth/login/", LoginView.as_view(), name="login"),
-    path("auth/logout/", LogoutView.as_view(), name="logout"),
+    # JWT 인증 엔드포인트 (지침 권장 방식)
+    path("auth/jwt/login/", CustomTokenObtainPairView.as_view(), name="jwt-login"),
+    path("auth/jwt/refresh/", CustomTokenRefreshView.as_view(), name="jwt-refresh"),
+    path("auth/jwt/logout/", CustomTokenBlacklistView.as_view(), name="jwt-logout"),
     path("auth/account/", AccountDeleteView.as_view(), name="account-delete"),
     path("auth/categories/", get_categories, name="get-categories"),
+    path("auth/check-nickname/", CheckNicknameView.as_view(), name="check-nickname"),
+    path(
+        "auth/profile/<str:username>/",
+        ProfileDetailView.as_view(),
+        name="profile-detail",
+    ),
+    path(
+        "auth/profile/<str:username>/follow/",
+        FollowToggleView.as_view(),
+        name="profile-follow-toggle",
+    ),
 ]
