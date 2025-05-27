@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import environ
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -31,26 +32,187 @@ DEBUG = env("DEBUG")
 
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=[])
 
+# OpenAI API Key 가져오기
+OPENAI_API_KEY = env("OPENAI_API_KEY")
 
 # Application definition
 
 INSTALLED_APPS = [
+    # Local apps
+    "accounts.apps.AccountsConfig",
+    "books",
+    # Django default apps
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # Third-party apps
+    "rest_framework",
+    "rest_framework.authtoken",
+    "dj_rest_auth",
+    "dj_rest_auth.registration",
+    "corsheaders",
+    "django.contrib.sites",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "allauth.socialaccount.providers.google",
+    "allauth.socialaccount.providers.kakao",
+    # jwt
+    "rest_framework_simplejwt",
+    "rest_framework_simplejwt.token_blacklist",  # 블랙리스트 앱 활성화
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
+    "go_booky_project.middleware.DoubleSubmitCookieMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "allauth.account.middleware.AccountMiddleware",
+]
+
+# REST_FRAMEWORK 설정
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "accounts.authentication.CustomJWTAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
+    ),
+    "DEFAULT_PERMISSION_CLASSES": (
+        "rest_framework.permissions.IsAuthenticatedOrReadOnly",
+    ),
+    "DEFAULT_THROTTLE_CLASSES": (
+        []
+        if DEBUG
+        else [
+            "rest_framework.throttling.AnonRateThrottle",
+            "rest_framework.throttling.UserRateThrottle",
+        ]
+    ),
+    "DEFAULT_THROTTLE_RATES": {"anon": "100/day", "user": "1000/day"},
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE": 9,
+}
+
+# 사이트 프레임워크용 ID
+SITE_ID = env.int("SITE_ID", default=1)
+
+# CORS 설정
+CORS_ALLOWED_ORIGINS = env.list("CORS_ALLOWED_ORIGINS")
+
+
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_METHODS = [
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+]
+CORS_ALLOW_HEADERS = [
+    "accept",
+    "accept-encoding",
+    "authorization",
+    "content-type",
+    "dnt",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+]
+
+# JWT 설정 (djangorestframework-simplejwt)
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(seconds=env.int("ACCESS_TOKEN_LIFETIME")),
+    "REFRESH_TOKEN_LIFETIME": timedelta(seconds=env.int("REFRESH_TOKEN_LIFETIME")),
+    "ROTATE_REFRESH_TOKENS": False,  # 토큰 로테이션 비활성화 (새로고침 지원)
+    "BLACKLIST_AFTER_ROTATION": False,  # 로테이션 시 블랙리스트 비활성화
+    # 수동 블랙리스트는 여전히 가능 (token.blacklist() 직접 호출)
+    "UPDATE_LAST_LOGIN": True,
+    "ALGORITHM": "HS256",
+    "SIGNING_KEY": SECRET_KEY,
+    "VERIFYING_KEY": None,
+    "AUDIENCE": None,
+    "ISSUER": None,
+    "JWK_URL": None,
+    "LEEWAY": 0,
+    "AUTH_HEADER_TYPES": ("Bearer",),
+    "AUTH_HEADER_NAME": "HTTP_AUTHORIZATION",
+    "USER_ID_FIELD": "id",
+    "USER_ID_CLAIM": "user_id",
+    "USER_AUTHENTICATION_RULE": "rest_framework_simplejwt.authentication.default_user_authentication_rule",
+    "AUTH_TOKEN_CLASSES": ("rest_framework_simplejwt.tokens.AccessToken",),
+    "TOKEN_TYPE_CLAIM": "token_type",
+    "TOKEN_USER_CLASS": "rest_framework_simplejwt.models.TokenUser",
+    "JTI_CLAIM": "jti",
+    # 커스텀 시리얼라이저 설정 (지침 권장 방식)
+    "TOKEN_OBTAIN_SERIALIZER": "accounts.jwt_views.CustomTokenObtainPairSerializer",
+    "TOKEN_REFRESH_SERIALIZER": "accounts.jwt_views.CustomTokenRefreshSerializer",
+    # HttpOnly 쿠키 설정 (지침 권장 방식)
+    "AUTH_COOKIE": None,  # Access token은 메모리에만 저장
+    "AUTH_COOKIE_REFRESH": env("AUTH_COOKIE_REFRESH"),  # Refresh token만 HttpOnly 쿠키
+    "AUTH_COOKIE_DOMAIN": None,
+    "AUTH_COOKIE_SECURE": False,  # 개발 환경에서는 False로 설정
+    "AUTH_COOKIE_HTTP_ONLY": True,  # XSS 방지
+    "AUTH_COOKIE_PATH": "/",
+    "AUTH_COOKIE_SAMESITE": "Lax",  # CSRF 방지
+}
+
+# Email settings
+EMAIL_BACKEND = env(
+    "EMAIL_BACKEND", default="django.core.mail.backends.console.EmailBackend"
+)
+EMAIL_HOST = env("EMAIL_HOST", default="")
+EMAIL_PORT = env.int("EMAIL_PORT", default=587)
+EMAIL_HOST_USER = env("EMAIL_HOST_USER", default="")
+EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD", default="")
+EMAIL_USE_TLS = env.bool("EMAIL_USE_TLS", default=True)
+DEFAULT_FROM_EMAIL = env("DEFAULT_FROM_EMAIL", default="webmaster@localhost")
+
+# django-allauth 설정
+# 새로운 방식으로 로그인 방법 설정 (기존 ACCOUNT_AUTHENTICATION_METHOD 대체)
+ACCOUNT_LOGIN_METHODS = {"username", "email"}
+# 새로운 방식으로 회원가입 필드 설정 (기존 ACCOUNT_EMAIL_REQUIRED 대체)
+ACCOUNT_SIGNUP_FIELDS = ["email*", "username*", "password1*", "password2*"]
+# 아래 설정들은 아직 deprecated되지 않아 유지
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+# 커스텀 어댑터 설정
+ACCOUNT_ADAPTER = "accounts.adapters.CustomAccountAdapter"
+SOCIALACCOUNT_ADAPTER = "accounts.adapters.CustomSocialAccountAdapter"
+
+
+# Social Account Providers
+SOCIALACCOUNT_PROVIDERS = {
+    "google": {
+        "APP": {
+            "client_id": env("GOOGLE_CLIENT_ID", default=""),
+            "secret": env("GOOGLE_CLIENT_SECRET", default=""),
+            "key": "",
+        },
+        "SCOPE": ["profile", "email"],
+    },
+    "kakao": {
+        "APP": {
+            "client_id": env("KAKAO_CLIENT_ID", default=""),
+            "secret": env("KAKAO_CLIENT_SECRET", default=""),
+            "key": "",
+        }
+    },
+}
+
+# Authentication backends (allauth 사용)
+AUTHENTICATION_BACKENDS = [
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
 ]
 
 ROOT_URLCONF = "go_booky_project.urls"
@@ -128,8 +290,124 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = "static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+# Media files (User uploaded files)
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# Audio book files
+AUDIOBOOK_URL = "/audio_book/"
+AUDIOBOOK_ROOT = BASE_DIR / "audio_book"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Add custom user model
+AUTH_USER_MODEL = "accounts.User"
+
+# Redis settings
+REDIS_URL = env("REDIS_URL")
+# REDIS_URL = "redis://127.0.0.1:6379/1"
+
+
+# Cache settings
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": REDIS_URL,
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            "CONNECTION_POOL_KWARGS": {"max_connections": 100},
+            "SOCKET_CONNECT_TIMEOUT": 5,
+            "SOCKET_TIMEOUT": 5,
+            "RETRY_ON_TIMEOUT": True,
+            "MAX_CONNECTIONS": 1000,
+            "COMPRESSOR": "django_redis.compressors.zlib.ZlibCompressor",
+        },
+    }
+}
+
+# Cache timeout settings
+CACHE_TTL = env.int("CACHE_TTL")  # 15 minutes
+CACHE_KEY_PREFIX = env("CACHE_KEY_PREFIX")
+
+# Session settings
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+SESSION_CACHE_ALIAS = "default"
+
+# CSRF 설정
+CSRF_COOKIE_NAME = env("CSRF_COOKIE_NAME", default="csrftoken")
+CSRF_COOKIE_AGE = env.int("CSRF_COOKIE_AGE", default=31449600)
+CSRF_COOKIE_DOMAIN = None
+CSRF_COOKIE_SECURE = not DEBUG
+CSRF_COOKIE_HTTPONLY = False
+CSRF_COOKIE_SAMESITE = "Lax"
+CSRF_HEADER_NAME = "HTTP_X_CSRF_TOKEN"
+CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS")
+
+# JWT 토큰 수명(분/초)
+ACCESS_TOKEN_LIFETIME = env.int("ACCESS_TOKEN_LIFETIME")
+REFRESH_TOKEN_LIFETIME = env.int("REFRESH_TOKEN_LIFETIME")
+
+# 로깅 설정
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "{levelname} {asctime} {module} {process:d} {thread:d} {message}",
+            "style": "{",
+        },
+        "simple": {
+            "format": "{levelname} {message}",
+            "style": "{",
+        },
+    },
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+            "formatter": "simple",
+        },
+    },
+    "loggers": {
+        "accounts": {
+            "handlers": ["console"],
+            "level": "DEBUG",
+            "propagate": False,
+        },
+        "django": {
+            "handlers": ["console"],
+            "level": "INFO",
+            "propagate": False,
+        },
+    },
+    "root": {
+        "handlers": ["console"],
+        "level": "WARNING",
+    },
+}
+
+# 보안 헤더 (배포시 중요)
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+X_FRAME_OPTIONS = 'DENY'
+
+# HTTPS 설정 (배포시)
+if not DEBUG:
+    SECURE_SSL_REDIRECT = True
+    SECURE_HSTS_SECONDS = 31536000
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+
+# 로깅 개선 (배포시)
+if not DEBUG:
+    LOGGING['handlers']['file'] = {
+        'class': 'logging.FileHandler',
+        'filename': BASE_DIR / 'logs' / 'django.log',
+        'formatter': 'verbose',
+    }
