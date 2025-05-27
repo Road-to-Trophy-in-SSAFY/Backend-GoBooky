@@ -27,6 +27,10 @@ legacy_urlpatterns = [
 ]
 
 urlpatterns = [
+    # 새로운 API 엔드포인트 (ViewSet보다 먼저 처리되도록)
+    path("api/books/random/", views.random_books, name="random-books"),
+    path("api/threads/popular/", views.popular_threads, name="popular-threads"),
+    path("api/books/search/", views.search_books, name="search-books"),
     # ViewSet 기반 URL (권장)
     path("api/", include(router.urls)),
     path("api/", include(threads_router.urls)),

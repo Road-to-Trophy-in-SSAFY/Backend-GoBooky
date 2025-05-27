@@ -790,3 +790,71 @@ def search_books(request):
     cache.set(cache_key, serializer.data, settings.CACHE_TTL)
 
     return Response(serializer.data)
+
+
+@api_view(["GET"])
+@permission_classes([AllowAny])
+def random_books(request):
+    """랜덤 도서 10권 조회 API"""
+    try:
+        count = int(request.GET.get("count", 10))
+        count = min(count, 50)  # 최대 50권으로 제한
+    except (ValueError, TypeError):
+        count = 10
+
+    # 캐시 키 생성
+    cache_key = f"{settings.CACHE_KEY_PREFIX}:random_books:{count}"
+    cached = cache.get(cache_key)
+    if cached:
+        return Response(cached)
+
+    # 랜덤하게 도서 선택
+    books = Book.objects.order_by("?")[:count]
+
+    serializer = BookListSerializer(books, many=True)
+
+    # 결과 캐싱 (5분)
+    cache.set(cache_key, serializer.data, 300)
+
+    return Response(serializer.data)
+
+
+@api_view(["GET"])
+@permission_classes([AllowAny])
+def popular_threads(request):
+    """좋아요 순으로 쓰레드 조회 API"""
+    try:
+        count = int(request.GET.get("count", 3))
+        count = min(count, 20)  # 최대 20개로 제한
+    except (ValueError, TypeError):
+        count = 3
+
+    # 캐시 키 생성
+    cache_key = f"{settings.CACHE_KEY_PREFIX}:popular_threads:{count}"
+    cached = cache.get(cache_key)
+    if cached:
+        return Response(cached)
+
+    # 좋아요 수가 많은 순으로 정렬, 같으면 제목 가나다순
+    from django.db.models import Count
+
+    threads = Thread.objects.annotate(likes_count=Count("likes")).order_by(
+        "-likes_count", "title"
+    )[:count]
+
+    # 쓰레드 제목과 책 제목만 반환
+    result = []
+    for thread in threads:
+        result.append(
+            {
+                "id": thread.id,
+                "title": thread.title,
+                "book_title": thread.book.title,
+                "likes_count": thread.likes.count(),
+            }
+        )
+
+    # 결과 캐싱 (10분)
+    cache.set(cache_key, result, 600)
+
+    return Response(result)
