@@ -538,7 +538,7 @@ class CommentViewSet(viewsets.ModelViewSet):
     def get_permissions(self):
         if self.action in ["list", "retrieve"]:
             permission_classes = [AllowAny]
-        elif self.action == "create":
+        elif self.action in ["create", "reply"]:
             permission_classes = [IsAuthenticated]
         else:  # update, partial_update, destroy
             permission_classes = [IsAuthenticated, IsAuthorOrReadOnly]
