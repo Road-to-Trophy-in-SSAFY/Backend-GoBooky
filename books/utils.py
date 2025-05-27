@@ -25,7 +25,6 @@ def create_thread_image(thread):
             model="dall-e-2",
             prompt=f"Create a beautiful, artistic book-related image for the following thread about reading: {thread.content[:500]}",
             size="1024x1024",
-            quality="standard",
             n=1,
         )
 
