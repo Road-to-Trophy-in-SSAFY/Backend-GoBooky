@@ -256,10 +256,23 @@ class ReplySerializer(serializers.ModelSerializer):
 
     user = UserProfileSerializer(read_only=True)
     is_author = serializers.SerializerMethodField()
+    thread_id = serializers.SerializerMethodField()
+    thread_title = serializers.SerializerMethodField()
+    parent_comment = serializers.SerializerMethodField()
 
     class Meta:
         model = Reply
-        fields = ["id", "content", "created_at", "updated_at", "user", "is_author"]
+        fields = [
+            "id",
+            "content",
+            "created_at",
+            "updated_at",
+            "user",
+            "is_author",
+            "thread_id",
+            "thread_title",
+            "parent_comment",
+        ]
         read_only_fields = ["id", "created_at", "updated_at", "user"]
 
     def get_is_author(self, obj):
@@ -267,6 +280,19 @@ class ReplySerializer(serializers.ModelSerializer):
         if request and request.user.is_authenticated:
             return obj.user == request.user
         return False
+
+    def get_thread_id(self, obj):
+        return obj.comment.thread.id
+
+    def get_thread_title(self, obj):
+        return obj.comment.thread.title
+
+    def get_parent_comment(self, obj):
+        return {
+            "id": obj.comment.id,
+            "content": obj.comment.content,
+            "user": obj.comment.user.username,
+        }
 
 
 class CommentSerializer(serializers.ModelSerializer):
@@ -276,6 +302,8 @@ class CommentSerializer(serializers.ModelSerializer):
     replies = ReplySerializer(many=True, read_only=True)
     replies_count = serializers.SerializerMethodField()
     is_author = serializers.SerializerMethodField()
+    thread_id = serializers.SerializerMethodField()
+    thread_title = serializers.SerializerMethodField()
 
     class Meta:
         model = Comment
@@ -288,6 +316,8 @@ class CommentSerializer(serializers.ModelSerializer):
             "replies",
             "replies_count",
             "is_author",
+            "thread_id",
+            "thread_title",
         ]
         read_only_fields = ["id", "created_at", "updated_at", "user"]
 
@@ -299,6 +329,12 @@ class CommentSerializer(serializers.ModelSerializer):
         if request and request.user.is_authenticated:
             return obj.user == request.user
         return False
+
+    def get_thread_id(self, obj):
+        return obj.thread.id
+
+    def get_thread_title(self, obj):
+        return obj.thread.title
 
 
 class CommentCreateSerializer(serializers.ModelSerializer):
