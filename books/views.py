@@ -170,30 +170,22 @@ class ThreadViewSet(viewsets.ModelViewSet):
         return [permission() for permission in permission_classes]
 
     def list(self, request, *args, **kwargs):
-        """캐시된 쓰레드 목록 반환"""
-        query_params = request.GET.urlencode()
-        cache_key = f"{settings.CACHE_KEY_PREFIX}:thread_list:{query_params}"
-
-        cached = cache.get(cache_key)
-        if cached:
-            logger.info(f"🧵 [CACHE HIT] Thread list: {cache_key}")
-            return Response(cached)
+        """쓰레드 목록 반환 (좋아요 상태 때문에 캐싱 비활성화)"""
+        # 좋아요 상태가 사용자별로 다르므로 ThreadList는 캐싱하지 않음
+        # 이렇게 하면 뒤로가기 시 좋아요 상태가 깜빡이지 않음
+        logger.info("🧵 [ThreadList] 캐싱 비활성화 - 좋아요 상태 실시간 반영")
 
         response = super().list(request, *args, **kwargs)
-
-        if response.status_code == 200:
-            cache.set(cache_key, response.data, settings.CACHE_TTL)
-            logger.info(f"🧵 [CACHE SET] Thread list: {cache_key}")
-
         return response
 
     def retrieve(self, request, *args, **kwargs):
-        """캐시된 쓰레드 상세 정보 반환"""
+        """캐시된 쓰레드 상세 정보 반환 (사용자별 캐시)"""
         thread_id = kwargs.get("pk")
         query_params = request.GET.urlencode()
-        cache_key = (
-            f"{settings.CACHE_KEY_PREFIX}:thread_detail:{thread_id}:{query_params}"
-        )
+
+        # 사용자별 캐시 키 생성 (좋아요 상태가 사용자마다 다르므로)
+        user_id = request.user.id if request.user.is_authenticated else "anonymous"
+        cache_key = f"{settings.CACHE_KEY_PREFIX}:thread_detail:{thread_id}:user_{user_id}:{query_params}"
 
         cached = cache.get(cache_key)
         if cached:
@@ -203,8 +195,13 @@ class ThreadViewSet(viewsets.ModelViewSet):
         response = super().retrieve(request, *args, **kwargs)
 
         if response.status_code == 200:
-            cache.set(cache_key, response.data, settings.CACHE_TTL)
-            logger.info(f"📄 [CACHE SET] Thread detail: {cache_key}")
+            # 좋아요 상태가 포함된 데이터는 적절한 TTL 사용 (5분)
+            # 너무 짧으면 이미지 생성 중에 캐시가 만료되어 문제 발생
+            cache_ttl = 300 if request.user.is_authenticated else settings.CACHE_TTL
+            cache.set(cache_key, response.data, cache_ttl)
+            logger.info(
+                f"📄 [CACHE SET] Thread detail: {cache_key} (TTL: {cache_ttl}s)"
+            )
 
         return response
 
@@ -299,18 +296,45 @@ class ThreadViewSet(viewsets.ModelViewSet):
 
     def _invalidate_thread_cache(self, thread_id=None):
         """쓰레드 관련 캐시 무효화"""
-        # 목록 캐시 무효화
-        cache_key_list_base = f"{settings.CACHE_KEY_PREFIX}:thread_list"
-        cache.delete(cache_key_list_base)
-        cache.delete(f"{cache_key_list_base}:")  # 빈 쿼리 파라미터
+        from django.core.cache import cache
 
-        # 특정 쓰레드 상세 캐시 무효화
+        # ThreadList는 더 이상 캐싱하지 않으므로 무효화 불필요
+        logger.info("🧵 [ThreadList] 캐싱 비활성화로 인해 목록 캐시 무효화 생략")
+
+        # 특정 쓰레드 상세 캐시 무효화 (모든 사용자)
         if thread_id:
-            cache_key_detail_base = (
-                f"{settings.CACHE_KEY_PREFIX}:thread_detail:{thread_id}"
-            )
-            cache.delete(cache_key_detail_base)
-            cache.delete(f"{cache_key_detail_base}:")  # 빈 쿼리 파라미터
+            # Redis 패턴 매칭을 사용하여 해당 쓰레드의 모든 사용자별 캐시 삭제
+            try:
+                import redis
+                from django.conf import settings as django_settings
+
+                # Redis 연결
+                redis_client = redis.Redis.from_url(
+                    django_settings.CACHES["default"]["LOCATION"]
+                )
+
+                # 패턴으로 키 찾기
+                pattern = (
+                    f"{settings.CACHE_KEY_PREFIX}:thread_detail:{thread_id}:user_*"
+                )
+                keys = redis_client.keys(pattern)
+
+                if keys:
+                    redis_client.delete(*keys)
+                    logger.info(
+                        f"🗑️ Redis 패턴 매칭으로 쓰레드 {thread_id} 캐시 {len(keys)}개 삭제"
+                    )
+                else:
+                    logger.info(f"🗑️ 쓰레드 {thread_id} 관련 캐시 없음")
+
+            except Exception as e:
+                logger.warning(f"⚠️ Redis 패턴 매칭 실패, 기본 캐시 삭제 사용: {e}")
+                # 기본 캐시 삭제 (fallback)
+                cache_key_detail_base = (
+                    f"{settings.CACHE_KEY_PREFIX}:thread_detail:{thread_id}"
+                )
+                cache.delete(cache_key_detail_base)
+                cache.delete(f"{cache_key_detail_base}:")
 
         logger.info(f"🗑️ 쓰레드 캐시 무효화 완료: {thread_id or 'all'}")
 
