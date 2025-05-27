@@ -80,7 +80,7 @@ class BookDetailSerializer(serializers.ModelSerializer):
 class BookTitleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Book
-        fields = ("id", "title")
+        fields = ("title",)
 
 
 class BookTitleWithCategorySerializer(serializers.ModelSerializer):
