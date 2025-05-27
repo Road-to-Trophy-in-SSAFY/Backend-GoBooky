@@ -14,14 +14,6 @@ from pathlib import Path
 import environ
 from datetime import timedelta
 
-# OpenAI API Key 가져오기
-import os
-from dotenv import load_dotenv
-
-load_dotenv()
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -40,6 +32,8 @@ DEBUG = env("DEBUG")
 
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=[])
 
+# OpenAI API Key 가져오기
+OPENAI_API_KEY = env("OPENAI_API_KEY")
 
 # Application definition
 
@@ -111,12 +105,9 @@ REST_FRAMEWORK = {
 SITE_ID = env.int("SITE_ID", default=1)
 
 # CORS 설정
-CORS_ALLOWED_ORIGINS = [
-    "http://127.0.0.1:5173",
-    "http://localhost:5173",
-    "http://localhost:5174",  # Vue.js 개발 서버 (포트 변경 시)
-    "http://127.0.0.1:5174",
-]
+CORS_ALLOWED_ORIGINS = env.list("CORS_ALLOWED_ORIGINS")
+
+
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_METHODS = [
     "DELETE",
@@ -140,8 +131,8 @@ CORS_ALLOW_HEADERS = [
 
 # JWT 설정 (djangorestframework-simplejwt)
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=15),  # 15분
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),  # 7일
+    "ACCESS_TOKEN_LIFETIME": timedelta(seconds=env.int("ACCESS_TOKEN_LIFETIME")),
+    "REFRESH_TOKEN_LIFETIME": timedelta(seconds=env.int("REFRESH_TOKEN_LIFETIME")),
     "ROTATE_REFRESH_TOKENS": False,  # 토큰 로테이션 비활성화 (새로고침 지원)
     "BLACKLIST_AFTER_ROTATION": False,  # 로테이션 시 블랙리스트 비활성화
     # 수동 블랙리스트는 여전히 가능 (token.blacklist() 직접 호출)
@@ -167,7 +158,7 @@ SIMPLE_JWT = {
     "TOKEN_REFRESH_SERIALIZER": "accounts.jwt_views.CustomTokenRefreshSerializer",
     # HttpOnly 쿠키 설정 (지침 권장 방식)
     "AUTH_COOKIE": None,  # Access token은 메모리에만 저장
-    "AUTH_COOKIE_REFRESH": "gobooky-refresh",  # Refresh token만 HttpOnly 쿠키
+    "AUTH_COOKIE_REFRESH": env("AUTH_COOKIE_REFRESH"),  # Refresh token만 HttpOnly 쿠키
     "AUTH_COOKIE_DOMAIN": None,
     "AUTH_COOKIE_SECURE": False,  # 개발 환경에서는 False로 설정
     "AUTH_COOKIE_HTTP_ONLY": True,  # XSS 방지
@@ -198,21 +189,6 @@ ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_ADAPTER = "accounts.adapters.CustomAccountAdapter"
 SOCIALACCOUNT_ADAPTER = "accounts.adapters.CustomSocialAccountAdapter"
 
-# dj-rest-auth 설정 (현재 사용하지 않음 - SimpleJWT 직접 사용)
-# REST_AUTH = {
-#     "REGISTER_SERIALIZER": "accounts.serializers.CustomRegisterSerializer",
-#     "USER_DETAILS_SERIALIZER": "accounts.serializers.CustomUserDetailsSerializer",
-#     "SIGNUP_FIELDS": {},
-#     "USE_JWT": True,
-#     "JWT_AUTH_COOKIE": "gobooky-auth",
-#     "JWT_AUTH_REFRESH_COOKIE": "gobooky-refresh",
-#     "JWT_AUTH_SECURE": False,  # 개발 환경에서는 False
-#     "JWT_AUTH_HTTPONLY": True,  # XSS 방지
-#     "JWT_AUTH_SAMESITE": "Lax",  # CSRF 방지
-#     "SESSION_LOGIN": False,
-#     "JWT_AUTH_RETURN_EXPIRATION": True,
-#     "TOKEN_MODEL": None,
-# }
 
 # Social Account Providers
 SOCIALACCOUNT_PROVIDERS = {
@@ -333,7 +309,9 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTH_USER_MODEL = "accounts.User"
 
 # Redis settings
-REDIS_URL = "redis://127.0.0.1:6379/1"
+REDIS_URL = env("REDIS_URL")
+# REDIS_URL = "redis://127.0.0.1:6379/1"
+
 
 # Cache settings
 CACHES = {
@@ -353,29 +331,26 @@ CACHES = {
 }
 
 # Cache timeout settings
-CACHE_TTL = 60 * 15  # 15 minutes
-CACHE_KEY_PREFIX = "gobooky"
+CACHE_TTL = env.int("CACHE_TTL")  # 15 minutes
+CACHE_KEY_PREFIX = env("CACHE_KEY_PREFIX")
 
 # Session settings
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_CACHE_ALIAS = "default"
 
 # CSRF 설정
-CSRF_COOKIE_NAME = "csrftoken"
-CSRF_COOKIE_AGE = 31449600  # 1년
+CSRF_COOKIE_NAME = env("CSRF_COOKIE_NAME", default="csrftoken")
+CSRF_COOKIE_AGE = env.int("CSRF_COOKIE_AGE", default=31449600)
 CSRF_COOKIE_DOMAIN = None
 CSRF_COOKIE_SECURE = not DEBUG
 CSRF_COOKIE_HTTPONLY = False
 CSRF_COOKIE_SAMESITE = "Lax"
 CSRF_HEADER_NAME = "HTTP_X_CSRF_TOKEN"
-CSRF_TRUSTED_ORIGINS = [
-    "http://localhost:5173",
-    "http://127.0.0.1:5173",
-]
+CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS")
 
 # JWT 토큰 수명(분/초)
-ACCESS_TOKEN_LIFETIME = 15  # 분 단위
-REFRESH_TOKEN_LIFETIME = 7 * 24 * 60 * 60  # 초 단위 (7일)
+ACCESS_TOKEN_LIFETIME = env.int("ACCESS_TOKEN_LIFETIME")
+REFRESH_TOKEN_LIFETIME = env.int("REFRESH_TOKEN_LIFETIME")
 
 # 로깅 설정
 LOGGING = {
@@ -414,3 +389,25 @@ LOGGING = {
         "level": "WARNING",
     },
 }
+
+# 보안 헤더 (배포시 중요)
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+X_FRAME_OPTIONS = 'DENY'
+
+# HTTPS 설정 (배포시)
+if not DEBUG:
+    SECURE_SSL_REDIRECT = True
+    SECURE_HSTS_SECONDS = 31536000
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+
+# 로깅 개선 (배포시)
+if not DEBUG:
+    LOGGING['handlers']['file'] = {
+        'class': 'logging.FileHandler',
+        'filename': BASE_DIR / 'logs' / 'django.log',
+        'formatter': 'verbose',
+    }
