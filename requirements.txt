@@ -219,3 +219,4 @@ Wikipedia-API==0.7.3
 win32_setctime==1.2.0
 wrapt==1.17.2
 zipp==3.21.0
+gunicorn==21.2.0
