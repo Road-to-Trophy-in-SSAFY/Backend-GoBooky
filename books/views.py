@@ -170,31 +170,90 @@ class ThreadViewSet(viewsets.ModelViewSet):
         return [permission() for permission in permission_classes]
 
     def list(self, request, *args, **kwargs):
-        """쓰레드 목록 반환 (좋아요 상태 때문에 캐싱 비활성화)"""
-        # 좋아요 상태가 사용자별로 다르므로 ThreadList는 캐싱하지 않음
-        # 이렇게 하면 뒤로가기 시 좋아요 상태가 깜빡이지 않음
-        logger.info("🧵 [ThreadList] 캐싱 비활성화 - 좋아요 상태 실시간 반영")
+        """캐시된 쓰레드 목록 반환 (좋아요 상태 제외)"""
+        query_params = request.GET.urlencode()
+        cache_key = f"{settings.CACHE_KEY_PREFIX}:thread_list:{query_params}"
+
+        cached = cache.get(cache_key)
+        if cached:
+            logger.info(f"🧵 [CACHE HIT] Thread list: {cache_key}")
+            return Response(cached)
 
         response = super().list(request, *args, **kwargs)
+
+        if response.status_code == 200:
+            cache.set(cache_key, response.data, settings.CACHE_TTL)
+            logger.info(f"🧵 [CACHE SET] Thread list: {cache_key}")
+
         return response
+
+    @action(detail=False, methods=["get"], permission_classes=[IsAuthenticated])
+    def like_status(self, request):
+        """사용자의 모든 쓰레드 좋아요 상태 조회 (캐싱 없음)"""
+        user = request.user
+        thread_ids = request.GET.get("thread_ids", "").split(",")
+
+        if not thread_ids or thread_ids == [""]:
+            return Response({})
+
+        try:
+            thread_ids = [int(tid) for tid in thread_ids if tid.strip()]
+        except ValueError:
+            return Response({"error": "Invalid thread IDs"}, status=400)
+
+        # 사용자가 좋아요한 쓰레드들 조회
+        liked_threads = Thread.objects.filter(
+            id__in=thread_ids, likes=user
+        ).values_list("id", flat=True)
+
+        # 결과 구성
+        result = {}
+        for thread in Thread.objects.filter(id__in=thread_ids):
+            result[str(thread.id)] = {
+                "liked": thread.id in liked_threads,
+                "likes_count": thread.likes.count(),
+            }
+
+        logger.info(f"✅ [ThreadList] 좋아요 상태 실시간 조회: {len(result)}개 쓰레드")
+        return Response(result)
 
     def retrieve(self, request, *args, **kwargs):
         """캐시된 쓰레드 상세 정보 반환 (사용자별 캐시)"""
         thread_id = kwargs.get("pk")
         query_params = request.GET.urlencode()
 
+        logger.info(
+            f"🔍 [ThreadRetrieve] 쓰레드 조회 시작 - ID: {thread_id}, 사용자: {request.user.email if request.user.is_authenticated else 'anonymous'}"
+        )
+        logger.info(f"🔍 [ThreadRetrieve] 쿼리 파라미터: {query_params}")
+
         # 사용자별 캐시 키 생성 (좋아요 상태가 사용자마다 다르므로)
         user_id = request.user.id if request.user.is_authenticated else "anonymous"
         cache_key = f"{settings.CACHE_KEY_PREFIX}:thread_detail:{thread_id}:user_{user_id}:{query_params}"
 
+        logger.info(f"🔑 [ThreadRetrieve] 캐시 키: {cache_key}")
+
         cached = cache.get(cache_key)
         if cached:
             logger.info(f"📄 [CACHE HIT] Thread detail: {cache_key}")
+            logger.info(f"📄 [CACHE HIT] 캐시된 cover_img: {cached.get('cover_img')}")
+            logger.info(
+                f"📄 [CACHE HIT] 캐시된 cover_img_url: {cached.get('cover_img_url')}"
+            )
             return Response(cached)
 
+        logger.info(f"📄 [CACHE MISS] 캐시 없음, DB에서 조회 - 쓰레드 ID: {thread_id}")
         response = super().retrieve(request, *args, **kwargs)
 
         if response.status_code == 200:
+            logger.info(f"✅ [ThreadRetrieve] DB 조회 성공 - 쓰레드 ID: {thread_id}")
+            logger.info(
+                f"🖼️ [ThreadRetrieve] DB에서 가져온 cover_img: {response.data.get('cover_img')}"
+            )
+            logger.info(
+                f"🖼️ [ThreadRetrieve] DB에서 가져온 cover_img_url: {response.data.get('cover_img_url')}"
+            )
+
             # 좋아요 상태가 포함된 데이터는 적절한 TTL 사용 (5분)
             # 너무 짧으면 이미지 생성 중에 캐시가 만료되어 문제 발생
             cache_ttl = 300 if request.user.is_authenticated else settings.CACHE_TTL
@@ -202,19 +261,31 @@ class ThreadViewSet(viewsets.ModelViewSet):
             logger.info(
                 f"📄 [CACHE SET] Thread detail: {cache_key} (TTL: {cache_ttl}s)"
             )
+        else:
+            logger.error(
+                f"❌ [ThreadRetrieve] DB 조회 실패 - 쓰레드 ID: {thread_id}, 상태코드: {response.status_code}"
+            )
 
         return response
 
     def create(self, request, *args, **kwargs):
         """쓰레드 생성 - 응답에 상세 정보 포함"""
+        logger.info(
+            f"🚀 [ThreadCreate] 쓰레드 생성 시작 - 사용자: {request.user.email}"
+        )
+
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 
         # 작성자를 현재 사용자로 설정
         thread = serializer.save(user=request.user)
+        logger.info(
+            f"💾 [ThreadCreate] 쓰레드 DB 저장 완료 - ID: {thread.id}, 제목: {thread.title}"
+        )
 
         # 관련 캐시 무효화
         self._invalidate_thread_cache()
+        logger.info(f"🗑️ [ThreadCreate] 캐시 무효화 완료 - 쓰레드 ID: {thread.id}")
 
         logger.info(f"✅ 쓰레드 생성 완료: {thread.id} by {request.user.email}")
 
@@ -223,24 +294,124 @@ class ThreadViewSet(viewsets.ModelViewSet):
 
         def generate_image_async():
             try:
-                logger.info(f"🎨 백그라운드 이미지 생성 시작: {thread.id}")
+                logger.info(
+                    f"🎨 [ImageGen] 백그라운드 이미지 생성 시작 - 쓰레드 ID: {thread.id}"
+                )
+                logger.info(
+                    f"📋 [ImageGen] 쓰레드 정보 - 제목: {thread.title}, 도서: {thread.book.title}"
+                )
+
+                # 이미지 생성 전 쓰레드 상태 로그
+                logger.info(f"🔍 [ImageGen] 생성 전 cover_img 상태: {thread.cover_img}")
+
                 image_path = create_thread_image(thread)
+                logger.info(f"🖼️ [ImageGen] create_thread_image 결과: {image_path}")
+
                 if image_path:
+                    logger.info(
+                        f"💾 [ImageGen] 이미지 경로를 DB에 저장 시작 - 경로: {image_path}"
+                    )
                     thread.cover_img = image_path
                     thread.save()
-                    logger.info(f"✅ 백그라운드 이미지 생성 완료: {thread.id}")
-                    # 이미지 생성 후 캐시 무효화
+                    logger.info(
+                        f"✅ [ImageGen] DB 저장 완료 - 쓰레드 ID: {thread.id}, 이미지 경로: {thread.cover_img}"
+                    )
+
+                    # 이미지 생성 완료 후 캐시 무효화 추가
+                    logger.info(
+                        f"🗑️ [ImageGen] 이미지 생성 완료 후 캐시 무효화 시작 - 쓰레드 ID: {thread.id}"
+                    )
+
+                    # 강력한 캐시 무효화 방식 사용
+                    try:
+                        import redis
+                        from django.conf import settings as django_settings
+
+                        # Redis 연결
+                        redis_client = redis.Redis.from_url(
+                            django_settings.CACHES["default"]["LOCATION"]
+                        )
+
+                        # 더 포괄적인 패턴으로 키 찾기 및 삭제
+                        cache_patterns = [
+                            f"*thread_detail*{thread.id}*",  # 쓰레드 상세 관련 모든 캐시
+                            f"*thread_list*",  # 쓰레드 목록 관련 모든 캐시
+                            f"*:thread_detail:{thread.id}:*",  # 기존 패턴도 유지
+                        ]
+
+                        total_deleted = 0
+                        for pattern in cache_patterns:
+                            keys = redis_client.keys(pattern)
+                            if keys:
+                                redis_client.delete(*keys)
+                                total_deleted += len(keys)
+                                logger.info(
+                                    f"🗑️ [ImageGen] Redis 패턴 삭제: {pattern} ({len(keys)}개 키)"
+                                )
+                                for key in keys:
+                                    logger.info(
+                                        f"🗑️ [ImageGen] 삭제된 키: {key.decode()}"
+                                    )
+                            else:
+                                logger.info(
+                                    f"🗑️ [ImageGen] Redis 패턴 매칭 없음: {pattern}"
+                                )
+
+                        logger.info(
+                            f"🗑️ [ImageGen] 총 {total_deleted}개 캐시 키 삭제 완료"
+                        )
+
+                    except Exception as redis_error:
+                        logger.warning(
+                            f"⚠️ [ImageGen] Redis 캐시 무효화 실패, 기본 캐시 사용: {redis_error}"
+                        )
+                        # 기본 Django 캐시 무효화 (fallback)
+                        cache.delete(
+                            f"{settings.CACHE_KEY_PREFIX}:thread_detail:{thread.id}"
+                        )
+                        cache.delete(f"{settings.CACHE_KEY_PREFIX}:thread_list")
+
+                    # 기본 캐시 무효화도 실행
                     self._invalidate_thread_cache(thread.id)
+                    logger.info(
+                        f"🗑️ [ImageGen] 캐시 무효화 완료 - 쓰레드 ID: {thread.id}"
+                    )
+
+                    logger.info(
+                        f"✅ [ImageGen] 백그라운드 이미지 생성 완료: {thread.id}"
+                    )
+                else:
+                    logger.warning(
+                        f"⚠️ [ImageGen] 이미지 생성 실패 - create_thread_image가 None 반환: {thread.id}"
+                    )
+
             except Exception as e:
-                logger.error(f"❌ 백그라운드 이미지 생성 실패: {thread.id}, {str(e)}")
+                logger.error(
+                    f"❌ [ImageGen] 백그라운드 이미지 생성 실패: {thread.id}, 에러: {str(e)}",
+                    exc_info=True,
+                )
 
         # 별도 스레드에서 이미지 생성
+        logger.info(
+            f"🧵 [ThreadCreate] 백그라운드 이미지 생성 스레드 시작 - 쓰레드 ID: {thread.id}"
+        )
         image_thread = threading.Thread(target=generate_image_async)
         image_thread.daemon = True
         image_thread.start()
+        logger.info(
+            f"🧵 [ThreadCreate] 백그라운드 스레드 시작됨 - 쓰레드 ID: {thread.id}"
+        )
 
         # 응답에는 상세 시리얼라이저 사용 (이미지 없이 먼저 응답)
         detail_serializer = ThreadDetailSerializer(thread, context={"request": request})
+        logger.info(f"📤 [ThreadCreate] 응답 데이터 준비 완료 - 쓰레드 ID: {thread.id}")
+        logger.info(
+            f"📤 [ThreadCreate] 응답 시점 cover_img: {detail_serializer.data.get('cover_img')}"
+        )
+        logger.info(
+            f"📤 [ThreadCreate] 응답 시점 cover_img_url: {detail_serializer.data.get('cover_img_url')}"
+        )
+
         headers = self.get_success_headers(detail_serializer.data)
         return Response(
             detail_serializer.data, status=status.HTTP_201_CREATED, headers=headers
@@ -298,11 +469,19 @@ class ThreadViewSet(viewsets.ModelViewSet):
         """쓰레드 관련 캐시 무효화"""
         from django.core.cache import cache
 
-        # ThreadList는 더 이상 캐싱하지 않으므로 무효화 불필요
-        logger.info("🧵 [ThreadList] 캐싱 비활성화로 인해 목록 캐시 무효화 생략")
+        logger.info(
+            f"🗑️ [CacheInvalidate] 캐시 무효화 시작 - 쓰레드 ID: {thread_id or 'all'}"
+        )
+
+        # 목록 캐시 무효화 (다시 활성화)
+        cache_key_list_base = f"{settings.CACHE_KEY_PREFIX}:thread_list"
+        cache.delete(cache_key_list_base)
+        cache.delete(f"{cache_key_list_base}:")  # 빈 쿼리 파라미터
+        logger.info(f"🗑️ [CacheInvalidate] 목록 캐시 무효화 완료")
 
         # 특정 쓰레드 상세 캐시 무효화 (모든 사용자)
         if thread_id:
+            logger.info(f"🗑️ [CacheInvalidate] 쓰레드 {thread_id} 상세 캐시 무효화 시작")
             # Redis 패턴 매칭을 사용하여 해당 쓰레드의 모든 사용자별 캐시 삭제
             try:
                 import redis
@@ -317,26 +496,38 @@ class ThreadViewSet(viewsets.ModelViewSet):
                 pattern = (
                     f"{settings.CACHE_KEY_PREFIX}:thread_detail:{thread_id}:user_*"
                 )
+                logger.info(f"🔍 [CacheInvalidate] Redis 패턴 검색: {pattern}")
                 keys = redis_client.keys(pattern)
 
                 if keys:
                     redis_client.delete(*keys)
                     logger.info(
-                        f"🗑️ Redis 패턴 매칭으로 쓰레드 {thread_id} 캐시 {len(keys)}개 삭제"
+                        f"🗑️ [CacheInvalidate] Redis 패턴 매칭으로 쓰레드 {thread_id} 캐시 {len(keys)}개 삭제"
                     )
+                    for key in keys:
+                        logger.info(f"🗑️ [CacheInvalidate] 삭제된 키: {key.decode()}")
                 else:
-                    logger.info(f"🗑️ 쓰레드 {thread_id} 관련 캐시 없음")
+                    logger.info(
+                        f"🗑️ [CacheInvalidate] 쓰레드 {thread_id} 관련 캐시 없음"
+                    )
 
             except Exception as e:
-                logger.warning(f"⚠️ Redis 패턴 매칭 실패, 기본 캐시 삭제 사용: {e}")
+                logger.warning(
+                    f"⚠️ [CacheInvalidate] Redis 패턴 매칭 실패, 기본 캐시 삭제 사용: {e}"
+                )
                 # 기본 캐시 삭제 (fallback)
                 cache_key_detail_base = (
                     f"{settings.CACHE_KEY_PREFIX}:thread_detail:{thread_id}"
                 )
                 cache.delete(cache_key_detail_base)
                 cache.delete(f"{cache_key_detail_base}:")
+                logger.info(
+                    f"🗑️ [CacheInvalidate] 기본 캐시 삭제 완료: {cache_key_detail_base}"
+                )
 
-        logger.info(f"🗑️ 쓰레드 캐시 무효화 완료: {thread_id or 'all'}")
+        logger.info(
+            f"🗑️ [CacheInvalidate] 쓰레드 캐시 무효화 완료: {thread_id or 'all'}"
+        )
 
 
 class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
