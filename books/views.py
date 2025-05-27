@@ -5,6 +5,7 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from django.shortcuts import get_object_or_404
 from django.core.cache import cache
 from django.core.paginator import Paginator
+from django.db.models import Q
 import logging
 
 logger = logging.getLogger(__name__)
@@ -47,27 +48,57 @@ class BookViewSet(viewsets.ReadOnlyModelViewSet):
 
     def get_queryset(self):
         queryset = Book.objects.all()
-        category_pk = self.request.query_params.get("category")
 
-        if category_pk:
-            queryset = queryset.filter(category_id=category_pk)
+        # 검색 기능
+        search_query = self.request.query_params.get("search")
+        if search_query:
+            logger.info(f"🔍 [BookViewSet] 검색어: {search_query}")
+            queryset = queryset.filter(
+                Q(title__icontains=search_query)
+                | Q(author__icontains=search_query)
+                | Q(publisher__icontains=search_query)
+                | Q(description__icontains=search_query)
+            )
+            logger.info(f"🔍 [BookViewSet] 검색 결과 수: {queryset.count()}")
+
+        # 카테고리 필터링
+        category_pk = self.request.query_params.get("category")
+        if category_pk and category_pk != "null":
+            try:
+                category_pk = int(category_pk)
+                queryset = queryset.filter(category_id=category_pk)
+                logger.info(
+                    f"📂 [BookViewSet] 카테고리 필터링: {category_pk}, 결과 수: {queryset.count()}"
+                )
+            except (ValueError, TypeError):
+                pass  # 잘못된 카테고리 값은 무시
 
         return queryset
 
     def list(self, request, *args, **kwargs):
         """캐시된 도서 목록 반환"""
-        category_pk = request.GET.get("category")
+        category_pk = request.GET.get("category", "all")
+        search_query = request.GET.get("search", "")
         page = request.GET.get("page", "1")
-        cache_key = (
-            f"{settings.CACHE_KEY_PREFIX}:book_list:{category_pk or 'all'}:page_{page}"
+
+        logger.info(
+            f"📚 [BookViewSet] list 호출 - category: {category_pk}, search: {search_query}, page: {page}"
         )
 
-        cached = cache.get(cache_key)
-        if cached:
-            logger.info(f"📚 [CACHE HIT] Book list: {cache_key}")
-            return Response(cached)
+        # 검색어와 카테고리를 포함한 캐시 키 생성
+        cache_key = (
+            f"{settings.CACHE_KEY_PREFIX}:book_list:"
+            f"cat_{category_pk}:search_{search_query}:page_{page}"
+        )
+
+        # 임시로 캐시 비활성화
+        # cached = cache.get(cache_key)
+        # if cached:
+        #     logger.info(f"📚 [CACHE HIT] Book list: {cache_key}")
+        #     return Response(cached)
 
         response = super().list(request, *args, **kwargs)
+        logger.info(f"📚 [BookViewSet] 응답 데이터: {response.data}")
 
         if response.status_code == 200:
             cache.set(cache_key, response.data, settings.CACHE_TTL)
