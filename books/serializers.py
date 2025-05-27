@@ -36,6 +36,7 @@ class BookDetailSerializer(serializers.ModelSerializer):
     related_books = serializers.SerializerMethodField()
     is_saved = serializers.SerializerMethodField()
     saved_count = serializers.SerializerMethodField()
+    audiobook_url = serializers.SerializerMethodField()
 
     class Meta:
         model = Book
@@ -61,6 +62,19 @@ class BookDetailSerializer(serializers.ModelSerializer):
     def get_saved_count(self, obj):
         """이 책을 저장한 사용자 수"""
         return obj.saved_by_users.count()
+
+    def get_audiobook_url(self, obj):
+        """오디오북 파일의 전체 URL을 반환"""
+        if obj.audiobook_file:
+            request = self.context.get("request")
+            if request is not None:
+                from django.conf import settings
+
+                return request.build_absolute_uri(
+                    f"{settings.AUDIOBOOK_URL}{obj.audiobook_file.split('/')[-1]}"
+                )
+            return f"/audio_book/{obj.audiobook_file.split('/')[-1]}"
+        return None
 
 
 class BookTitleSerializer(serializers.ModelSerializer):

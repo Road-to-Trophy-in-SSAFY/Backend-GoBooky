@@ -27,6 +27,9 @@ class Book(models.Model):
     author_photo = models.URLField()
     customer_review_rank = models.FloatField()
     subTitle = models.CharField(max_length=255)
+    audiobook_file = models.CharField(
+        max_length=500, blank=True, null=True, help_text="오디오북 파일 경로"
+    )
 
     def __str__(self):
         return self.title

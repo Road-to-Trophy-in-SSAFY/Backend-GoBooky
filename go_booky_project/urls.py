@@ -31,3 +31,4 @@ urlpatterns = [
 # 개발 환경에서 미디어 파일 제공
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.AUDIOBOOK_URL, document_root=settings.AUDIOBOOK_ROOT)
